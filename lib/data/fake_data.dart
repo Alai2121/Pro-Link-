@@ -53,7 +53,7 @@ class FakeData {
       id: "2",
       name: "Sara",
       email: "sara@mail.com",
-      department: departments[1], // ✔ هنا صححناها
+      department: departments[1],
       status: "Pending",
       mentorId: "m2",
       image: "assets/admin.png",
