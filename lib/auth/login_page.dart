@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../data/fake_data.dart';
 import '../models/admin.dart';
 import '../admin/admin_dashboard.dart';
+import '../models/mentor.dart';
+import '../mentor/mentor_dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,24 +23,28 @@ class _LoginPageState extends State<LoginPage> {
     String name = nameController.text.trim();
     String password = passwordController.text.trim();
 
+    // Check admin
     try {
       Admin admin = FakeData.admin.firstWhere(
             (a) => a.name == name && a.password == password,
       );
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (_) => AdminDashboard(admin: admin)));
+      return;
+    } catch (_) {}
 
-      if (admin.role == "admin") {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => AdminDashboard(admin: admin),
-          ),
-        );
-      } else {
-        setState(() => error = "Access denied: Not an admin");
-      }
-    } catch (e) {
-      setState(() => error = "Wrong username or password");
-    }
+    // Check mentor
+    try {
+      Mentor mentor = FakeData.mentors.firstWhere(
+            (m) => m.name == name && m.password == password,
+      );
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (_) => MentorDashboard(mentor: mentor)));
+      return;
+    } catch (_) {}
+
+    // Neither found
+    setState(() => error = "Wrong username or password");
   }
 
   @override

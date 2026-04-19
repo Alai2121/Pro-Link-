@@ -3,6 +3,9 @@ import '../models/mentor.dart';
 import '../models/admin.dart';
 import '../models/department.dart';
 import '../models/schedule.dart';
+import '../models/attendance.dart';
+import '../models/evaluation.dart';
+import '../models/trainingFile.dart';
 
 class FakeData {
   static List<Department> departments = [
@@ -90,4 +93,9 @@ class FakeData {
 
   static List<Schedule> schedules = [];
 
+  static List<Attendance> attendances = [];
+  static List<Evaluation> evaluations = [];
+  static List<TrainingFile> trainingFiles = [];
+
 }
+
