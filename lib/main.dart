@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'admin/admin_dashboard.dart';
-import 'data/fake_data.dart';
 import 'auth/login_page.dart';
 import 'splash_screen.dart';
 void main() {
