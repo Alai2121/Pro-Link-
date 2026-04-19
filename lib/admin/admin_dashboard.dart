@@ -369,7 +369,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   // ================= DRAWER =================
   Widget buildDrawer(Admin admin) {
     return Drawer(
-      backgroundColor: const Color(0xFFA07A4E),
+      backgroundColor: const Color(0xFF2D3A8C),
       child: Column(
         children: [
           const SizedBox(height: 50),
@@ -388,8 +388,16 @@ class _AdminDashboardState extends State<AdminDashboard> {
           const Divider(),
 
           ListTile(
+            leading: const Icon(Icons.dashboard, color: Colors.white),
+            title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+
+          ListTile(
             leading: const Icon(Icons.people, color: Colors.white),
-            title: const Text("Manage Interns",style: const TextStyle(color: Colors.white)),
+            title: const Text("Manage interns/mentor/departemment",style: const TextStyle(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => ManageInterns(admin: admin)));
@@ -445,7 +453,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFA07A4E),
+        backgroundColor: const Color(0xFF2D3A8C),
         foregroundColor: Colors.white,
         title: Row(
           children: [

@@ -21,7 +21,7 @@ class ManageInterns extends StatefulWidget {
 
 class _ManageInternsState extends State<ManageInterns> {
 
-  final Color mainColor = const Color(0xFFA07A4E);
+  final Color mainColor = const Color(0xFF2D3A8C);
 
   // ================= CONTROLLERS =================
   final TextEditingController mId = TextEditingController();
@@ -173,7 +173,7 @@ class _ManageInternsState extends State<ManageInterns> {
             ElevatedButton(
               onPressed: addMentor,
               style: ElevatedButton.styleFrom(backgroundColor: mainColor),
-              child: const Text("Add Mentor"),
+              child: const Text("Add Mentor",style: const TextStyle(color: Colors.white)),
             ),
           ],
         ),
@@ -200,7 +200,7 @@ class _ManageInternsState extends State<ManageInterns> {
             ElevatedButton(
               onPressed: addDepartment,
               style: ElevatedButton.styleFrom(backgroundColor: mainColor),
-              child: const Text("Add Department"),
+              child: const Text("Add Department",style: const TextStyle(color: Colors.white)),
             ),
           ],
         ),
@@ -283,13 +283,14 @@ class _ManageInternsState extends State<ManageInterns> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
+        foregroundColor: Colors.white,
         title: Text(
           "Manage Interns",
           style: GoogleFonts.playfairDisplay(
               fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-
+// --------------------------drawer
       drawer: Drawer(
         backgroundColor: mainColor,
         child: Column(
@@ -311,6 +312,14 @@ class _ManageInternsState extends State<ManageInterns> {
             ),
 
             ListTile(
+              leading: const Icon(Icons.people, color: Colors.white),
+              title: const Text("Manage interns/mentor/departemment", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
               leading: const Icon(Icons.assignment_ind, color: Colors.white),
               title: const Text("Assign Interns", style: TextStyle(color: Colors.white)),
               onTap: () {
@@ -326,6 +335,19 @@ class _ManageInternsState extends State<ManageInterns> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
               },
+            ),
+            const Spacer(),
+
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                "Pro Link",
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),
