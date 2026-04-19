@@ -41,13 +41,13 @@ class FakeData {
   static List<Intern> interns = [
     Intern(
       id: "1",
-      name: "Ali",
-      email: "ali@mail.com",
+      name: "nesrine",
+      email: "nesrine@mail.com",
       department: departments[0],
       status: "Approved",
       mentorId: "m1",
-      image: "assets/admin.png",
-      password:"aaaa",
+      image: "assets/student1.png",
+      password: "aaaa",
     ),
     Intern(
       id: "2",
@@ -56,8 +56,8 @@ class FakeData {
       department: departments[1],
       status: "Pending",
       mentorId: "m2",
-      image: "assets/admin.png",
-      password:"aaaa",
+      image: "assets/student1.png",
+      password: "aaaa",
     ),
     Intern(
       id: "3",
@@ -66,10 +66,9 @@ class FakeData {
       department: departments[2],
       status: "Approved",
       mentorId: "m1",
-      image: "assets/admin.png",
-      password:"aaaa",
+      image: "assets/student1.png",
+      password: "aaaa",
     ),
-
   ];
 
   static List<Mentor> mentors = [
@@ -79,7 +78,7 @@ class FakeData {
       email: "ahmed@mail.com",
       department: departments[0],
       image: "assets/admin.png",
-      password:"aaaa",
+      password: "aaaa",
     ),
     Mentor(
       id: "m2",
@@ -87,15 +86,84 @@ class FakeData {
       email: "ali@mail.com",
       department: departments[1],
       image: "assets/admin.png",
-      password:"aaaa",
+      password: "aaaa",
     ),
   ];
 
-  static List<Schedule> schedules = [];
+  // ================= SCHEDULE FIXED =================
+  static List<Schedule> schedules = [
+    const Schedule(
+      id: "s1",
+      internId: "1",
+      internName: "nesrine",
+      day: "Monday",
+      time: "9:00 AM - 12:00 PM",
+      type: "Work",
+    ),
+    const Schedule(
+      id: "s2",
+      internId: "1",
+      internName: "nesrine",
+      day: "Monday",
+      time: "1:00 PM - 4:00 PM",
+      type: "Training",
+    ),
+    const Schedule(
+      id: "s3",
+      internId: "1",
+      internName: "nesrine",
+      day: "Tuesday",
+      time: "10:00 AM - 1:00 PM",
+      type: "Meeting",
+    ),
+    const Schedule(
+      id: "s4",
+      internId: "1",
+      internName: "nesrine",
+      day: "Wednesday",
+      time: "9:00 AM - 12:00 PM",
+      type: "Work",
+    ),
+    const Schedule(
+      id: "s5",
+      internId: "1",
+      internName: "nesrine",
+      day: "Thursday",
+      time: "10:00 AM - 1:00 PM",
+      type: "Training",
+    ),
+    const Schedule(
+      id: "s6",
+      internId: "1",
+      internName: "nesrine",
+      day: "Friday",
+      time: "9:00 AM - 12:00 PM",
+      type: "Review",
+    ),
+  ];
 
   static List<Attendance> attendances = [];
-  static List<Evaluation> evaluations = [];
-  static List<TrainingFile> trainingFiles = [];
 
+  static List<Evaluation> evaluations = [
+    const Evaluation(id: "e1", internId: "1", skill: "Communication", mark: 85),
+    const Evaluation(id: "e2", internId: "1", skill: "Technical", mark: 78),
+    const Evaluation(id: "e3", internId: "1", skill: "Teamwork", mark: 92),
+    const Evaluation(id: "e4", internId: "1", skill: "Problem Solving", mark: 88),
+    const Evaluation(id: "e5", internId: "1", skill: "Creativity", mark: 90),
+  ];
+
+  static List<TrainingFile> trainingFiles = [
+    const TrainingFile(
+      id: "f1",
+      title: "Flutter Guide.pdf",
+      fileUrl: "https://example.com/files/flutter_guide.pdf",
+      mentorId: "m1",
+    ),
+    const TrainingFile(
+      id: "f2",
+      title: "Company Policy.docx",
+      fileUrl: "https://example.com/files/company_policy.docx",
+      mentorId: "m1",
+    ),
+  ];
 }
-

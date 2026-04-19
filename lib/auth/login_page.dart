@@ -5,6 +5,9 @@ import '../models/admin.dart';
 import '../admin/admin_dashboard.dart';
 import '../models/mentor.dart';
 import '../mentor/mentor_dashboard.dart';
+import '../models/intern.dart';
+import '../intern/intern_dashboard.dart';
+import '../auth/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,27 +26,57 @@ class _LoginPageState extends State<LoginPage> {
     String name = nameController.text.trim();
     String password = passwordController.text.trim();
 
-    // Check admin
+    // ================= ADMIN =================
     try {
       Admin admin = FakeData.admin.firstWhere(
             (a) => a.name == name && a.password == password,
       );
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => AdminDashboard(admin: admin)));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => AdminDashboard(admin: admin)),
+      );
       return;
     } catch (_) {}
 
-    // Check mentor
+    // ================= MENTOR =================
     try {
       Mentor mentor = FakeData.mentors.firstWhere(
             (m) => m.name == name && m.password == password,
       );
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => MentorDashboard(mentor: mentor)));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => MentorDashboard(mentor: mentor)),
+      );
       return;
     } catch (_) {}
 
-    // Neither found
+    // ================= INTERN (NEW) =================
+    try {
+      Intern intern = FakeData.interns.firstWhere(
+            (i) => i.name == name && i.password == password,
+      );
+
+      // ❌ NOT APPROVED
+      if (intern.status.toLowerCase() != "approved") {
+        setState(() {
+          error = "⏳ You cannot login until approved by admin";
+        });
+        return;
+      }
+
+      // ✅ APPROVED → GO TO INTERN DASHBOARD
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => InternDashboard(intern: intern),
+        ),
+      );
+      return;
+    } catch (_) {}
+
+    // ================= ERROR =================
     setState(() => error = "Wrong username or password");
   }
 
@@ -59,11 +92,9 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                // Logo
                 Image.asset('assets/logo.png', width: 180),
                 const SizedBox(height: 8),
 
-                // Welcome text
                 Text(
                   'Welcome Back',
                   style: GoogleFonts.poppins(
@@ -72,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: const Color(0xFF2D3A8C),
                   ),
                 ),
+
                 Text(
                   'Sign in to continue',
                   style: GoogleFonts.poppins(
@@ -79,15 +111,15 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.grey.shade500,
                   ),
                 ),
+
                 const SizedBox(height: 36),
 
-                // Name field
+                // USERNAME
                 TextField(
                   controller: nameController,
                   style: GoogleFonts.poppins(fontSize: 14),
                   decoration: InputDecoration(
                     labelText: 'Username',
-                    labelStyle: GoogleFonts.poppins(color: Colors.grey),
                     prefixIcon: const Icon(Icons.person_outline,
                         color: Color(0xFF2D3A8C)),
                     filled: true,
@@ -96,23 +128,18 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(14),
                       borderSide: BorderSide.none,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(
-                          color: Color(0xFF2D3A8C), width: 1.5),
-                    ),
                   ),
                 ),
+
                 const SizedBox(height: 16),
 
-                // Password field
+                // PASSWORD
                 TextField(
                   controller: passwordController,
                   obscureText: _obscurePassword,
                   style: GoogleFonts.poppins(fontSize: 14),
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: GoogleFonts.poppins(color: Colors.grey),
                     prefixIcon: const Icon(Icons.lock_outline,
                         color: Color(0xFF2D3A8C)),
                     suffixIcon: IconButton(
@@ -120,7 +147,6 @@ class _LoginPageState extends State<LoginPage> {
                         _obscurePassword
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
-                        color: Colors.grey,
                       ),
                       onPressed: () => setState(
                               () => _obscurePassword = !_obscurePassword),
@@ -131,43 +157,21 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(14),
                       borderSide: BorderSide.none,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(
-                          color: Color(0xFF2D3A8C), width: 1.5),
-                    ),
                   ),
                 ),
+
                 const SizedBox(height: 12),
 
-                // Error message
+                // ERROR MESSAGE
                 if (error.isNotEmpty)
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade50,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.red.shade200),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.error_outline,
-                            color: Colors.red, size: 18),
-                        const SizedBox(width: 8),
-                        Text(
-                          error,
-                          style: GoogleFonts.poppins(
-                              color: Colors.red, fontSize: 12),
-                        ),
-                      ],
-                    ),
+                  Text(
+                    error,
+                    style: const TextStyle(color: Colors.red),
                   ),
 
                 const SizedBox(height: 24),
 
-                // Login button
+                // LOGIN BUTTON
                 SizedBox(
                   width: double.infinity,
                   height: 52,
@@ -178,22 +182,40 @@ class _LoginPageState extends State<LoginPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      elevation: 3,
                     ),
                     child: Text(
                       'Sign In',
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
                     ),
                   ),
                 ),
 
+                const SizedBox(height: 20),
+
+                // ================= REGISTER LINK (ADDED) =================
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const RegisterPage(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Don't have an account? Register",
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      color: const Color(0xFF2D3A8C),
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+
                 const SizedBox(height: 30),
-
-
               ],
             ),
           ),

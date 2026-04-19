@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../data/fake_data.dart';
+import '../models/admin.dart';
+import '../models/department.dart';
+import '../models/mentor.dart';
+
 import 'admin_dashboard.dart';
 import 'assign_interns.dart';
 import 'upload_schedule.dart';
-import '../models/admin.dart';
 
 class ManageInterns extends StatefulWidget {
   final Admin admin;
@@ -18,90 +21,72 @@ class ManageInterns extends StatefulWidget {
 
 class _ManageInternsState extends State<ManageInterns> {
 
-  // ================= STATUS UPDATE =================
-  void changeInternStatus(int index, String status) {
+  final Color mainColor = const Color(0xFFA07A4E);
+
+  // ================= CONTROLLERS =================
+  final TextEditingController mId = TextEditingController();
+  final TextEditingController mName = TextEditingController();
+  final TextEditingController mEmail = TextEditingController();
+  final TextEditingController mPassword = TextEditingController();
+
+  Department? selectedDept;
+
+  final TextEditingController dId = TextEditingController();
+  final TextEditingController dName = TextEditingController();
+
+  // ================= STATUS =================
+  void changeStatus(int index, String status) {
     setState(() {
       FakeData.interns[index].status = status;
     });
   }
 
-  // ================= DRAWER =================
-  Widget buildDrawer() {
-    return Drawer(
-      backgroundColor: const Color(0xFFA07A4E),
-      child: Column(
-        children: [
+  // ================= ADD MENTOR =================
+  void addMentor() {
+    if (selectedDept == null) return;
 
-          const SizedBox(height: 50),
+    setState(() {
+      FakeData.mentors.add(
+        Mentor(
+          id: mId.text,
+          name: mName.text,
+          email: mEmail.text,
+          password: mPassword.text,
+          image: "assets/default.png",
+          department: selectedDept!,
+        ),
+      );
+    });
 
-          const CircleAvatar(
-            radius: 40,
-            backgroundImage: AssetImage("assets/admin.png"),
-          ),
+    mId.clear();
+    mName.clear();
+    mEmail.clear();
+    mPassword.clear();
+    selectedDept = null;
+  }
 
-          const SizedBox(height: 10),
+  // ================= ADD DEPARTMENT =================
+  void addDepartment() {
+    setState(() {
+      FakeData.departments.add(
+        Department(
+          id: dId.text,
+          name: dName.text,
+        ),
+      );
+    });
 
-          Text(widget.admin.name,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)),
-
-          const Divider(color: Colors.white),
-
-          ListTile(
-            leading: const Icon(Icons.dashboard, color: Colors.white),
-            title: const Text("Dashboard",
-                style: TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => AdminDashboard(admin: widget.admin),
-                ),
-                    (route) => false,
-              );
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.assignment_ind, color: Colors.white),
-            title: const Text("Assign Interns",
-                style: TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => AssignIntern(admin: widget.admin),
-                ),
-              );
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.schedule, color: Colors.white),
-            title: const Text("Upload Schedule",
-                style: TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => UploadSchedule(admin: widget.admin),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
+    dId.clear();
+    dName.clear();
   }
 
   // ================= STATUS DROPDOWN =================
-  Widget statusDropdown(int index, String currentStatus) {
-    Color color = Colors.grey;
-
-    if (currentStatus == "Approved") color = Colors.green;
-    if (currentStatus == "Rejected") color = Colors.red;
-    if (currentStatus == "Pending") color = Colors.orange;
+  Widget statusDropdown(int index, String value) {
+    Color color = value == "Approved"
+        ? Colors.green
+        : value == "Rejected"
+        ? Colors.red
+        : Colors.orange;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -110,7 +95,7 @@ class _ManageInternsState extends State<ManageInterns> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: DropdownButton<String>(
-        value: currentStatus,
+        value: value,
         underline: const SizedBox(),
         dropdownColor: Colors.white,
         items: const [
@@ -118,10 +103,8 @@ class _ManageInternsState extends State<ManageInterns> {
           DropdownMenuItem(value: "Approved", child: Text("Approved")),
           DropdownMenuItem(value: "Rejected", child: Text("Rejected")),
         ],
-        onChanged: (value) {
-          if (value != null) {
-            changeInternStatus(index, value);
-          }
+        onChanged: (val) {
+          if (val != null) changeStatus(index, val);
         },
       ),
     );
@@ -134,33 +117,64 @@ class _ManageInternsState extends State<ManageInterns> {
     return buildTable(
       "Interns",
       ["Name", "Email", "Department", "Mentor", "Status"],
-      interns.map((i) {
-        int index = interns.indexOf(i);
+      interns.asMap().entries.map((entry) {
+        int i = entry.key;
+        var inr = entry.value;
 
         return [
-          i.name,
-          i.email,
-          i.department.name,
-          i.mentorId,
-          statusDropdown(index, i.status),
+          inr.name,
+          inr.email,
+          inr.department.name,
+          inr.mentorId,
+          statusDropdown(i, inr.status),
         ];
       }).toList(),
     );
   }
 
-  // ================= ADD MENTOR =================
-  Widget buildAddMentorCard() {
+  // ================= ADD MENTOR FORM =================
+  Widget buildAddMentor() {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
-          children: const [
-            Text("Add Mentor", style: TextStyle(fontWeight: FontWeight.bold)),
-            TextField(decoration: InputDecoration(labelText: "ID")),
-            TextField(decoration: InputDecoration(labelText: "Name")),
-            TextField(decoration: InputDecoration(labelText: "Email")),
-            SizedBox(height: 10),
-            ElevatedButton(onPressed: null, child: Text("Add Mentor")),
+          children: [
+
+            const Text("Add Mentor",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+
+            TextField(controller: mId, decoration: const InputDecoration(labelText: "ID")),
+            TextField(controller: mName, decoration: const InputDecoration(labelText: "Name")),
+            TextField(controller: mEmail, decoration: const InputDecoration(labelText: "Email")),
+            TextField(controller: mPassword, decoration: const InputDecoration(labelText: "Password")),
+
+            const SizedBox(height: 10),
+
+            // 🔥 DROPDOWN DEPARTMENT (OBJECT)
+            DropdownButton<Department>(
+              value: selectedDept,
+              hint: const Text("Select Department"),
+              isExpanded: true,
+              items: FakeData.departments.map((d) {
+                return DropdownMenuItem(
+                  value: d,
+                  child: Text(d.name),
+                );
+              }).toList(),
+              onChanged: (val) {
+                setState(() {
+                  selectedDept = val;
+                });
+              },
+            ),
+
+            const SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: addMentor,
+              style: ElevatedButton.styleFrom(backgroundColor: mainColor),
+              child: const Text("Add Mentor"),
+            ),
           ],
         ),
       ),
@@ -168,31 +182,39 @@ class _ManageInternsState extends State<ManageInterns> {
   }
 
   // ================= ADD DEPARTMENT =================
-  Widget buildAddDepartmentCard() {
+  Widget buildAddDepartment() {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
-          children: const [
-            Text("Add Department",
+          children: [
+
+            const Text("Add Department",
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            TextField(decoration: InputDecoration(labelText: "ID")),
-            TextField(decoration: InputDecoration(labelText: "Name")),
-            SizedBox(height: 10),
-            ElevatedButton(onPressed: null, child: Text("Add Department")),
+
+            TextField(controller: dId, decoration: const InputDecoration(labelText: "ID")),
+            TextField(controller: dName, decoration: const InputDecoration(labelText: "Name")),
+
+            const SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: addDepartment,
+              style: ElevatedButton.styleFrom(backgroundColor: mainColor),
+              child: const Text("Add Department"),
+            ),
           ],
         ),
       ),
     );
   }
 
-  // ================= MENTORS TABLE =================
+  // ================= MENTOR TABLE =================
   Widget buildMentorTable() {
     return buildTable(
       "Mentors",
       ["Name", "Email", "Department"],
       FakeData.mentors.map((m) {
-        return [m.name, m.email, m.department];
+        return [m.name, m.email, m.department.name];
       }).toList(),
     );
   }
@@ -208,9 +230,8 @@ class _ManageInternsState extends State<ManageInterns> {
     );
   }
 
-  // ================= TABLE UI =================
-  Widget buildTable(String title, List<String> columns,
-      List<List<dynamic>> rows) {
+  // ================= TABLE =================
+  Widget buildTable(String title, List<String> columns, List<List<dynamic>> rows) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -218,14 +239,13 @@ class _ManageInternsState extends State<ManageInterns> {
         const SizedBox(height: 15),
 
         Text(title,
-            style: const TextStyle(
-                fontSize: 18, fontWeight: FontWeight.bold)),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
 
         const SizedBox(height: 10),
 
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFA07A4E)),
+            border: Border.all(color: mainColor),
             borderRadius: BorderRadius.circular(12),
           ),
 
@@ -233,14 +253,13 @@ class _ManageInternsState extends State<ManageInterns> {
             scrollDirection: Axis.horizontal,
 
             child: DataTable(
-              headingRowColor:
-              MaterialStateProperty.all(const Color(0xFFA07A4E)),
+              headingRowColor: MaterialStateProperty.all(mainColor),
 
-              columns: columns
-                  .map((c) => DataColumn(
-                  label: Text(c,
-                      style: const TextStyle(color: Colors.white))))
-                  .toList(),
+              columns: columns.map((c) {
+                return DataColumn(
+                  label: Text(c, style: const TextStyle(color: Colors.white)),
+                );
+              }).toList(),
 
               rows: rows.map((row) {
                 return DataRow(
@@ -263,15 +282,54 @@ class _ManageInternsState extends State<ManageInterns> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFA07A4E),
+        backgroundColor: mainColor,
         title: Text(
-          "Manage Data",
+          "Manage Interns",
           style: GoogleFonts.playfairDisplay(
               fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
 
-      drawer: buildDrawer(),
+      drawer: Drawer(
+        backgroundColor: mainColor,
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
+            const SizedBox(height: 10),
+            Text(widget.admin.name,
+                style: const TextStyle(color: Colors.white)),
+            const Divider(color: Colors.white),
+
+            ListTile(
+              leading: const Icon(Icons.dashboard, color: Colors.white),
+              title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)));
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.assignment_ind, color: Colors.white),
+              title: const Text("Assign Interns", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => AssignIntern(admin: widget.admin)));
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.schedule, color: Colors.white),
+              title: const Text("Upload Schedule", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
+              },
+            ),
+          ],
+        ),
+      ),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -279,23 +337,17 @@ class _ManageInternsState extends State<ManageInterns> {
           children: [
 
             buildInternTable(),
-
             const SizedBox(height: 20),
 
-            buildAddMentorCard(),
+            buildAddMentor(),
             buildMentorTable(),
 
             const SizedBox(height: 20),
 
-            // 🔥 Department SIDE BY SIDE
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                Expanded(child: buildAddDepartmentCard()),
-
+                Expanded(child: buildAddDepartment()),
                 const SizedBox(width: 10),
-
                 Expanded(child: buildDepartmentTable()),
               ],
             ),
