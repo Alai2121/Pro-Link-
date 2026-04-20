@@ -25,7 +25,6 @@ class _DocumentsPageState extends State<DocumentsPage> {
   Future<void> downloadFile(String url) async {
     final uri = Uri.parse(url);
 
-    // Open in browser → user downloads file
     if (!await launchUrl(
       uri,
       mode: LaunchMode.externalApplication,

@@ -33,7 +33,6 @@ class _InternDashboardState extends State<InternDashboard> {
     Navigator.pop(context);
   }
 
-  // ================= LOGOUT =================
   void _logout() {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -54,7 +53,7 @@ class _InternDashboardState extends State<InternDashboard> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // ================= APP BAR =================
+
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -69,7 +68,6 @@ class _InternDashboardState extends State<InternDashboard> {
 
         iconTheme: IconThemeData(color: primary),
 
-        // 🔴 LOGOUT ICON (TOP RIGHT)
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.red),
@@ -79,12 +77,11 @@ class _InternDashboardState extends State<InternDashboard> {
         ],
       ),
 
-      // ================= DRAWER =================
       drawer: Drawer(
         child: Column(
           children: [
 
-            // HEADER
+
             DrawerHeader(
               decoration: BoxDecoration(color: primary),
               child: Column(
@@ -115,7 +112,6 @@ class _InternDashboardState extends State<InternDashboard> {
               ),
             ),
 
-            // MENU
             Expanded(
               child: ListView.builder(
                 itemCount: 5,
@@ -137,7 +133,6 @@ class _InternDashboardState extends State<InternDashboard> {
               ),
             ),
 
-            // ================= LOGOUT (DRAWER) =================
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
               title: Text(
@@ -150,10 +145,10 @@ class _InternDashboardState extends State<InternDashboard> {
         ),
       ),
 
-      // ================= BODY =================
+
       body: pages[selectedIndex],
 
-      // ================= BOTTOM NAV =================
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) => setState(() => selectedIndex = index),
@@ -189,7 +184,7 @@ class _InternDashboardState extends State<InternDashboard> {
   }
 }
 
-// ================= HOME PAGE =================
+
 class HomePage extends StatelessWidget {
   final Intern intern;
   const HomePage({super.key, required this.intern});

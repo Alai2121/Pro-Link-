@@ -28,7 +28,6 @@ class WorkIDPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
 
-              // ================= IMAGE =================
               CircleAvatar(
                 radius: 55,
                 backgroundImage: AssetImage(intern.image),

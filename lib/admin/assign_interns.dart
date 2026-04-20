@@ -1,150 +1,58 @@
 import 'package:flutter/material.dart';
 import '../data/fake_data.dart';
+import '../models/admin.dart';
+import '../models/mentor.dart';
+import '../models/department.dart';
+import '../models/intern.dart';
 import 'admin_dashboard.dart';
 import 'manage_interns.dart';
 import 'upload_schedule.dart';
-import '../models/admin.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AssignIntern extends StatefulWidget {
   final Admin admin;
 
   const AssignIntern({super.key, required this.admin});
+
   @override
   State<AssignIntern> createState() => _AssignInternState();
 }
 
 class _AssignInternState extends State<AssignIntern> {
 
-  final TextEditingController internController = TextEditingController();
-  final TextEditingController mentorController = TextEditingController();
-  final TextEditingController deptController = TextEditingController();
+  // ================= SELECTED OBJECTS =================
+  Intern? selectedIntern;
+  Mentor? selectedMentor;
+  Department? selectedDept;
 
   List<Map<String, String>> assignments = [];
 
-  // ================= ASSIGN FUNCTION =================
+  // ================= ASSIGN =================
   void assignIntern() {
-    try {
-      final intern = FakeData.interns
-          .firstWhere((i) => i.id == internController.text);
+    if (selectedIntern == null ||
+        selectedMentor == null ||
+        selectedDept == null) return;
 
-      final mentor = FakeData.mentors
-          .firstWhere((m) => m.id == mentorController.text);
+    setState(() {
+      // 🔥 تحديث Intern الحقيقي
+      selectedIntern!.mentorId = selectedMentor!.id;
+      selectedIntern!.department = selectedDept!;
 
-      final dept = FakeData.departments
-          .firstWhere((d) => d.id == deptController.text);
-
-      setState(() {
-        assignments.add({
-          "internId": intern.id,
-          "internName": intern.name,
-          "mentorId": mentor.id,
-          "mentorName": mentor.name,
-          "deptName": dept.name,
-        });
-
-        internController.clear();
-        mentorController.clear();
-        deptController.clear();
+      assignments.add({
+        "internId": selectedIntern!.id,
+        "internName": selectedIntern!.name,
+        "mentorId": selectedMentor!.id,
+        "mentorName": selectedMentor!.name,
+        "deptName": selectedDept!.name,
       });
 
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Invalid IDs ❌")),
-      );
-    }
+      selectedIntern = null;
+      selectedMentor = null;
+      selectedDept = null;
+    });
   }
 
-  // ================= DRAWER =================
-  Widget buildDrawer(BuildContext context) {
-    return Drawer(
-      backgroundColor: const Color(0xFFA07A4E),
-      child: Column(
-        children: [
-
-          const SizedBox(height: 50),
-
-          const CircleAvatar(
-            radius: 40,
-            backgroundImage: AssetImage("assets/admin.png"),
-          ),
-
-          const SizedBox(height: 10),
-
-           Text(
-             widget.admin.name,
-            style: TextStyle(color: Colors.white,
-                fontSize: 16,fontWeight: FontWeight.bold),
-          ),
-
-          const Divider(),
-
-          ListTile(
-            leading: const Icon(Icons.dashboard, color: Colors.white),
-            title: const Text("Dashboard",style: const TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => AdminDashboard(admin: widget.admin),
-                ),
-                    (route) => false,
-              );
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.people, color: Colors.white),
-            title: const Text("Manage Interns",style: const TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ManageInterns(admin: widget.admin),
-                ),
-              );
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.assignment_ind, color: Colors.white),
-            title: const Text("Assign Interns",style: const TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.schedule, color: Colors.white),
-            title: const Text("Upload Schedule",style: const TextStyle(color: Colors.white)),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => UploadSchedule(admin: widget.admin),
-                ),
-              );
-            },
-          ),
-          const Spacer(),
-
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Text(
-              "Pro Link",
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // ================= GENERIC TABLE =================
+  // ================= TABLE =================
   Widget buildTable(String title, List<String> columns, List<List<String>> rows) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +67,7 @@ class _AssignInternState extends State<AssignIntern> {
 
         Container(
           decoration: BoxDecoration(
-            border: Border.all(width: 2),
+            border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),
 
@@ -167,12 +75,9 @@ class _AssignInternState extends State<AssignIntern> {
             scrollDirection: Axis.horizontal,
 
             child: DataTable(
-              border: TableBorder.all(color: Colors.grey),
-
-              headingRowColor:
-              MaterialStateProperty.all(Colors.blue.shade100),
-
-              columns: columns.map((c) => DataColumn(label: Text(c))).toList(),
+              columns: columns
+                  .map((c) => DataColumn(label: Text(c)))
+                  .toList(),
 
               rows: rows.map((row) {
                 return DataRow(
@@ -186,6 +91,7 @@ class _AssignInternState extends State<AssignIntern> {
     );
   }
 
+  // ================= UI =================
   @override
   Widget build(BuildContext context) {
 
@@ -193,15 +99,76 @@ class _AssignInternState extends State<AssignIntern> {
         .where((i) => i.status == "Approved")
         .toList();
 
-    final mentors = FakeData.mentors;
-    final departments = FakeData.departments;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Assign Interns"),
+        backgroundColor: const Color(0xFF2D3A8C),
+        foregroundColor: Colors.white,
+        title: Text("Assign Interns",
+          style: GoogleFonts.playfairDisplay(
+              fontSize: 18, fontWeight: FontWeight.bold),
+        ),
       ),
 
-      drawer: buildDrawer(context),
+      drawer: Drawer(
+        backgroundColor: const Color(0xFF2D3A8C),
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
+            const SizedBox(height: 10),
+            Text(widget.admin.name,
+                style: const TextStyle(color: Colors.white)),
+            const Divider(color: Colors.white),
+
+
+            ListTile(
+              leading: const Icon(Icons.dashboard, color: Colors.white),
+              title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)));
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.people, color: Colors.white),
+              title: const Text("Manage interns/mentor/departemment", style: TextStyle(color: Colors.white)),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => ManageInterns(admin: widget.admin))),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.assignment_ind, color: Colors.white),
+              title: const Text("Assign Interns", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.schedule, color: Colors.white),
+              title: const Text("Upload Schedule", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
+              },
+            ),
+            const Spacer(),
+
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                "Pro Link",
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -209,64 +176,74 @@ class _AssignInternState extends State<AssignIntern> {
         child: Column(
           children: [
 
-            // ================= INPUTS =================
+            // ================= SELECTORS =================
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   children: [
 
-                    Row(
-                      children: [
+                    // INTERN
+                    DropdownButton<Intern>(
+                      value: selectedIntern,
+                      hint: const Text("Select Intern"),
+                      isExpanded: true,
+                      items: approvedInterns.map((i) {
+                        return DropdownMenuItem(
+                          value: i,
+                          child: Text(i.name),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        setState(() => selectedIntern = val);
+                      },
+                    ),
 
-                        Expanded(
-                          child: TextField(
-                            controller: internController,
-                            decoration: const InputDecoration(
-                              labelText: "Intern ID",
-                            ),
-                          ),
-                        ),
+                    // MENTOR
+                    DropdownButton<Mentor>(
+                      value: selectedMentor,
+                      hint: const Text("Select Mentor"),
+                      isExpanded: true,
+                      items: FakeData.mentors.map((m) {
+                        return DropdownMenuItem(
+                          value: m,
+                          child: Text(m.name),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        setState(() => selectedMentor = val);
+                      },
+                    ),
 
-                        const SizedBox(width: 10),
-
-                        Expanded(
-                          child: TextField(
-                            controller: mentorController,
-                            decoration: const InputDecoration(
-                              labelText: "Mentor ID",
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(width: 10),
-
-                        Expanded(
-                          child: TextField(
-                            controller: deptController,
-                            decoration: const InputDecoration(
-                              labelText: "Department ID",
-                            ),
-                          ),
-                        ),
-                      ],
+                    // DEPARTMENT
+                    DropdownButton<Department>(
+                      value: selectedDept,
+                      hint: const Text("Select Department"),
+                      isExpanded: true,
+                      items: FakeData.departments.map((d) {
+                        return DropdownMenuItem(
+                          value: d,
+                          child: Text(d.name),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        setState(() => selectedDept = val);
+                      },
                     ),
 
                     const SizedBox(height: 10),
 
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: ElevatedButton(
-                        onPressed: assignIntern,
-                        child: const Text("Assign"),
-                      ),
+                    ElevatedButton(
+                      onPressed: assignIntern,
+                      child: const Text("Assign Intern"),
                     ),
                   ],
                 ),
               ),
             ),
 
-            // TABLE 1
+            // ================= TABLES =================
+
             buildTable(
               "Approved Interns",
               ["ID", "Name", "Email", "Department"],
@@ -278,19 +255,16 @@ class _AssignInternState extends State<AssignIntern> {
               ]).toList(),
             ),
 
-            // TABLE 2 + 3 SIDE BY SIDE
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
                 Expanded(
                   child: buildTable(
                     "Mentors",
-                    ["ID", "Name", "Email"],
-                    mentors.map((m) => [
+                    ["ID", "Name"],
+                    FakeData.mentors.map((m) => [
                       m.id,
                       m.name,
-                      m.email,
                     ]).toList(),
                   ),
                 ),
@@ -301,7 +275,7 @@ class _AssignInternState extends State<AssignIntern> {
                   child: buildTable(
                     "Departments",
                     ["ID", "Name"],
-                    departments.map((d) => [
+                    FakeData.departments.map((d) => [
                       d.id,
                       d.name,
                     ]).toList(),
@@ -310,20 +284,11 @@ class _AssignInternState extends State<AssignIntern> {
               ],
             ),
 
-            // TABLE 4
             buildTable(
               "Assignments",
-              [
-                "Intern ID",
-                "Intern Name",
-                "Mentor ID",
-                "Mentor Name",
-                "Department"
-              ],
+              ["Intern", "Mentor", "Department"],
               assignments.map((a) => [
-                a["internId"]!,
                 a["internName"]!,
-                a["mentorId"]!,
                 a["mentorName"]!,
                 a["deptName"]!,
               ]).toList(),
