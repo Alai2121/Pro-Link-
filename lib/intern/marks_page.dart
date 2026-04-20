@@ -56,7 +56,7 @@ class _MarksPageState extends State<MarksPage> {
         child: Column(
           children: [
 
-            // ================= AVERAGE CARD =================
+
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -91,7 +91,7 @@ class _MarksPageState extends State<MarksPage> {
 
             const SizedBox(height: 20),
 
-            // ================= LIST =================
+
             Expanded(
               child: myMarks.isEmpty
                   ? Center(
@@ -115,7 +115,7 @@ class _MarksPageState extends State<MarksPage> {
                     child: Row(
                       children: [
 
-                        // ICON
+
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -127,7 +127,7 @@ class _MarksPageState extends State<MarksPage> {
 
                         const SizedBox(width: 12),
 
-                        // SKILL
+
                         Expanded(
                           child: Text(
                             mark.skill,
@@ -137,7 +137,7 @@ class _MarksPageState extends State<MarksPage> {
                           ),
                         ),
 
-                        // MARK
+
                         Text(
                           mark.mark.toString(),
                           style: GoogleFonts.poppins(

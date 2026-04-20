@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
       return;
     } catch (_) {}
 
-    // ================= INTERN (NEW) =================
+    // ================= INTERN =================
     try {
       Intern intern = FakeData.interns.firstWhere(
             (i) => i.name == name && i.password == password,
@@ -66,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      // ✅ APPROVED → GO TO INTERN DASHBOARD
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -76,7 +75,6 @@ class _LoginPageState extends State<LoginPage> {
       return;
     } catch (_) {}
 
-    // ================= ERROR =================
     setState(() => error = "Wrong username or password");
   }
 
@@ -195,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 20),
 
-                // ================= REGISTER LINK (ADDED) =================
+                // ================= REGISTER LINK =================
                 GestureDetector(
                   onTap: () {
                     Navigator.push(

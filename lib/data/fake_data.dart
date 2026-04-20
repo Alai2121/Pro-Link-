@@ -56,7 +56,7 @@ class FakeData {
       department: departments[1],
       status: "Pending",
       mentorId: "m2",
-      image: "assets/student1.png",
+      image: "assets/admin.png",
       password: "aaaa",
     ),
     Intern(
@@ -66,7 +66,7 @@ class FakeData {
       department: departments[2],
       status: "Approved",
       mentorId: "m1",
-      image: "assets/student1.png",
+      image: "assets/admin.png",
       password: "aaaa",
     ),
   ];

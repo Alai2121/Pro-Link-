@@ -68,7 +68,6 @@ class _SchedulePageState extends State<SchedulePage> {
             child: Row(
               children: [
 
-                // ICON
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -80,7 +79,7 @@ class _SchedulePageState extends State<SchedulePage> {
 
                 const SizedBox(width: 12),
 
-                // INFO
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +117,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   ),
                 ),
 
-                // NAME BADGE
+
                 Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10, vertical: 6),

@@ -63,7 +63,6 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
 
-                // LOGO (same as login)
                 const Icon(
                   Icons.work_outline,
                   size: 80,
@@ -91,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 30),
 
-                // CARD (same style as login)
+
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
