@@ -8,7 +8,7 @@ import 'admin_dashboard.dart';
 import 'manage_interns.dart';
 import 'upload_schedule.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../auth/login_page.dart';
 class AssignIntern extends StatefulWidget {
   final Admin admin;
 
@@ -151,6 +151,14 @@ class _AssignInternState extends State<AssignIntern> {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text("Logout",style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => LoginPage()));
               },
             ),
             const Spacer(),

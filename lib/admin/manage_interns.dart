@@ -9,7 +9,7 @@ import '../models/mentor.dart';
 import 'admin_dashboard.dart';
 import 'assign_interns.dart';
 import 'upload_schedule.dart';
-
+import '../../auth/login_page.dart';
 class ManageInterns extends StatefulWidget {
   final Admin admin;
 
@@ -334,6 +334,14 @@ class _ManageInternsState extends State<ManageInterns> {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text("Logout",style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => LoginPage()));
               },
             ),
             const Spacer(),

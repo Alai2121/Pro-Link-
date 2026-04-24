@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../auth/login_page.dart';
 import '../data/fake_data.dart';
 import '../models/admin.dart';
 import 'manage_interns.dart';
@@ -419,6 +419,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) =>UploadSchedule(admin: admin)));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.white),
+            title: const Text("Logout",style: const TextStyle(color: Colors.white)),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => LoginPage()));
             },
           ),
           const Spacer(),
