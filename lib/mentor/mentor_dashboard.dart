@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/mentor.dart';
+import '../../auth/login_page.dart';  // ✅ ADDED
 import '../data/fake_data.dart';
 import 'mentor_interns.dart';
 import 'mentor_attendance.dart';
 import 'mentor_marks.dart';
 import 'mentor_training.dart';
 
-class MentorDashboard extends StatelessWidget {
+class MentorDashboard extends StatefulWidget {  // ✅ CHANGED to Stateful
   final Mentor mentor;
   const MentorDashboard({super.key, required this.mentor});
 
   @override
+  State<MentorDashboard> createState() => _MentorDashboardState();
+}
+
+class _MentorDashboardState extends State<MentorDashboard> {  // ✅ NEW STATE CLASS
+  void _logout() {  // ✅ WORKING LOGOUT METHOD
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+          (route) => false,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final myInterns = FakeData.interns
-        .where((i) => i.mentorId == mentor.id)
+        .where((i) => i.mentorId == widget.mentor.id)  // ✅ widget.mentor
         .toList();
 
     return Scaffold(
@@ -40,7 +53,8 @@ class MentorDashboard extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
+            tooltip: "Logout",  // ✅ ADDED
+            onPressed: _logout,  // ✅ FIXED
           ),
         ],
       ),
@@ -49,7 +63,6 @@ class MentorDashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // Welcome card
             Container(
               width: double.infinity,
@@ -77,7 +90,7 @@ class MentorDashboard extends StatelessWidget {
                             color: Colors.white70, fontSize: 13),
                       ),
                       Text(
-                        mentor.name,
+                        widget.mentor.name,  // ✅ widget.mentor
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 20,
@@ -85,7 +98,7 @@ class MentorDashboard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${mentor.department.name} Department',
+                        '${widget.mentor.department.name} Department',  // ✅ widget.mentor
                         style: GoogleFonts.poppins(
                             color: Colors.white60, fontSize: 12),
                       ),
@@ -149,7 +162,7 @@ class MentorDashboard extends StatelessWidget {
                   label: 'My Interns',
                   color: const Color(0xFF2D3A8C),
                   onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => MentorInterns(mentor: mentor),
+                    builder: (_) => MentorInterns(mentor: widget.mentor),  // ✅ widget.mentor
                   )),
                 ),
                 _MenuCard(
@@ -157,7 +170,7 @@ class MentorDashboard extends StatelessWidget {
                   label: 'Attendance',
                   color: const Color(0xFF6C63FF),
                   onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => MentorAttendance(mentor: mentor),
+                    builder: (_) => MentorAttendance(mentor: widget.mentor),  // ✅ widget.mentor
                   )),
                 ),
                 _MenuCard(
@@ -165,7 +178,7 @@ class MentorDashboard extends StatelessWidget {
                   label: 'Marks',
                   color: Colors.orange,
                   onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => MentorMarks(mentor: mentor),
+                    builder: (_) => MentorMarks(mentor: widget.mentor),  // ✅ widget.mentor
                   )),
                 ),
                 _MenuCard(
@@ -173,7 +186,7 @@ class MentorDashboard extends StatelessWidget {
                   label: 'Training Files',
                   color: Colors.teal,
                   onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => MentorTraining(mentor: mentor),
+                    builder: (_) => MentorTraining(mentor: widget.mentor),  // ✅ widget.mentor
                   )),
                 ),
               ],
@@ -185,6 +198,7 @@ class MentorDashboard extends StatelessWidget {
   }
 }
 
+// _StatCard and _MenuCard classes remain UNCHANGED
 class _StatCard extends StatelessWidget {
   final IconData icon;
   final String label;
