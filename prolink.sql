@@ -68,6 +68,13 @@ CREATE TABLE IF NOT EXISTS training_files (
     FOREIGN KEY (mentor_id) REFERENCES persons(id) ON DELETE CASCADE
 );
 
+-- ─── Policies ───────────────────────────────────────────────  ← ADDED
+CREATE TABLE IF NOT EXISTS policies (
+    id        VARCHAR(100) PRIMARY KEY,
+    title     VARCHAR(255) NOT NULL,
+    file_path TEXT         NOT NULL
+);
+
 -- ─── Schedules ──────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS schedules (
     id          VARCHAR(100) PRIMARY KEY,
@@ -75,7 +82,8 @@ CREATE TABLE IF NOT EXISTS schedules (
     intern_name VARCHAR(100) NOT NULL,
     day         VARCHAR(20)  NOT NULL,
     time        VARCHAR(20)  NOT NULL,
-    type        VARCHAR(50)  NOT NULL
+    type        VARCHAR(50)  NOT NULL,
+    FOREIGN KEY (intern_id) REFERENCES persons(id) ON DELETE CASCADE  -- ← ADDED
 );
 
 -- ─── Seed Data ──────────────────────────────────────────────
