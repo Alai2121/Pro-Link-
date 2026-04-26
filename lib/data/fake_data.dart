@@ -6,8 +6,10 @@ import '../models/schedule.dart';
 import '../models/attendance.dart';
 import '../models/evaluation.dart';
 import '../models/trainingFile.dart';
-
+import '../models/policy.dart';
 class FakeData {
+
+  static List<Policy> policies = [];
   static List<Department> departments = [
     const Department(id: "d1", name: "IT"),
     const Department(id: "d2", name: "HR"),
