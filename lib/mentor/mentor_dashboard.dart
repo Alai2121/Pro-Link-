@@ -54,7 +54,17 @@ class _MentorDashboardState extends State<MentorDashboard> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Image.asset('assets/logo.png', height: 32),
+            Container(
+              height: 32,
+              width: 32,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: AssetImage('assets/logoonly.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             const SizedBox(width: 10),
             Text('Pro-Link',
                 style: GoogleFonts.poppins(

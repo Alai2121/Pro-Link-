@@ -32,6 +32,7 @@ flutter:
     - assets/playstore.png
     - assets/logo.png
     - assets/student1.png
+    - assets/logoonly.png
 
 flutter_launcher_icons:
   android: true
