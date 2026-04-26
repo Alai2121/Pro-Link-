@@ -13,7 +13,26 @@ class MentorMarks extends StatefulWidget {
 }
 
 class _MentorMarksState extends State<MentorMarks> {
-  final List<String> skills = ['Communication', 'Technical', 'Teamwork', 'Punctuality', 'Initiative'];
+  final List<String> skills = [
+    'Communication',
+    'Technical',
+    'Teamwork',
+    'Punctuality',
+    'Initiative',
+  ];
+
+  Color _markColor(int mark) {
+    if (mark >= 16) return Colors.green.shade700;
+    if (mark >= 10) return Colors.orange;
+    return Colors.red;
+  }
+
+  String _markLabel(double avg) {
+    if (avg >= 16) return 'Excellent';
+    if (avg >= 14) return 'Good';
+    if (avg >= 10) return 'Average';
+    return 'Needs Work';
+  }
 
   void _showMarkDialog(String internId, String internName) {
     String selectedSkill = skills[0];
@@ -21,58 +40,85 @@ class _MentorMarksState extends State<MentorMarks> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text('Add Mark for $internName', style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 15)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            DropdownButtonFormField<String>(
-              value: selectedSkill,
-              decoration: InputDecoration(
-                labelText: 'Skill',
-                labelStyle: GoogleFonts.poppins(fontSize: 13),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      builder: (context) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: Text('Add Mark — $internName',
+              style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.bold, fontSize: 15)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButtonFormField<String>(
+                value: selectedSkill,
+                decoration: InputDecoration(
+                  labelText: 'Skill',
+                  labelStyle: GoogleFonts.poppins(fontSize: 13),
+                  prefixIcon: const Icon(Icons.category_outlined,
+                      color: Color(0xFF2D3A8C)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+                items: skills
+                    .map((s) => DropdownMenuItem(
+                    value: s,
+                    child: Text(s,
+                        style: GoogleFonts.poppins(fontSize: 13))))
+                    .toList(),
+                onChanged: (val) =>
+                    setDialogState(() => selectedSkill = val!),
               ),
-              items: skills.map((s) => DropdownMenuItem(value: s, child: Text(s, style: GoogleFonts.poppins(fontSize: 13)))).toList(),
-              onChanged: (val) => selectedSkill = val!,
+              const SizedBox(height: 14),
+              TextField(
+                controller: markController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Mark (0 – 20)',
+                  labelStyle: GoogleFonts.poppins(fontSize: 13),
+                  prefixIcon: const Icon(Icons.grade_outlined,
+                      color: Color(0xFF2D3A8C)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child:
+              Text('Cancel', style: GoogleFonts.poppins(color: Colors.grey)),
             ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: markController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Mark (0-20)',
-                labelStyle: GoogleFonts.poppins(fontSize: 13),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-              ),
+            ElevatedButton.icon(
+              onPressed: () {
+                final mark = int.tryParse(markController.text);
+                if (mark != null && mark >= 0 && mark <= 20) {
+                  setState(() {
+                    // Replace existing mark for same skill
+                    FakeData.evaluations.removeWhere((e) =>
+                    e.internId == internId && e.skill == selectedSkill);
+                    FakeData.evaluations.add(Evaluation(
+                      id: 'ev_${internId}_$selectedSkill',
+                      internId: internId,
+                      skill: selectedSkill,
+                      mark: mark,
+                    ));
+                  });
+                  Navigator.pop(context);
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF2D3A8C),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10))),
+              icon: const Icon(Icons.save_outlined,
+                  color: Colors.white, size: 16),
+              label:
+              Text('Save', style: GoogleFonts.poppins(color: Colors.white)),
             ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel', style: GoogleFonts.poppins(color: Colors.grey)),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              final mark = int.tryParse(markController.text);
-              if (mark != null && mark >= 0 && mark <= 20) {
-                setState(() {
-                  FakeData.evaluations.add(Evaluation(
-                    id: 'ev_${internId}_$selectedSkill',
-                    internId: internId,
-                    skill: selectedSkill,
-                    mark: mark,
-                  ));
-                });
-                Navigator.pop(context);
-              }
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF2D3A8C)),
-            child: Text('Save', style: GoogleFonts.poppins(color: Colors.white)),
-          ),
-        ],
       ),
     );
   }
@@ -87,65 +133,172 @@ class _MentorMarksState extends State<MentorMarks> {
       backgroundColor: const Color(0xFFF4F6FF),
       appBar: AppBar(
         backgroundColor: const Color(0xFF2D3A8C),
-        title: Text('Performance Marks', style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
+        title: Text('Performance Marks',
+            style: GoogleFonts.poppins(
+                color: Colors.white, fontWeight: FontWeight.w600)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: ListView.builder(
+      body: myInterns.isEmpty
+          ? Center(
+          child: Text('No interns assigned',
+              style: GoogleFonts.poppins(color: Colors.grey)))
+          : ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: myInterns.length,
         itemBuilder: (context, index) {
           final intern = myInterns[index];
-          final internEvals = FakeData.evaluations.where((e) => e.internId == intern.id).toList();
+          final evals = FakeData.evaluations
+              .where((e) => e.internId == intern.id)
+              .toList();
+          final double avg = evals.isEmpty
+              ? 0
+              : evals.map((e) => e.mark).reduce((a, b) => a + b) /
+              evals.length;
 
           return Container(
-            margin: const EdgeInsets.only(bottom: 14),
-            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.only(bottom: 16),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8)],
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10)
+              ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(intern.name, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 15, color: const Color(0xFF2D3A8C))),
-                    IconButton(
-                      icon: const Icon(Icons.add_circle, color: Color(0xFF2D3A8C)),
-                      onPressed: () => _showMarkDialog(intern.id, intern.name),
-                    ),
-                  ],
-                ),
-                if (internEvals.isEmpty)
-                  Text('No marks yet', style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey))
-                else
-                  ...internEvals.map((e) => Padding(
-                    padding: const EdgeInsets.only(top: 6),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(e.skill, style: GoogleFonts.poppins(fontSize: 13)),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: e.mark >= 10 ? Colors.green.shade50 : Colors.red.shade50,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: e.mark >= 10 ? Colors.green : Colors.red),
-                          ),
-                          child: Text(
-                            '${e.mark}/20',
-                            style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: e.mark >= 10 ? Colors.green : Colors.red,
-                            ),
-                          ),
+                // Header
+                Container(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF2D3A8C).withOpacity(0.04),
+                    borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(18)),
+                  ),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundColor:
+                        const Color(0xFF2D3A8C).withOpacity(0.12),
+                        child: Text(
+                          intern.name[0].toUpperCase(),
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF2D3A8C),
+                              fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                  )),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(intern.name,
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: const Color(0xFF2D3A8C))),
+                            if (evals.isNotEmpty)
+                              Text(
+                                'Avg: ${avg.toStringAsFixed(1)}/20 · ${_markLabel(avg)}',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: _markColor(avg.round())),
+                              ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2D3A8C),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Icon(Icons.add,
+                              color: Colors.white, size: 18),
+                        ),
+                        onPressed: () =>
+                            _showMarkDialog(intern.id, intern.name),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Skills list
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: evals.isEmpty
+                      ? Row(
+                    children: [
+                      Icon(Icons.info_outline,
+                          size: 16, color: Colors.grey.shade400),
+                      const SizedBox(width: 6),
+                      Text('No marks yet — tap + to add',
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, color: Colors.grey)),
+                    ],
+                  )
+                      : Column(
+                    children: evals.map((e) {
+                      final color = _markColor(e.mark);
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(e.skill,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 13,
+                                        fontWeight:
+                                        FontWeight.w500)),
+                                Container(
+                                  padding:
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color:
+                                    color.withOpacity(0.1),
+                                    borderRadius:
+                                    BorderRadius.circular(20),
+                                  ),
+                                  child: Text(
+                                    '${e.mark}/20',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: color),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.circular(6),
+                              child: LinearProgressIndicator(
+                                value: e.mark / 20,
+                                minHeight: 8,
+                                backgroundColor:
+                                Colors.grey.shade100,
+                                valueColor:
+                                AlwaysStoppedAnimation<Color>(
+                                    color),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
               ],
             ),
           );

@@ -66,12 +66,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
             children: [
               Text(
                 "$count",
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-              Text(title, style: const TextStyle(color: Colors.white)),
+              Text(title, style: GoogleFonts.poppins(color: Colors.white, fontSize: 12)),
             ],
           ),
         ),
@@ -122,7 +122,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
           child: Center(
             child: Text(
               "$i",
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 8,
                 color: isToday ? Colors.white : Colors.black,
               ),
@@ -143,7 +143,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "${getMonthName(currentDate.month)} ${currentDate.year}",
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                       fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -155,7 +155,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   children: [
                     ...["M","T","W","T","F","S","S"]
                         .map((e) => Center(
-                      child: Text(e, style: const TextStyle(fontSize: 8)),
+                      child: Text(e, style: GoogleFonts.poppins(fontSize: 8)),
                     )),
                     ...days,
                   ],
@@ -184,8 +184,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
           child: Column(
             children: [
 
-              const Text("Intern Status (Pie Chart)",
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Intern Status (Pie Chart)",
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
 
               Expanded(
                 child: Row(
@@ -249,9 +249,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              const Text(
+              Text(
                 "Interns per Department",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
               ),
 
               Expanded(
@@ -278,7 +278,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             if (index < departments.length) {
                               return Text(
                                 departments[index].name,
-                                style: const TextStyle(fontSize: 10),
+                                style: GoogleFonts.poppins(fontSize: 10),
                               );
                             }
                             return const Text('');
@@ -326,9 +326,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Registration Requests",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
 
@@ -382,14 +382,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
           const SizedBox(height: 10),
 
           Text(admin.name,
-              style: const TextStyle(color: Colors.white,
+              style: GoogleFonts.poppins(color: Colors.white,
                   fontSize: 16, fontWeight: FontWeight.bold)),
 
           const Divider(),
 
           ListTile(
             leading: const Icon(Icons.dashboard, color: Colors.white),
-            title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+            title: Text("Dashboard", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.pop(context);
             },
@@ -397,7 +397,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
           ListTile(
             leading: const Icon(Icons.people, color: Colors.white),
-            title: const Text("Manage interns/mentor/departemment",style: const TextStyle(color: Colors.white)),
+            title: Text("Manage interns/mentor/department", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => ManageInterns(admin: admin)));
@@ -406,7 +406,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
           ListTile(
             leading: const Icon(Icons.assignment_ind, color: Colors.white),
-            title: const Text("Assign Interns",style: const TextStyle(color: Colors.white)),
+            title: Text("Assign Interns", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => AssignIntern(admin: admin)));
@@ -415,7 +415,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
           ListTile(
             leading: const Icon(Icons.schedule, color: Colors.white),
-            title: const Text("Upload Schedule",style: const TextStyle(color: Colors.white)),
+            title: Text("Upload Schedule", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) =>UploadSchedule(admin: admin)));
@@ -423,7 +423,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
           ),
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.white),
-            title: const Text("Logout",style: const TextStyle(color: Colors.white)),
+            title: Text("Logout", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => LoginPage()));
@@ -435,7 +435,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
             padding: const EdgeInsets.all(12),
             child: Text(
               "Pro Link",
-              style: GoogleFonts.playfairDisplay(
+              style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -465,13 +465,13 @@ class _AdminDashboardState extends State<AdminDashboard> {
         foregroundColor: Colors.white,
         title: Row(
           children: [
-        Text(
-        "Hi, ${admin.name}",
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+            Text(
+              "Hi, ${admin.name}",
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(width: 10),
 
             Expanded(
