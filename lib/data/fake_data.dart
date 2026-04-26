@@ -147,11 +147,11 @@ class FakeData {
   static List<Attendance> attendances = [];
 
   static List<Evaluation> evaluations = [
-    const Evaluation(id: "e1", internId: "1", skill: "Communication", mark: 85),
-    const Evaluation(id: "e2", internId: "1", skill: "Technical", mark: 78),
-    const Evaluation(id: "e3", internId: "1", skill: "Teamwork", mark: 92),
-    const Evaluation(id: "e4", internId: "1", skill: "Problem Solving", mark: 88),
-    const Evaluation(id: "e5", internId: "1", skill: "Creativity", mark: 90),
+    const Evaluation(id: "e1", internId: "1", skill: "Communication", mark: 15),
+    const Evaluation(id: "e2", internId: "1", skill: "Technical", mark: 18),
+    const Evaluation(id: "e3", internId: "1", skill: "Teamwork", mark: 20),
+    const Evaluation(id: "e4", internId: "1", skill: "Problem Solving", mark: 18),
+    const Evaluation(id: "e5", internId: "1", skill: "Creativity", mark: 10),
   ];
 
   static List<TrainingFile> trainingFiles = [

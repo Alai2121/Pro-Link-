@@ -31,7 +31,7 @@ class _AssignInternState extends State<AssignIntern> {
   void assignIntern() {
     if (selectedIntern == null ||
         selectedMentor == null ||
-        selectedDept == null) return;
+        selectedDept == null) { return; }
 
     setState(() {
       // 🔥 تحديث Intern الحقيقي
@@ -61,29 +61,32 @@ class _AssignInternState extends State<AssignIntern> {
         const SizedBox(height: 15),
 
         Text(title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold)),
 
         const SizedBox(height: 10),
 
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
+            border: Border.all(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(12),
           ),
 
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
 
-            child: DataTable(
-              columns: columns
-                  .map((c) => DataColumn(label: Text(c)))
-                  .toList(),
+              child: DataTable(
+                columns: columns
+                    .map((c) => DataColumn(label: Text(c)))
+                    .toList(),
 
-              rows: rows.map((row) {
-                return DataRow(
-                  cells: row.map((cell) => DataCell(Text(cell))).toList(),
-                );
-              }).toList(),
+                rows: rows.map((row) {
+                  return DataRow(
+                    cells: row.map((cell) => DataCell(Text(cell))).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           ),
         ),
@@ -104,7 +107,7 @@ class _AssignInternState extends State<AssignIntern> {
         backgroundColor: const Color(0xFF2D3A8C),
         foregroundColor: Colors.white,
         title: Text("Assign Interns",
-          style: GoogleFonts.playfairDisplay(
+          style: GoogleFonts.poppins(
               fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
@@ -117,13 +120,13 @@ class _AssignInternState extends State<AssignIntern> {
             const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
             const SizedBox(height: 10),
             Text(widget.admin.name,
-                style: const TextStyle(color: Colors.white)),
+                style: GoogleFonts.poppins(color: Colors.white)),
             const Divider(color: Colors.white),
 
 
             ListTile(
               leading: const Icon(Icons.dashboard, color: Colors.white),
-              title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+              title: Text("Dashboard", style: GoogleFonts.poppins(color: Colors.white)),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)));
@@ -132,14 +135,14 @@ class _AssignInternState extends State<AssignIntern> {
 
             ListTile(
               leading: const Icon(Icons.people, color: Colors.white),
-              title: const Text("Manage interns/mentor/departemment", style: TextStyle(color: Colors.white)),
+              title: Text("Manage interns/mentor/departemment", style: GoogleFonts.poppins(color: Colors.white)),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => ManageInterns(admin: widget.admin))),
             ),
 
             ListTile(
               leading: const Icon(Icons.assignment_ind, color: Colors.white),
-              title: const Text("Assign Interns", style: TextStyle(color: Colors.white)),
+              title: Text("Assign Interns", style: GoogleFonts.poppins(color: Colors.white)),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -147,7 +150,7 @@ class _AssignInternState extends State<AssignIntern> {
 
             ListTile(
               leading: const Icon(Icons.schedule, color: Colors.white),
-              title: const Text("Upload Schedule", style: TextStyle(color: Colors.white)),
+              title: Text("Upload Schedule", style: GoogleFonts.poppins(color: Colors.white)),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
@@ -155,7 +158,7 @@ class _AssignInternState extends State<AssignIntern> {
             ),
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.white),
-              title: const Text("Logout",style: const TextStyle(color: Colors.white)),
+              title: Text("Logout", style: GoogleFonts.poppins(color: Colors.white)),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => LoginPage()));
@@ -167,7 +170,7 @@ class _AssignInternState extends State<AssignIntern> {
               padding: const EdgeInsets.all(12),
               child: Text(
                 "Pro Link",
-                style: GoogleFonts.playfairDisplay(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

@@ -100,12 +100,12 @@ class _UploadScheduleState extends State<UploadSchedule> {
           const SizedBox(height: 50),
           const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
           const SizedBox(height: 10),
-          Text(widget.admin.name, style: const TextStyle(color: Colors.white)),
+          Text(widget.admin.name, style: GoogleFonts.poppins(color: Colors.white)),
           const Divider(),
 
           ListTile(
             leading: const Icon(Icons.dashboard, color: Colors.white),
-            title: const Text("Dashboard", style: TextStyle(color: Colors.white)),
+            title: Text("Dashboard", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)),
@@ -114,7 +114,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
           ListTile(
             leading: const Icon(Icons.people, color: Colors.white),
-            title: const Text("Manage interns/mentor/departemment", style: TextStyle(color: Colors.white)),
+            title: Text("Manage interns/mentor/departemment", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => ManageInterns(admin: widget.admin)),
@@ -123,7 +123,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
           ListTile(
             leading: const Icon(Icons.assignment_ind, color: Colors.white),
-            title: const Text("Assign Interns", style: TextStyle(color: Colors.white)),
+            title: Text("Assign Interns", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => AssignIntern(admin: widget.admin)),
@@ -132,7 +132,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
           ListTile(
             leading: const Icon(Icons.schedule, color: Colors.white),
-            title: const Text("Upload Schedule", style: TextStyle(color: Colors.white)),
+            title: Text("Upload Schedule", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () {
               Navigator.pop(context);
             },
@@ -140,7 +140,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.white),
-            title: const Text("Logout", style: TextStyle(color: Colors.white)),
+            title: Text("Logout", style: GoogleFonts.poppins(color: Colors.white)),
             onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => LoginPage()),
@@ -153,23 +153,35 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
   // ================= TABLE =================
   Widget buildTable() {
-    return DataTable(
-      headingRowColor:
-      MaterialStateProperty.all(const Color(0xFF2D3A8C)),
-      columns: const [
-        DataColumn(label: Text("Intern", style: TextStyle(color: Colors.white))),
-        DataColumn(label: Text("Day", style: TextStyle(color: Colors.white))),
-        DataColumn(label: Text("Time", style: TextStyle(color: Colors.white))),
-        DataColumn(label: Text("Type", style: TextStyle(color: Colors.white))),
-      ],
-      rows: FakeData.schedules.map((s) {
-        return DataRow(cells: [
-          DataCell(Text(s.internName)),
-          DataCell(Text(s.day)),
-          DataCell(Text(s.time)),
-          DataCell(Text(s.type)),
-        ]);
-      }).toList(),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xFF2D3A8C).withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            headingRowColor:
+            MaterialStateProperty.all(const Color(0xFF2D3A8C)),
+            columns: [
+              DataColumn(label: Text("Intern", style: GoogleFonts.poppins(color: Colors.white))),
+              DataColumn(label: Text("Day", style: GoogleFonts.poppins(color: Colors.white))),
+              DataColumn(label: Text("Time", style: GoogleFonts.poppins(color: Colors.white))),
+              DataColumn(label: Text("Type", style: GoogleFonts.poppins(color: Colors.white))),
+            ],
+            rows: FakeData.schedules.map((s) {
+              return DataRow(cells: [
+                DataCell(Text(s.internName)),
+                DataCell(Text(s.day)),
+                DataCell(Text(s.time)),
+                DataCell(Text(s.type)),
+              ]);
+            }).toList(),
+          ),
+        ),
+      ),
     );
   }
 
@@ -205,7 +217,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
         foregroundColor: Colors.white,
         title: Text(
           "Upload Schedule",
-          style: GoogleFonts.playfairDisplay(
+          style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -264,9 +276,9 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
             const SizedBox(height: 20),
 
-            const Text(
+            Text(
               "Uploaded Policies",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
 
             buildPolicies(),
