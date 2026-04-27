@@ -13,7 +13,7 @@ import '../models/policy.dart';
 import '../models/person.dart';
 
 class ApiService {
-  static const String _ip = "10.40.105.48"; // ⚠️ change this
+  static const String _ip = "192.168.100.4"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
 
   // ─── Login ────────────────────────────────────────────────
