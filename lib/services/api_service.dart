@@ -10,14 +10,15 @@ import '../models/trainingFile.dart';
 import '../models/department.dart';
 import '../models/schedule.dart';
 import '../models/policy.dart';
-import '../models/person.dart';
 
 class ApiService {
   static const String _ip = "192.168.100.4"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
 
+  // Helper for mentor routes
+  static String mentorUrl(String path) => "$baseUrl/mentor/$path";
+
   // ─── Login ────────────────────────────────────────────────
-  // FIX #1: was sending "name", should send "email"
   static Future<dynamic> login(String email, String password) async {
     try {
       final res = await http.post(
@@ -35,6 +36,7 @@ class ApiService {
 
   static dynamic _parseUser(Map<String, dynamic> u) {
     final role = u["role"];
+
     if (role == "admin") {
       return Admin(
         id: u["id"],
@@ -43,7 +45,8 @@ class ApiService {
         password: u["password"],
         image: u["image"],
       );
-    } else if (role == "mentor") {
+    }
+    else if (role == "mentor") {
       return Mentor(
         id: u["id"],
         name: u["name"],
@@ -55,7 +58,8 @@ class ApiService {
           name: u["department"]["name"],
         ),
       );
-    } else if (role == "intern") {
+    }
+    else if (role == "intern") {
       return Intern(
         id: u["id"],
         name: u["name"],
@@ -81,7 +85,9 @@ class ApiService {
         Uri.parse("$baseUrl/register.php"),
         body: {"name": name, "email": email, "password": password},
       );
-      if (res.statusCode != 200) return {"error": true, "message": "Server error."};
+      if (res.statusCode != 200) {
+        return {"error": true, "message": "Server error."};
+      }
       return json.decode(res.body);
     } catch (e) {
       return {"error": true, "message": "Network error."};
@@ -89,7 +95,6 @@ class ApiService {
   }
 
   // ─── Admin: Get ALL interns ───────────────────────────────
-  // FIX #4: was completely missing
   static Future<List<Intern>> getAllInterns() async {
     try {
       final res = await http.get(Uri.parse("$baseUrl/get_all_interns.php"));
@@ -101,7 +106,6 @@ class ApiService {
     }
   }
 
-  // ─── Admin: Approve or Reject intern ─────────────────────
   static Future<bool> updateInternStatus(String internId, String status) async {
     try {
       final res = await http.post(
@@ -115,7 +119,6 @@ class ApiService {
     }
   }
 
-  // ─── Admin: Assign mentor to intern ──────────────────────
   static Future<bool> assignMentor(String internId, String mentorId) async {
     try {
       final res = await http.post(
@@ -129,7 +132,6 @@ class ApiService {
     }
   }
 
-  // ─── Admin: Get all mentors ───────────────────────────────
   static Future<List<Mentor>> getAllMentors() async {
     try {
       final res = await http.get(Uri.parse("$baseUrl/get_all_mentors.php"));
@@ -151,11 +153,11 @@ class ApiService {
     }
   }
 
-  // ─── Mentor: Get my interns ───────────────────────────────
+  // ─── Mentor ───────────────────────────────────────────────
   static Future<List<Intern>> getMyInterns(String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_my_interns.php?mentor_id=$mentorId"),
+        Uri.parse(mentorUrl("get_my_interns.php?mentor_id=$mentorId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -165,12 +167,11 @@ class ApiService {
     }
   }
 
-  // ─── Attendance ───────────────────────────────────────────
   static Future<bool> saveAttendance(
       String internId, String date, bool isPresent) async {
     try {
       final res = await http.post(
-        Uri.parse("$baseUrl/save_attendance.php"),
+        Uri.parse(mentorUrl("save_attendance.php")),
         body: {
           "intern_id": internId,
           "date": date,
@@ -184,11 +185,10 @@ class ApiService {
     }
   }
 
-  // Mentor fetches attendance for all their interns
   static Future<List<Attendance>> getAttendance(String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_attendance.php?mentor_id=$mentorId"),
+        Uri.parse(mentorUrl("get_attendance.php?mentor_id=$mentorId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -198,11 +198,10 @@ class ApiService {
     }
   }
 
-  // FIX #5: Intern fetches their own attendance
   static Future<List<Attendance>> getMyAttendance(String internId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_attendance.php?intern_id=$internId"),
+        Uri.parse(mentorUrl("get_attendance.php?intern_id=$internId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -212,12 +211,11 @@ class ApiService {
     }
   }
 
-  // ─── Marks ────────────────────────────────────────────────
   static Future<bool> saveMark(
       String internId, String skill, int mark) async {
     try {
       final res = await http.post(
-        Uri.parse("$baseUrl/save_mark.php"),
+        Uri.parse(mentorUrl("save_mark.php")),
         body: {
           "intern_id": internId,
           "skill": skill,
@@ -234,7 +232,7 @@ class ApiService {
   static Future<List<Evaluation>> getMarks(String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_marks.php?mentor_id=$mentorId"),
+        Uri.parse(mentorUrl("get_marks.php?mentor_id=$mentorId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -244,11 +242,10 @@ class ApiService {
     }
   }
 
-  // FIX #5: Intern fetches their own marks
   static Future<List<Evaluation>> getMyMarks(String internId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_marks.php?intern_id=$internId"),
+        Uri.parse(mentorUrl("get_marks.php?intern_id=$internId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -258,11 +255,10 @@ class ApiService {
     }
   }
 
-  // ─── Training Files ───────────────────────────────────────
   static Future<List<TrainingFile>> getTrainingFiles(String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_training_files.php?mentor_id=$mentorId"),
+        Uri.parse(mentorUrl("get_training_files.php?mentor_id=$mentorId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -281,7 +277,7 @@ class ApiService {
       String mentorId, String title, String fileUrl) async {
     try {
       final res = await http.post(
-        Uri.parse("$baseUrl/training_files.php"),
+        Uri.parse(mentorUrl("training_files.php")),
         body: {
           "action": "add",
           "mentor_id": mentorId,
@@ -300,7 +296,7 @@ class ApiService {
   static Future<bool> deleteTrainingFile(String fileId) async {
     try {
       final res = await http.post(
-        Uri.parse("$baseUrl/training_files.php"),
+        Uri.parse(mentorUrl("training_files.php")),
         body: {"action": "delete", "file_id": fileId},
       );
       final data = json.decode(res.body);
@@ -311,7 +307,6 @@ class ApiService {
   }
 
   // ─── Schedules ────────────────────────────────────────────
-  // FIX #4: was completely missing
   static Future<List<Schedule>> getSchedules(String internId) async {
     try {
       final res = await http.get(
@@ -352,7 +347,6 @@ class ApiService {
   }
 
   // ─── Policies ─────────────────────────────────────────────
-  // FIX #4: was completely missing
   static Future<List<Policy>> getPolicies() async {
     try {
       final res = await http.get(Uri.parse("$baseUrl/get_policies.php"));
@@ -385,19 +379,17 @@ class ApiService {
     );
   }
 
-  // FIX #3: isPresent now handles PHP string "1"/"0"
   static Attendance _parseAttendanceJson(Map<String, dynamic> j) {
     return Attendance(
       id: j["id"],
       internId: j["internId"],
       date: j["date"],
       isPresent: j["isPresent"] == "1" ||
-          j["isPresent"] == 1  ||
+          j["isPresent"] == 1 ||
           j["isPresent"] == true,
     );
   }
 
-  // FIX #2: mark parsed as int (PHP returns strings)
   static Evaluation _parseEvaluationJson(Map<String, dynamic> j) {
     return Evaluation(
       id: j["id"],
