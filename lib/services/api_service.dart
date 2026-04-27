@@ -13,8 +13,8 @@ import '../models/policy.dart';
 import '../models/person.dart';
 
 class ApiService {
-  static const String _ip = "192.168.1.100"; // ⚠️ change this
-  static const String baseUrl = "http://$_ip/prolink_api";
+  static const String _ip = "10.40.105.48"; // ⚠️ change this
+  static const String baseUrl = "http://$_ip/prolink";
 
   // ─── Login ────────────────────────────────────────────────
   // FIX #1: was sending "name", should send "email"

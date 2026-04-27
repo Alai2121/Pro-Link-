@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../data/fake_data.dart';
+import '../services/api_service.dart';   // ← NEW
 import '../models/admin.dart';
 import '../admin/admin_dashboard.dart';
 import '../models/mentor.dart';
@@ -18,7 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-  final TextEditingController nameController = TextEditingController();
+  // ── Changed "name" to "email" to match the API ──────────
+  final TextEditingController emailController    = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _obscurePassword = true;
   bool _isLoading = false;
@@ -35,87 +36,67 @@ class _LoginPageState extends State<LoginPage>
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
-    _fadeAnim = CurvedAnimation(
-        parent: _animController, curve: Curves.easeOut);
-    _slideAnim = Tween<Offset>(
-        begin: const Offset(0, 0.12), end: Offset.zero)
-        .animate(CurvedAnimation(
-        parent: _animController, curve: Curves.easeOut));
+    _fadeAnim  = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.12), end: Offset.zero)
+        .animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
     _animController.forward();
   }
 
   @override
   void dispose() {
     _animController.dispose();
-    nameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
   Future<void> _login() async {
-    setState(() {
-      _isLoading = true;
-      error = '';
-    });
+    setState(() { _isLoading = true; error = ''; });
 
-    // Small delay for UX
-    await Future.delayed(const Duration(milliseconds: 300));
-
-    final name = nameController.text.trim();
+    final email    = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    if (name.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty) {
+      setState(() { error = 'Please fill in all fields'; _isLoading = false; });
+      return;
+    }
+
+    // ── Real API call ─────────────────────────────────────
+    final result = await ApiService.login(email, password);
+
+    if (!mounted) return;
+
+    // null = network/server error
+    if (result == null) {
       setState(() {
-        error = 'Please fill in all fields';
+        error = 'Could not connect. Check your Wi-Fi or server.';
         _isLoading = false;
       });
       return;
     }
 
-    // Admin
-    try {
-      Admin admin = FakeData.admin.firstWhere(
-            (a) => a.name == name && a.password == password,
-      );
-      if (!mounted) return;
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => AdminDashboard(admin: admin)));
+    // String = error message from PHP (wrong password, not approved, etc.)
+    if (result is String) {
+      setState(() { error = result; _isLoading = false; });
       return;
-    } catch (_) {}
+    }
 
-    // Mentor
-    try {
-      Mentor mentor = FakeData.mentors.firstWhere(
-            (m) => m.name == name && m.password == password,
-      );
-      if (!mounted) return;
+    // ── Navigate based on role ────────────────────────────
+    if (result is Admin) {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => MentorDashboard(mentor: mentor)));
-      return;
-    } catch (_) {}
+          MaterialPageRoute(builder: (_) => AdminDashboard(admin: result)));
 
-    // Intern
-    try {
-      Intern intern = FakeData.interns.firstWhere(
-            (i) => i.name == name && i.password == password,
-      );
-      if (intern.status.toLowerCase() != "approved") {
-        setState(() {
-          error = "⏳ Your account is pending admin approval";
-          _isLoading = false;
-        });
-        return;
-      }
-      if (!mounted) return;
+    } else if (result is Mentor) {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => InternDashboard(intern: intern)));
-      return;
-    } catch (_) {}
+          MaterialPageRoute(builder: (_) => MentorDashboard(mentor: result)));
 
-    setState(() {
-      error = "Incorrect username or password";
-      _isLoading = false;
-    });
+    } else if (result is Intern) {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (_) => InternDashboard(intern: result)));
+
+    } else {
+      setState(() { error = 'Unknown error. Try again.'; _isLoading = false; });
+    }
   }
 
   @override
@@ -133,61 +114,50 @@ class _LoginPageState extends State<LoginPage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo
                     Image.asset('assets/logo.png', width: 160),
                     const SizedBox(height: 6),
 
-                    Text(
-                      'Welcome Back',
-                      style: GoogleFonts.poppins(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF2D3A8C),
-                      ),
-                    ),
-                    Text(
-                      'Sign in to continue',
-                      style: GoogleFonts.poppins(
-                        fontSize: 13,
-                        color: Colors.grey.shade500,
-                      ),
-                    ),
+                    Text('Welcome Back',
+                        style: GoogleFonts.poppins(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF2D3A8C))),
+                    Text('Sign in to continue',
+                        style: GoogleFonts.poppins(
+                            fontSize: 13, color: Colors.grey.shade500)),
 
                     const SizedBox(height: 36),
 
-                    // Card
                     Container(
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 20,
-                            offset: Offset(0, 10),
-                          )
+                          BoxShadow(color: Colors.black12, blurRadius: 20, offset: Offset(0, 10))
                         ],
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Username
-                          Text('Username',
+
+                          // ── Email field (was "Username") ──────────────
+                          Text('Email',
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                   color: const Color(0xFF2D3A8C))),
                           const SizedBox(height: 6),
                           TextField(
-                            controller: nameController,
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
                             style: GoogleFonts.poppins(fontSize: 14),
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
-                              hintText: 'Enter your username',
+                              hintText: 'Enter your email',
                               hintStyle: GoogleFonts.poppins(
                                   fontSize: 13, color: Colors.grey.shade400),
-                              prefixIcon: const Icon(Icons.person_outline,
+                              prefixIcon: const Icon(Icons.email_outlined,
                                   color: Color(0xFF2D3A8C)),
                               filled: true,
                               fillColor: const Color(0xFFF4F6FF),
@@ -200,7 +170,7 @@ class _LoginPageState extends State<LoginPage>
 
                           const SizedBox(height: 18),
 
-                          // Password
+                          // ── Password field ───────────────────────────
                           Text('Password',
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
@@ -225,8 +195,8 @@ class _LoginPageState extends State<LoginPage>
                                       : Icons.visibility_outlined,
                                   color: Colors.grey,
                                 ),
-                                onPressed: () => setState(() =>
-                                _obscurePassword = !_obscurePassword),
+                                onPressed: () => setState(
+                                        () => _obscurePassword = !_obscurePassword),
                               ),
                               filled: true,
                               fillColor: const Color(0xFFF4F6FF),
@@ -237,7 +207,7 @@ class _LoginPageState extends State<LoginPage>
                             ),
                           ),
 
-                          // Error
+                          // ── Error message ────────────────────────────
                           if (error.isNotEmpty) ...[
                             const SizedBox(height: 12),
                             Container(
@@ -246,8 +216,7 @@ class _LoginPageState extends State<LoginPage>
                               decoration: BoxDecoration(
                                 color: Colors.red.shade50,
                                 borderRadius: BorderRadius.circular(10),
-                                border:
-                                Border.all(color: Colors.red.shade200),
+                                border: Border.all(color: Colors.red.shade200),
                               ),
                               child: Row(
                                 children: [
@@ -267,7 +236,7 @@ class _LoginPageState extends State<LoginPage>
 
                           const SizedBox(height: 24),
 
-                          // Login button
+                          // ── Login button ─────────────────────────────
                           SizedBox(
                             width: double.infinity,
                             height: 52,
@@ -278,18 +247,13 @@ class _LoginPageState extends State<LoginPage>
                                 disabledBackgroundColor:
                                 const Color(0xFF2D3A8C).withOpacity(0.6),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                ),
+                                    borderRadius: BorderRadius.circular(14)),
                               ),
                               child: _isLoading
                                   ? const SizedBox(
-                                width: 22,
-                                height: 22,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2.5,
-                                ),
-                              )
+                                  width: 22, height: 22,
+                                  child: CircularProgressIndicator(
+                                      color: Colors.white, strokeWidth: 2.5))
                                   : Text('Sign In',
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
@@ -304,10 +268,8 @@ class _LoginPageState extends State<LoginPage>
                     const SizedBox(height: 24),
 
                     GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const RegisterPage())),
+                      onTap: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const RegisterPage())),
                       child: RichText(
                         text: TextSpan(
                           style: GoogleFonts.poppins(
@@ -317,9 +279,8 @@ class _LoginPageState extends State<LoginPage>
                             TextSpan(
                               text: 'Register',
                               style: GoogleFonts.poppins(
-                                color: const Color(0xFF2D3A8C),
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  color: const Color(0xFF2D3A8C),
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
