@@ -12,7 +12,7 @@ import '../models/schedule.dart';
 import '../models/policy.dart';
 
 class ApiService {
-  static const String _ip = "192.168.100.4"; // ⚠️ change this
+  static const String _ip = "192.168.1.19"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
 
   // Helper for mentor routes
@@ -310,7 +310,7 @@ class ApiService {
   static Future<List<Schedule>> getSchedules(String internId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/get_schedules.php?intern_id=$internId"),
+        Uri.parse("$baseUrl/interns/get_schedules.php?intern_id=$internId"),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
@@ -349,13 +349,13 @@ class ApiService {
   // ─── Policies ─────────────────────────────────────────────
   static Future<List<Policy>> getPolicies() async {
     try {
-      final res = await http.get(Uri.parse("$baseUrl/get_policies.php"));
+      final res = await http.get(Uri.parse("$baseUrl/interns/get_policies.php"));
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
       return data.map((j) => Policy(
         id: j["id"],
         title: j["title"],
-        filePath: j["filePath"],
+        description: j["description"],
       )).toList();
     } catch (e) {
       return [];
@@ -397,5 +397,23 @@ class ApiService {
       skill: j["skill"],
       mark: int.parse(j["mark"].toString()),
     );
+  }
+
+  static Future<List<TrainingFile>> getMyTrainingFiles(String mentorId) async {
+    try {
+      final res = await http.get(
+        Uri.parse("$baseUrl/interns/get_training_files.php?mentor_id=$mentorId"),
+      );
+      if (res.statusCode != 200) return [];
+      final List data = json.decode(res.body);
+      return data.map((j) => TrainingFile(
+        id: j["id"],
+        title: j["title"],
+        fileUrl: j["fileUrl"],
+        mentorId: j["mentorId"],
+      )).toList();
+    } catch (e) {
+      return [];
+    }
   }
 }

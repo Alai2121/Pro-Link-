@@ -84,7 +84,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
           Policy(
             id: DateTime.now().toString(),
             title: result.files.single.name,
-            filePath: result.files.single.path!,
+            description: result.files.single.path!,
           ),
         );
       });

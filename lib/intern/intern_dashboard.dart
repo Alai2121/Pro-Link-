@@ -6,6 +6,7 @@ import 'marks_page.dart';
 import 'documents_page.dart';
 import 'work_id_page.dart';
 import '../../auth/login_page.dart';
+import 'policies_page.dart';
 
 class InternDashboard extends StatefulWidget {
   final Intern intern;
@@ -17,16 +18,8 @@ class InternDashboard extends StatefulWidget {
 
 class _InternDashboardState extends State<InternDashboard> {
   int selectedIndex = 0;
-
   final Color primary = const Color(0xFF2D3A8C);
-
-  final List<String> titles = [
-    "Home",
-    "Work ID",
-    "Schedule",
-    "Marks",
-    "Documents",
-  ];
+  final List<String> titles = ["Home", "Work ID", "Schedule", "Marks", "Documents", "Policies"];
 
   void _onSelect(int index) {
     setState(() => selectedIndex = index);
@@ -47,27 +40,20 @@ class _InternDashboardState extends State<InternDashboard> {
       WorkIDPage(intern: widget.intern),
       SchedulePage(intern: widget.intern),
       MarksPage(intern: widget.intern),
-      const DocumentsPage(),
+      DocumentsPage(intern: widget.intern),
+      PoliciesPage(intern: widget.intern),
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
-
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-
         title: Text(
           titles[selectedIndex],
-          style: GoogleFonts.poppins(
-            color: primary,
-            fontWeight: FontWeight.bold,
-          ),
+          style: GoogleFonts.poppins(color: primary, fontWeight: FontWeight.bold),
         ),
-
         iconTheme: IconThemeData(color: primary),
-
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.red),
@@ -80,8 +66,6 @@ class _InternDashboardState extends State<InternDashboard> {
       drawer: Drawer(
         child: Column(
           children: [
-
-
             DrawerHeader(
               decoration: BoxDecoration(color: primary),
               child: Column(
@@ -103,10 +87,7 @@ class _InternDashboardState extends State<InternDashboard> {
                   ),
                   Text(
                     widget.intern.department.name,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white70,
-                      fontSize: 12,
-                    ),
+                    style: GoogleFonts.poppins(color: Colors.white70, fontSize: 12),
                   ),
                 ],
               ),
@@ -114,41 +95,34 @@ class _InternDashboardState extends State<InternDashboard> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Icon(
-                      _getIcon(index),
-                      color: selectedIndex == index ? primary : Colors.grey,
-                    ),
-                    title: Text(
-                      titles[index],
-                      style: GoogleFonts.poppins(),
-                    ),
-                    selected: selectedIndex == index,
-                    selectedTileColor: const Color(0xFFF4F6FF),
-                    onTap: () => _onSelect(index),
-                  );
-                },
+                padding: EdgeInsets.zero,
+                itemCount: titles.length,
+                itemBuilder: (context, index) => ListTile(
+                  leading: Icon(
+                    _getIcon(index),
+                    color: selectedIndex == index ? primary : Colors.grey,
+                  ),
+                  title: Text(titles[index], style: GoogleFonts.poppins()),
+                  selected: selectedIndex == index,
+                  selectedTileColor: const Color(0xFFF4F6FF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                  onTap: () => _onSelect(index),
+                ),
               ),
             ),
 
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
-              title: Text(
-                "Logout",
-                style: GoogleFonts.poppins(color: Colors.red),
-              ),
+              title: Text("Logout", style: GoogleFonts.poppins(color: Colors.red)),
               onTap: _logout,
             ),
           ],
         ),
       ),
-
-
       body: pages[selectedIndex],
-
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) => setState(() => selectedIndex = index),
@@ -161,6 +135,7 @@ class _InternDashboardState extends State<InternDashboard> {
           BottomNavigationBarItem(icon: Icon(Icons.schedule), label: "Schedule"),
           BottomNavigationBarItem(icon: Icon(Icons.grade), label: "Marks"),
           BottomNavigationBarItem(icon: Icon(Icons.folder), label: "Docs"),
+          BottomNavigationBarItem(icon: Icon(Icons.policy), label: "Policies"),
         ],
       ),
     );
@@ -168,22 +143,16 @@ class _InternDashboardState extends State<InternDashboard> {
 
   IconData _getIcon(int index) {
     switch (index) {
-      case 0:
-        return Icons.home;
-      case 1:
-        return Icons.badge;
-      case 2:
-        return Icons.schedule;
-      case 3:
-        return Icons.grade;
-      case 4:
-        return Icons.folder;
-      default:
-        return Icons.menu;
+      case 0: return Icons.home;
+      case 1: return Icons.badge;
+      case 2: return Icons.schedule;
+      case 3: return Icons.grade;
+      case 4: return Icons.folder;
+      case 5: return Icons.policy;
+      default: return Icons.menu;
     }
   }
 }
-
 
 class HomePage extends StatelessWidget {
   final Intern intern;
@@ -192,63 +161,54 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primary = const Color(0xFF2D3A8C);
-
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
-          const SizedBox(height: 20),
-
-          Row(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundImage: AssetImage(intern.image),
-              ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              const SizedBox(height: 20),
+              Row(
                 children: [
-                  Text(
-                    "Welcome back,",
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundImage: AssetImage(intern.image),
                   ),
-                  Text(
-                    intern.name,
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: primary,
-                    ),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Welcome back,",
+                          style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey)),
+                      Text(intern.name,
+                          style: GoogleFonts.poppins(
+                              fontSize: 20, fontWeight: FontWeight.bold, color: primary)),
+                    ],
                   ),
                 ],
               ),
+              const SizedBox(height: 25),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF4F6FF),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    _row("Email", intern.email),
+                    _row("Department", intern.department.name),
+                    _row("Status", intern.status),
+                    _row("ID", intern.id),
+                  ],
+                ),
+              ),
             ],
           ),
-
-          const SizedBox(height: 25),
-
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF4F6FF),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              children: [
-                _row("Email", intern.email),
-                _row("Department", intern.department.name),
-                _row("Status", intern.status),
-                _row("ID", intern.id),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -260,10 +220,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: GoogleFonts.poppins(color: Colors.grey)),
-          Text(
-            value,
-            style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-          ),
+          Text(value, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
         ],
       ),
     );

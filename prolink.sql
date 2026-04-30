@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS training_files (
     title     VARCHAR(255) NOT NULL,
     file_url  TEXT         NOT NULL,
     mentor_id VARCHAR(50)  NOT NULL,
+    intern_id VARCHAR(50)  NOT NULL,
     FOREIGN KEY (mentor_id) REFERENCES persons(id) ON DELETE CASCADE
 );
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS training_files (
 CREATE TABLE IF NOT EXISTS policies (
     id        VARCHAR(100) PRIMARY KEY,
     title     VARCHAR(255) NOT NULL,
-    file_path TEXT         NOT NULL
+    description VARCHAR(255)         NOT NULL
 );
 
 -- ─── Schedules ──────────────────────────────────────────────
@@ -103,5 +104,5 @@ INSERT IGNORE INTO mentors VALUES ('mentor1', 'dept1');
 
 -- Sample intern (Pending – must be approved before login)
 INSERT IGNORE INTO persons VALUES
-    ('intern1', 'Ali Intern', 'ali@prolink.dz', 'ali123', 'intern', 'assets/admin.png');
+    ('intern1', 'Ali Intern', 'ali@prolink.dz', 'ali123', 'intern', 'assets/student1.png');
 INSERT IGNORE INTO interns VALUES ('intern1', 'dept1', 'Approved', 'mentor1');

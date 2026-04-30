@@ -48,8 +48,7 @@ class _MentorAttendanceState extends State<MentorAttendance>
     });
   }
 
-  // Fix: use proper typed map
-  final Map<String, bool> _att = {};
+
 
   @override
   void dispose() {

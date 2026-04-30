@@ -160,12 +160,14 @@ class FakeData {
       title: "Flutter Guide.pdf",
       fileUrl: "https://example.com/files/flutter_guide.pdf",
       mentorId: "m1",
+
     ),
     const TrainingFile(
       id: "f2",
       title: "Company Policy.docx",
       fileUrl: "https://example.com/files/company_policy.docx",
       mentorId: "m1",
+
     ),
   ];
 }
