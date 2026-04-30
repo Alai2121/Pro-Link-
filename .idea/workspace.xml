@@ -5,31 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="085e1974-d522-4789-877b-96b27334f719" name="Changes" comment="backend">
-      <change afterPath="$PROJECT_DIR$/lib/intern/policies_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Pro-Link-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pro-Link-.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/student1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/student1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/admin/assign_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/assign_interns.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/admin/manage_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/manage_interns.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/fake_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/fake_data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/intern/documents_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/documents_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/intern/marks_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/marks_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/intern/schedule_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/schedule_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/intern/work_id_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/work_id_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mentor/mentor_attendance.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/mentor/mentor_attendance.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/policy.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/policy.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/trainingFile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/trainingFile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prolink.sql" beforeDir="false" afterPath="$PROJECT_DIR$/prolink.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +95,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>

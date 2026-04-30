@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
 
-import '../data/fake_data.dart';
-import '../models/schedule.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
 import '../models/admin.dart';
-import '../models/policy.dart';
 
 import 'admin_dashboard.dart';
 import 'manage_interns.dart';
 import 'assign_interns.dart';
+
 import '../../auth/login_page.dart';
 
 class UploadSchedule extends StatefulWidget {
@@ -23,127 +23,495 @@ class UploadSchedule extends StatefulWidget {
 
 class _UploadScheduleState extends State<UploadSchedule> {
 
-  // ================= SCHEDULE =================
+  // ================= API =================
+
+  static const String baseUrl =
+      "http://192.168.1.15/prolink/admin";
+
+  // ================= CONTROLLERS =================
+
   String? selectedInternId;
   String? selectedDay;
   String selectedType = "Work";
 
-  final TextEditingController timeController = TextEditingController();
+  final TextEditingController timeController =
+  TextEditingController();
+
+  final TextEditingController policyController =
+  TextEditingController();
+
+  // ================= DATA =================
 
   final List<String> days = [
-    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
   ];
 
   final List<String> types = [
-    "Work", "Training", "Meeting", "Review"
+    "Work",
+    "Training",
+    "Meeting",
+    "Review"
   ];
 
-  List get approvedInterns =>
-      FakeData.interns.where((i) => i.status == "Approved").toList();
+  List interns = [];
+  List schedules = [];
+  List policies = [];
+
+  bool loading = true;
+
+  // ================= INIT =================
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  // ================= LOAD DATA =================
+
+  Future<void> loadData() async {
+
+    try {
+
+      final internsRes = await http.get(
+        Uri.parse("$baseUrl/get_all_interns.php"),
+      );
+
+      final schedulesRes = await http.get(
+        Uri.parse("$baseUrl/get_schedules.php"),
+      );
+
+      final policiesRes = await http.get(
+        Uri.parse("$baseUrl/get_policies.php"),
+      );
+
+      setState(() {
+
+        interns = jsonDecode(internsRes.body);
+
+        schedules = jsonDecode(schedulesRes.body);
+
+        policies = jsonDecode(policiesRes.body);
+
+        loading = false;
+      });
+
+    } catch (e) {
+
+      setState(() {
+        loading = false;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error : $e")),
+      );
+    }
+  }
+
+  // ================= APPROVED INTERNS =================
+
+  List get approvedInterns {
+
+    return interns.where((i) {
+
+      return i["status"]
+          .toString()
+          .toLowerCase()
+          .trim() == "approved";
+
+    }).toList();
+  }
 
   // ================= ADD SCHEDULE =================
-  void addSchedule() {
+
+  Future<void> addSchedule() async {
+
     if (selectedInternId == null ||
         selectedDay == null ||
-        timeController.text.isEmpty) {
+        timeController.text.trim().isEmpty) {
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Fill all fields ❌")),
-      );
-      return;
-    }
-
-    final intern = FakeData.interns
-        .firstWhere((i) => i.id == selectedInternId);
-
-    setState(() {
-      FakeData.schedules.add(
-        Schedule(
-          id: DateTime.now().toString(),
-          internId: intern.id,
-          internName: intern.name,
-          day: selectedDay!,
-          time: timeController.text,
-          type: selectedType,
+        const SnackBar(
+          content: Text("Fill all fields ❌"),
         ),
       );
 
-      timeController.clear();
-    });
-  }
+      return;
+    }
 
-  // ================= PICK PDF =================
-  Future<void> pickPDF() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
+    try {
 
-    if (result != null && result.files.single.path != null) {
-      setState(() {
-        FakeData.policies.add(
-          Policy(
-            id: DateTime.now().toString(),
-            title: result.files.single.name,
-            description: result.files.single.path!,
+      final response = await http.post(
+
+        Uri.parse("$baseUrl/add_schedule.php"),
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: jsonEncode({
+
+          "intern_id": selectedInternId.toString(),
+          "day": selectedDay.toString(),
+          "time": timeController.text.trim(),
+          "type": selectedType
+
+        }),
+      );
+
+      final data = jsonDecode(response.body);
+
+      if (data["success"] == true) {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Schedule Added ✅"),
           ),
         );
-      });
+
+        timeController.clear();
+
+        selectedInternId = null;
+        selectedDay = null;
+
+        await loadData();
+
+        setState(() {});
+
+      } else {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Insert Failed ❌ ${response.body}",
+            ),
+          ),
+        );
+      }
+
+    } catch (e) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error : $e"),
+        ),
+      );
     }
   }
 
+  // ================= ADD / UPDATE POLICY =================
+
+  Future<void> savePolicy() async {
+
+    if (policyController.text.trim().isEmpty) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Enter policy ❌"),
+        ),
+      );
+
+      return;
+    }
+
+    try {
+
+      String title = "Company Policy";
+
+      // اذا يوجد policy مسبقاً نستعمل نفس id
+      String? id;
+
+      if (policies.isNotEmpty) {
+
+        id = policies[0]["id"];
+      }
+
+      final response = await http.post(
+
+        Uri.parse("$baseUrl/upload_policy.php"),
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: jsonEncode({
+
+          "id": id,
+          "title": title,
+          "description": policyController.text.trim()
+
+        }),
+      );
+
+      final data = jsonDecode(response.body);
+
+      if (data["success"] == true) {
+
+        Navigator.pop(context);
+
+        await loadData();
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Policy Saved ✅"),
+          ),
+        );
+
+      } else {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Failed ❌"),
+          ),
+        );
+      }
+
+    } catch (e) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error : $e"),
+        ),
+      );
+    }
+  }
+
+  // ================= POLICY DIALOG =================
+
+  void showPolicyDialog() {
+
+    if (policies.isNotEmpty) {
+
+      policyController.text =
+          policies[0]["description"] ?? "";
+    }
+
+    showDialog(
+
+      context: context,
+
+      builder: (_) {
+
+        return AlertDialog(
+
+          title: Text(
+
+            "Company Policy",
+
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          content: TextField(
+
+            controller: policyController,
+
+            maxLines: 8,
+
+            decoration: const InputDecoration(
+
+              hintText: "Enter policy...",
+
+              border: OutlineInputBorder(),
+            ),
+          ),
+
+          actions: [
+
+            TextButton(
+
+              onPressed: () {
+                Navigator.pop(context);
+              },
+
+              child: const Text("Cancel"),
+            ),
+
+            ElevatedButton(
+
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF2D3A8C),
+              ),
+
+              onPressed: savePolicy,
+
+              child: const Text(
+                "Save",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   // ================= DRAWER =================
+
   Widget buildDrawer() {
+
     return Drawer(
+
       backgroundColor: const Color(0xFF2D3A8C),
+
       child: Column(
+
         children: [
+
           const SizedBox(height: 50),
-          const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
+
+          const CircleAvatar(
+            radius: 40,
+            backgroundImage:
+            AssetImage("assets/admin.png"),
+          ),
+
           const SizedBox(height: 10),
-          Text(widget.admin.name, style: GoogleFonts.poppins(color: Colors.white)),
+
+          Text(
+
+            widget.admin.name,
+
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+            ),
+          ),
+
           const Divider(),
 
           ListTile(
-            leading: const Icon(Icons.dashboard, color: Colors.white),
-            title: Text("Dashboard", style: GoogleFonts.poppins(color: Colors.white)),
+
+            leading: const Icon(
+              Icons.dashboard,
+              color: Colors.white,
+            ),
+
+            title: Text(
+
+              "Dashboard",
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             onTap: () => Navigator.pushReplacement(
+
               context,
-              MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)),
+
+              MaterialPageRoute(
+
+                builder: (_) =>
+                    AdminDashboard(admin: widget.admin),
+              ),
             ),
           ),
 
           ListTile(
-            leading: const Icon(Icons.people, color: Colors.white),
-            title: Text("Manage interns/mentor/departemment", style: GoogleFonts.poppins(color: Colors.white)),
+
+            leading: const Icon(
+              Icons.people,
+              color: Colors.white,
+            ),
+
+            title: Text(
+
+              "Manage interns/mentor/departemment",
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             onTap: () => Navigator.push(
+
               context,
-              MaterialPageRoute(builder: (_) => ManageInterns(admin: widget.admin)),
+
+              MaterialPageRoute(
+
+                builder: (_) =>
+                    ManageInterns(admin: widget.admin),
+              ),
             ),
           ),
 
           ListTile(
-            leading: const Icon(Icons.assignment_ind, color: Colors.white),
-            title: Text("Assign Interns", style: GoogleFonts.poppins(color: Colors.white)),
+
+            leading: const Icon(
+              Icons.assignment_ind,
+              color: Colors.white,
+            ),
+
+            title: Text(
+
+              "Assign Interns",
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             onTap: () => Navigator.push(
+
               context,
-              MaterialPageRoute(builder: (_) => AssignIntern(admin: widget.admin)),
+
+              MaterialPageRoute(
+
+                builder: (_) =>
+                    AssignIntern(admin: widget.admin),
+              ),
             ),
           ),
 
           ListTile(
-            leading: const Icon(Icons.schedule, color: Colors.white),
-            title: Text("Upload Schedule", style: GoogleFonts.poppins(color: Colors.white)),
+
+            leading: const Icon(
+              Icons.schedule,
+              color: Colors.white,
+            ),
+
+            title: Text(
+
+              "Upload Schedule",
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             onTap: () {
               Navigator.pop(context);
             },
           ),
 
           ListTile(
-            leading: const Icon(Icons.logout, color: Colors.white),
-            title: Text("Logout", style: GoogleFonts.poppins(color: Colors.white)),
+
+            leading: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+
+            title: Text(
+
+              "Logout",
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             onTap: () => Navigator.pushReplacement(
+
               context,
-              MaterialPageRoute(builder: (_) => LoginPage()),
+
+              MaterialPageRoute(
+                builder: (_) => LoginPage(),
+              ),
             ),
           ),
         ],
@@ -152,32 +520,107 @@ class _UploadScheduleState extends State<UploadSchedule> {
   }
 
   // ================= TABLE =================
+
   Widget buildTable() {
+
     return Container(
+
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF2D3A8C).withOpacity(0.3)),
+
+        border: Border.all(
+          color: const Color(0xFF2D3A8C)
+              .withOpacity(0.3),
+        ),
+
         borderRadius: BorderRadius.circular(12),
       ),
+
       child: ClipRRect(
+
         borderRadius: BorderRadius.circular(12),
+
         child: SingleChildScrollView(
+
           scrollDirection: Axis.horizontal,
+
           child: DataTable(
+
             headingRowColor:
-            MaterialStateProperty.all(const Color(0xFF2D3A8C)),
+            MaterialStateProperty.all(
+              const Color(0xFF2D3A8C),
+            ),
+
             columns: [
-              DataColumn(label: Text("Intern", style: GoogleFonts.poppins(color: Colors.white))),
-              DataColumn(label: Text("Day", style: GoogleFonts.poppins(color: Colors.white))),
-              DataColumn(label: Text("Time", style: GoogleFonts.poppins(color: Colors.white))),
-              DataColumn(label: Text("Type", style: GoogleFonts.poppins(color: Colors.white))),
+
+              DataColumn(
+                label: Text(
+                  "Intern",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
+              DataColumn(
+                label: Text(
+                  "Day",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
+              DataColumn(
+                label: Text(
+                  "Time",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
+              DataColumn(
+                label: Text(
+                  "Type",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
-            rows: FakeData.schedules.map((s) {
-              return DataRow(cells: [
-                DataCell(Text(s.internName)),
-                DataCell(Text(s.day)),
-                DataCell(Text(s.time)),
-                DataCell(Text(s.type)),
-              ]);
+
+            rows: schedules.map<DataRow>((s) {
+
+              return DataRow(
+
+                cells: [
+
+                  DataCell(
+                    Text(
+                      s["internName"].toString(),
+                    ),
+                  ),
+
+                  DataCell(
+                    Text(
+                      s["day"].toString(),
+                    ),
+                  ),
+
+                  DataCell(
+                    Text(
+                      s["time"].toString(),
+                    ),
+                  ),
+
+                  DataCell(
+                    Text(
+                      s["type"].toString(),
+                    ),
+                  ),
+                ],
+              );
+
             }).toList(),
           ),
         ),
@@ -185,40 +628,65 @@ class _UploadScheduleState extends State<UploadSchedule> {
     );
   }
 
-  // ================= POLICIES =================
+  // ================= POLICY VIEW =================
+
   Widget buildPolicies() {
-    if (FakeData.policies.isEmpty) {
-      return const Text("No files uploaded");
+
+    if (policies.isEmpty) {
+
+      return const Text(
+        "No policy added",
+      );
     }
 
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: FakeData.policies.length,
-      itemBuilder: (context, index) {
-        final p = FakeData.policies[index];
+    final p = policies[0];
 
-        return Card(
-          child: ListTile(
-            leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
-            title: Text(p.title),
+    return Card(
+
+      child: ListTile(
+
+        leading: const Icon(
+          Icons.policy,
+          color: Color(0xFF2D3A8C),
+        ),
+
+        title: Text(
+          p["title"].toString(),
+        ),
+
+        subtitle: Padding(
+
+          padding: const EdgeInsets.only(top: 8),
+
+          child: Text(
+            p["description"].toString(),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   // ================= UI =================
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       appBar: AppBar(
+
         backgroundColor: const Color(0xFF2D3A8C),
+
         foregroundColor: Colors.white,
+
         title: Text(
+
           "Upload Schedule",
+
           style: GoogleFonts.poppins(
+
             fontSize: 18,
+
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -226,41 +694,152 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
       drawer: buildDrawer(),
 
-      body: SingleChildScrollView(
+      body: loading
+
+          ? const Center(
+        child: CircularProgressIndicator(),
+      )
+
+          : SingleChildScrollView(
+
         padding: const EdgeInsets.all(12),
+
         child: Column(
+
           children: [
 
             DropdownButtonFormField<String>(
+
+              value: selectedInternId,
+
               hint: const Text("Select Intern"),
-              items: approvedInterns.map<DropdownMenuItem<String>>((i) {
-                return DropdownMenuItem(value: i.id, child: Text(i.name));
+
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+
+              items: approvedInterns
+                  .map<DropdownMenuItem<String>>((i) {
+
+                return DropdownMenuItem(
+
+                  value: i["id"].toString(),
+
+                  child: Text(
+                    i["name"].toString(),
+                  ),
+                );
+
               }).toList(),
-              onChanged: (v) => setState(() => selectedInternId = v),
+
+              onChanged: (v) {
+
+                setState(() {
+                  selectedInternId = v;
+                });
+              },
             ),
 
+            const SizedBox(height: 10),
+
             DropdownButtonFormField<String>(
+
+              value: selectedDay,
+
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+
               hint: const Text("Select Day"),
-              items: days.map((d) =>
-                  DropdownMenuItem(value: d, child: Text(d))).toList(),
-              onChanged: (v) => setState(() => selectedDay = v),
+
+              items: days.map((d) {
+
+                return DropdownMenuItem(
+                  value: d,
+                  child: Text(d),
+                );
+
+              }).toList(),
+
+              onChanged: (v) {
+
+                setState(() {
+                  selectedDay = v;
+                });
+              },
             ),
 
+            const SizedBox(height: 10),
+
             DropdownButtonFormField<String>(
+
               value: selectedType,
-              items: types.map((t) =>
-                  DropdownMenuItem(value: t, child: Text(t))).toList(),
-              onChanged: (v) => setState(() => selectedType = v!),
+
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+
+              items: types.map((t) {
+
+                return DropdownMenuItem(
+                  value: t,
+                  child: Text(t),
+                );
+
+              }).toList(),
+
+              onChanged: (v) {
+
+                setState(() {
+                  selectedType = v!;
+                });
+              },
             ),
+
+            const SizedBox(height: 10),
 
             TextField(
+
               controller: timeController,
-              decoration: const InputDecoration(labelText: "Time"),
+
+              decoration: const InputDecoration(
+
+                labelText: "Time",
+
+                border: OutlineInputBorder(),
+              ),
             ),
 
-            ElevatedButton(
-              onPressed: addSchedule,
-              child: const Text("Add Schedule"),
+            const SizedBox(height: 15),
+
+            SizedBox(
+
+              width: double.infinity,
+
+              child: ElevatedButton(
+
+                style: ElevatedButton.styleFrom(
+
+                  backgroundColor:
+                  const Color(0xFF2D3A8C),
+
+                  padding:
+                  const EdgeInsets.symmetric(
+                    vertical: 14,
+                  ),
+                ),
+
+                onPressed: addSchedule,
+
+                child: const Text(
+
+                  "Add Schedule",
+
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
 
             const SizedBox(height: 20),
@@ -269,17 +848,48 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
             const SizedBox(height: 30),
 
-            ElevatedButton(
-              onPressed: pickPDF,
-              child: const Text("Upload PDF"),
+            SizedBox(
+
+              width: double.infinity,
+
+              child: ElevatedButton(
+
+                style: ElevatedButton.styleFrom(
+
+                  backgroundColor:
+                  const Color(0xFF2D3A8C),
+
+                  padding:
+                  const EdgeInsets.symmetric(
+                    vertical: 14,
+                  ),
+                ),
+
+                onPressed: showPolicyDialog,
+
+                child: const Text(
+
+                  "Add / Edit Policy",
+
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
 
             const SizedBox(height: 20),
 
             Text(
-              "Uploaded Policies",
-              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+
+              "Policy",
+
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+              ),
             ),
+
+            const SizedBox(height: 10),
 
             buildPolicies(),
           ],

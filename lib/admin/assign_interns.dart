@@ -1,18 +1,26 @@
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import '../data/fake_data.dart';
+import 'package:http/http.dart' as http;
+import 'package:google_fonts/google_fonts.dart';
+
 import '../models/admin.dart';
-import '../models/mentor.dart';
-import '../models/department.dart';
-import '../models/intern.dart';
+
 import 'admin_dashboard.dart';
 import 'manage_interns.dart';
 import 'upload_schedule.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import '../../auth/login_page.dart';
+
 class AssignIntern extends StatefulWidget {
+
   final Admin admin;
 
-  const AssignIntern({super.key, required this.admin});
+  const AssignIntern({
+    super.key,
+    required this.admin,
+  });
 
   @override
   State<AssignIntern> createState() => _AssignInternState();
@@ -20,71 +28,228 @@ class AssignIntern extends StatefulWidget {
 
 class _AssignInternState extends State<AssignIntern> {
 
-  // ================= SELECTED OBJECTS =================
-  Intern? selectedIntern;
-  Mentor? selectedMentor;
-  Department? selectedDept;
+  // ================= COLORS =================
+  final Color mainColor = const Color(0xFF2D3A8C);
 
-  List<Map<String, String>> assignments = [];
+  // ================= BASE URL =================
+  final String baseUrl =
+      "http://192.168.1.15/prolink/admin";
 
-  // ================= ASSIGN =================
-  void assignIntern() {
+  // ================= DATA =================
+  List interns = [];
+
+  List mentors = [];
+
+  List departments = [];
+
+  List assignments = [];
+
+  bool isLoading = true;
+
+  // ================= SELECTED =================
+  Map<String, dynamic>? selectedIntern;
+
+  Map<String, dynamic>? selectedMentor;
+
+  Map<String, dynamic>? selectedDept;
+
+  // ================= INIT =================
+  @override
+  void initState() {
+    super.initState();
+
+    loadData();
+  }
+
+  // ================= LOAD DATA =================
+  Future<void> loadData() async {
+
+    try {
+
+      final internsRes = await http.get(
+        Uri.parse("$baseUrl/get_all_interns.php"),
+      );
+
+      final mentorsRes = await http.get(
+        Uri.parse("$baseUrl/get_all_mentors.php"),
+      );
+
+      final departmentsRes = await http.get(
+        Uri.parse("$baseUrl/get_all_departments.php"),
+      );
+
+      if (internsRes.statusCode == 200 &&
+          mentorsRes.statusCode == 200 &&
+          departmentsRes.statusCode == 200) {
+
+        setState(() {
+
+          interns = jsonDecode(internsRes.body);
+
+          mentors = jsonDecode(mentorsRes.body);
+
+          departments = jsonDecode(departmentsRes.body);
+
+          isLoading = false;
+        });
+      }
+
+    } catch (e) {
+
+      print(e);
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  // ================= ASSIGN INTERN =================
+  Future<void> assignIntern() async {
+
     if (selectedIntern == null ||
         selectedMentor == null ||
-        selectedDept == null) { return; }
+        selectedDept == null) {
 
-    setState(() {
-      // 🔥 تحديث Intern الحقيقي
-      selectedIntern!.mentorId = selectedMentor!.id;
-      selectedIntern!.department = selectedDept!;
+      return;
+    }
 
-      assignments.add({
-        "internId": selectedIntern!.id,
-        "internName": selectedIntern!.name,
-        "mentorId": selectedMentor!.id,
-        "mentorName": selectedMentor!.name,
-        "deptName": selectedDept!.name,
-      });
+    try {
 
-      selectedIntern = null;
-      selectedMentor = null;
-      selectedDept = null;
-    });
+      final res = await http.post(
+
+        Uri.parse("$baseUrl/assign_intern.php"),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: jsonEncode({
+
+          "intern_id": selectedIntern!["id"],
+
+          "mentor_id": selectedMentor!["id"],
+
+          "department_id": selectedDept!["id"],
+        }),
+      );
+
+      final data = jsonDecode(res.body);
+
+      if (data["success"] == true) {
+
+        setState(() {
+
+          assignments.add({
+
+            "internName": selectedIntern!["name"],
+
+            "mentorName": selectedMentor!["name"],
+
+            "deptName": selectedDept!["name"],
+          });
+
+          selectedIntern = null;
+
+          selectedMentor = null;
+
+          selectedDept = null;
+        });
+
+        await loadData();
+
+        ScaffoldMessenger.of(context).showSnackBar(
+
+          SnackBar(
+
+            backgroundColor: Colors.green,
+
+            content: Text(
+
+              "Intern Assigned Successfully",
+
+              style: GoogleFonts.poppins(),
+            ),
+          ),
+        );
+      }
+
+    } catch (e) {
+
+      print(e);
+    }
   }
 
   // ================= TABLE =================
-  Widget buildTable(String title, List<String> columns, List<List<String>> rows) {
+  Widget buildTable(
+
+      String title,
+      List<String> columns,
+      List<List<String>> rows,
+      ) {
+
     return Column(
+
       crossAxisAlignment: CrossAxisAlignment.start,
+
       children: [
 
         const SizedBox(height: 15),
 
-        Text(title,
-            style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(
+
+          title,
+
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
 
         const SizedBox(height: 10),
 
         Container(
+
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
+
+            border: Border.all(
+              color: Colors.grey.shade300,
+            ),
+
             borderRadius: BorderRadius.circular(12),
           ),
 
           child: ClipRRect(
+
             borderRadius: BorderRadius.circular(12),
+
             child: SingleChildScrollView(
+
               scrollDirection: Axis.horizontal,
 
               child: DataTable(
-                columns: columns
-                    .map((c) => DataColumn(label: Text(c)))
-                    .toList(),
+
+                columns: columns.map((c) {
+
+                  return DataColumn(
+                    label: Text(c),
+                  );
+
+                }).toList(),
 
                 rows: rows.map((row) {
+
                   return DataRow(
-                    cells: row.map((cell) => DataCell(Text(cell))).toList(),
+
+                    cells: row.map((cell) {
+
+                      return DataCell(
+                        Text(cell),
+                      );
+
+                    }).toList(),
                   );
+
                 }).toList(),
               ),
             ),
@@ -98,81 +263,230 @@ class _AssignInternState extends State<AssignIntern> {
   @override
   Widget build(BuildContext context) {
 
-    final approvedInterns = FakeData.interns
-        .where((i) => i.status == "Approved")
+    if (isLoading) {
+
+      return const Scaffold(
+
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    final approvedInterns = interns
+        .where((i) => i["status"] == "Approved")
         .toList();
 
     return Scaffold(
+
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2D3A8C),
+
+        backgroundColor: mainColor,
+
         foregroundColor: Colors.white,
-        title: Text("Assign Interns",
+
+        title: Text(
+
+          "Assign Interns",
+
           style: GoogleFonts.poppins(
-              fontSize: 18, fontWeight: FontWeight.bold),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
 
+      // ================= DRAWER =================
       drawer: Drawer(
-        backgroundColor: const Color(0xFF2D3A8C),
+
+        backgroundColor: mainColor,
+
         child: Column(
           children: [
+
             const SizedBox(height: 50),
-            const CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/admin.png")),
+
+            CircleAvatar(
+              radius: 40,
+              backgroundImage:
+              AssetImage(widget.admin.image),
+            ),
+
             const SizedBox(height: 10),
-            Text(widget.admin.name,
-                style: GoogleFonts.poppins(color: Colors.white)),
+
+            Text(
+
+              widget.admin.name,
+
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+              ),
+            ),
+
             const Divider(color: Colors.white),
 
-
             ListTile(
-              leading: const Icon(Icons.dashboard, color: Colors.white),
-              title: Text("Dashboard", style: GoogleFonts.poppins(color: Colors.white)),
+
+              leading: const Icon(
+                Icons.dashboard,
+                color: Colors.white,
+              ),
+
+              title: Text(
+
+                "Dashboard",
+
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => AdminDashboard(admin: widget.admin)));
+
+                Navigator.push(
+
+                  context,
+
+                  MaterialPageRoute(
+
+                    builder: (_) => AdminDashboard(
+                      admin: widget.admin,
+                    ),
+                  ),
+                );
               },
             ),
 
             ListTile(
-              leading: const Icon(Icons.people, color: Colors.white),
-              title: Text("Manage interns/mentor/departemment", style: GoogleFonts.poppins(color: Colors.white)),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ManageInterns(admin: widget.admin))),
+
+              leading: const Icon(
+                Icons.people,
+                color: Colors.white,
+              ),
+
+              title: Text(
+
+                "Manage interns/mentor/departemment",
+
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+
+              onTap: () {
+
+                Navigator.push(
+
+                  context,
+
+                  MaterialPageRoute(
+
+                    builder: (_) => ManageInterns(
+                      admin: widget.admin,
+                    ),
+                  ),
+                );
+              },
             ),
 
             ListTile(
-              leading: const Icon(Icons.assignment_ind, color: Colors.white),
-              title: Text("Assign Interns", style: GoogleFonts.poppins(color: Colors.white)),
+
+              leading: const Icon(
+                Icons.assignment_ind,
+                color: Colors.white,
+              ),
+
+              title: Text(
+
+                "Assign Interns",
+
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+
               onTap: () {
                 Navigator.pop(context);
               },
             ),
 
             ListTile(
-              leading: const Icon(Icons.schedule, color: Colors.white),
-              title: Text("Upload Schedule", style: GoogleFonts.poppins(color: Colors.white)),
+
+              leading: const Icon(
+                Icons.schedule,
+                color: Colors.white,
+              ),
+
+              title: Text(
+
+                "Upload Schedule",
+
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => UploadSchedule(admin: widget.admin)));
+
+                Navigator.push(
+
+                  context,
+
+                  MaterialPageRoute(
+
+                    builder: (_) => UploadSchedule(
+                      admin: widget.admin,
+                    ),
+                  ),
+                );
               },
             ),
+
             ListTile(
-              leading: const Icon(Icons.logout, color: Colors.white),
-              title: Text("Logout", style: GoogleFonts.poppins(color: Colors.white)),
+
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+
+              title: Text(
+
+                "Logout",
+
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => LoginPage()));
+
+                Navigator.push(
+
+                  context,
+
+                  MaterialPageRoute(
+                    builder: (_) => LoginPage(),
+                  ),
+                );
               },
             ),
+
             const Spacer(),
 
             Padding(
+
               padding: const EdgeInsets.all(12),
+
               child: Text(
+
                 "Pro Link",
+
                 style: GoogleFonts.poppins(
+
                   fontSize: 16,
+
                   fontWeight: FontWeight.bold,
+
                   color: Colors.white,
                 ),
               ),
@@ -181,128 +495,227 @@ class _AssignInternState extends State<AssignIntern> {
         ),
       ),
 
+      // ================= BODY =================
       body: SingleChildScrollView(
+
         padding: const EdgeInsets.all(12),
 
         child: Column(
           children: [
 
-            // ================= SELECTORS =================
+            // ================= ASSIGN CARD =================
             Card(
+
               child: Padding(
+
                 padding: const EdgeInsets.all(12),
+
                 child: Column(
                   children: [
 
-                    // INTERN
-                    DropdownButton<Intern>(
+                    // ================= INTERN =================
+                    DropdownButton<Map<String, dynamic>>(
+
                       value: selectedIntern,
+
                       hint: const Text("Select Intern"),
+
                       isExpanded: true,
-                      items: approvedInterns.map((i) {
+
+                      items: approvedInterns
+                          .map<DropdownMenuItem<Map<String, dynamic>>>((i) {
+
                         return DropdownMenuItem(
+
                           value: i,
-                          child: Text(i.name),
+
+                          child: Text(i["name"]),
                         );
+
                       }).toList(),
+
                       onChanged: (val) {
-                        setState(() => selectedIntern = val);
+
+                        setState(() {
+                          selectedIntern = val;
+                        });
                       },
                     ),
 
-                    // MENTOR
-                    DropdownButton<Mentor>(
+                    // ================= MENTOR =================
+                    DropdownButton<Map<String, dynamic>>(
+
                       value: selectedMentor,
+
                       hint: const Text("Select Mentor"),
+
                       isExpanded: true,
-                      items: FakeData.mentors.map((m) {
+
+                      items: mentors
+                          .map<DropdownMenuItem<Map<String, dynamic>>>((m) {
+
                         return DropdownMenuItem(
+
                           value: m,
-                          child: Text(m.name),
+
+                          child: Text(m["name"]),
                         );
+
                       }).toList(),
+
                       onChanged: (val) {
-                        setState(() => selectedMentor = val);
+
+                        setState(() {
+                          selectedMentor = val;
+                        });
                       },
                     ),
 
-                    // DEPARTMENT
-                    DropdownButton<Department>(
+                    // ================= DEPARTMENT =================
+                    DropdownButton<Map<String, dynamic>>(
+
                       value: selectedDept,
+
                       hint: const Text("Select Department"),
+
                       isExpanded: true,
-                      items: FakeData.departments.map((d) {
+
+                      items: departments
+                          .map<DropdownMenuItem<Map<String, dynamic>>>((d) {
+
                         return DropdownMenuItem(
+
                           value: d,
-                          child: Text(d.name),
+
+                          child: Text(d["name"]),
                         );
+
                       }).toList(),
+
                       onChanged: (val) {
-                        setState(() => selectedDept = val);
+
+                        setState(() {
+                          selectedDept = val;
+                        });
                       },
                     ),
 
                     const SizedBox(height: 10),
 
                     ElevatedButton(
+
                       onPressed: assignIntern,
-                      child: const Text("Assign Intern"),
+
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: mainColor,
+                      ),
+
+                      child: Text(
+
+                        "Assign Intern",
+
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
 
-            // ================= TABLES =================
-
+            // ================= APPROVED INTERNS =================
             buildTable(
+
               "Approved Interns",
+
               ["ID", "Name", "Email", "Department"],
-              approvedInterns.map((i) => [
-                i.id,
-                i.name,
-                i.email,
-                i.department.name,
-              ]).toList(),
+
+              approvedInterns.map<List<String>>((i) {
+
+                return [
+
+                  i["id"].toString(),
+
+                  i["name"],
+
+                  i["email"],
+
+                  i["department"]["name"],
+                ];
+
+              }).toList(),
             ),
 
+            // ================= MENTORS + DEPARTMENTS =================
             Row(
               children: [
 
                 Expanded(
+
                   child: buildTable(
+
                     "Mentors",
+
                     ["ID", "Name"],
-                    FakeData.mentors.map((m) => [
-                      m.id,
-                      m.name,
-                    ]).toList(),
+
+                    mentors.map<List<String>>((m) {
+
+                      return [
+
+                        m["id"].toString(),
+
+                        m["name"],
+                      ];
+
+                    }).toList(),
                   ),
                 ),
 
                 const SizedBox(width: 10),
 
                 Expanded(
+
                   child: buildTable(
+
                     "Departments",
+
                     ["ID", "Name"],
-                    FakeData.departments.map((d) => [
-                      d.id,
-                      d.name,
-                    ]).toList(),
+
+                    departments.map<List<String>>((d) {
+
+                      return [
+
+                        d["id"].toString(),
+
+                        d["name"],
+                      ];
+
+                    }).toList(),
                   ),
                 ),
               ],
             ),
 
+            // ================= ASSIGNMENTS =================
             buildTable(
+
               "Assignments",
+
               ["Intern", "Mentor", "Department"],
-              assignments.map((a) => [
-                a["internName"]!,
-                a["mentorName"]!,
-                a["deptName"]!,
-              ]).toList(),
+
+              assignments.map<List<String>>((a) {
+
+                return [
+
+                  a["internName"],
+
+                  a["mentorName"],
+
+                  a["deptName"],
+                ];
+
+              }).toList(),
             ),
           ],
         ),
