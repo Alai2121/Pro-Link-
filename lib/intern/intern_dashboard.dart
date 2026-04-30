@@ -64,10 +64,11 @@ class _InternDashboardState extends State<InternDashboard> {
       ),
 
       drawer: Drawer(
+        backgroundColor: Colors.white,
         child: Column(
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: primary),
+              decoration: BoxDecoration(color: Colors.white),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -80,14 +81,14 @@ class _InternDashboardState extends State<InternDashboard> {
                   Text(
                     widget.intern.name,
                     style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: primary,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     widget.intern.department.name,
-                    style: GoogleFonts.poppins(color: Colors.white70, fontSize: 12),
+                    style: GoogleFonts.poppins(color: Colors.grey, fontSize: 12),
                   ),
                 ],
               ),
@@ -102,7 +103,12 @@ class _InternDashboardState extends State<InternDashboard> {
                     _getIcon(index),
                     color: selectedIndex == index ? primary : Colors.grey,
                   ),
-                  title: Text(titles[index], style: GoogleFonts.poppins()),
+                  title: Text(
+                    titles[index],
+                    style: GoogleFonts.poppins(
+                      color: selectedIndex == index ? primary : Colors.black87,
+                    ),
+                  ),
                   selected: selectedIndex == index,
                   selectedTileColor: const Color(0xFFF4F6FF),
                   shape: RoundedRectangleBorder(
@@ -116,12 +122,16 @@ class _InternDashboardState extends State<InternDashboard> {
 
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
-              title: Text("Logout", style: GoogleFonts.poppins(color: Colors.red)),
+              title: Text(
+                "Logout",
+                style: GoogleFonts.poppins(color: Colors.red),
+              ),
               onTap: _logout,
             ),
           ],
         ),
       ),
+
       body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,

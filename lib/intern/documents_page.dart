@@ -26,7 +26,6 @@ class _DocumentsPageState extends State<DocumentsPage> {
 
   Future<void> _load() async {
     final files    = await ApiService.getMyTrainingFiles(widget.intern.mentorId);
-    final policies = await ApiService.getPolicies();
     setState(() { _files = files; _isLoading = false; });
   }
 

@@ -33,7 +33,7 @@ class _AssignInternState extends State<AssignIntern> {
 
   // ================= BASE URL =================
   final String baseUrl =
-      "http://192.168.1.15/prolink/admin";
+      "http://192.168.1.19/prolink/admin";
 
   // ================= DATA =================
   List interns = [];
