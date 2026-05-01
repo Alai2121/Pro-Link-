@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/admin.dart';
+import '../models/department.dart';
+import '../models/mentor.dart';
 
 import '../../auth/login_page.dart';
 import 'admin_dashboard.dart';
@@ -26,7 +28,7 @@ class _ManageInternsState extends State<ManageInterns> {
   final Color mainColor = const Color(0xFF2D3A8C);
 
   // ================= BASE URL =================
-  final String baseUrl = "http://192.168.1.19/prolink/admin";
+  final String baseUrl = "http://192.168.100.4/prolink/admin";
 
   // ================= DATA =================
   List interns = [];

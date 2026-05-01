@@ -12,7 +12,7 @@ import '../models/schedule.dart';
 import '../models/policy.dart';
 
 class ApiService {
-  static const String _ip = "192.168.1.19"; // ⚠️ change this
+  static const String _ip = "192.168.100.4"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
 
   // Helper for mentor routes
@@ -45,8 +45,7 @@ class ApiService {
         password: u["password"],
         image: u["image"],
       );
-    }
-    else if (role == "mentor") {
+    } else if (role == "mentor") {
       return Mentor(
         id: u["id"],
         name: u["name"],
@@ -58,8 +57,7 @@ class ApiService {
           name: u["department"]["name"],
         ),
       );
-    }
-    else if (role == "intern") {
+    } else if (role == "intern") {
       return Intern(
         id: u["id"],
         name: u["name"],
@@ -106,7 +104,8 @@ class ApiService {
     }
   }
 
-  static Future<bool> updateInternStatus(String internId, String status) async {
+  static Future<bool> updateInternStatus(
+      String internId, String status) async {
     try {
       final res = await http.post(
         Uri.parse("$baseUrl/update_intern_status.php"),
@@ -119,7 +118,8 @@ class ApiService {
     }
   }
 
-  static Future<bool> assignMentor(String internId, String mentorId) async {
+  static Future<bool> assignMentor(
+      String internId, String mentorId) async {
     try {
       final res = await http.post(
         Uri.parse("$baseUrl/assign_mentor.php"),
@@ -134,10 +134,12 @@ class ApiService {
 
   static Future<List<Mentor>> getAllMentors() async {
     try {
-      final res = await http.get(Uri.parse("$baseUrl/get_all_mentors.php"));
+      final res =
+      await http.get(Uri.parse("$baseUrl/get_all_mentors.php"));
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
-      return data.map((j) => Mentor(
+      return data
+          .map((j) => Mentor(
         id: j["id"],
         name: j["name"],
         email: j["email"],
@@ -147,7 +149,8 @@ class ApiService {
           id: j["department"]["id"],
           name: j["department"]["name"],
         ),
-      )).toList();
+      ))
+          .toList();
     } catch (e) {
       return [];
     }
@@ -255,19 +258,23 @@ class ApiService {
     }
   }
 
-  static Future<List<TrainingFile>> getTrainingFiles(String mentorId) async {
+  static Future<List<TrainingFile>> getTrainingFiles(
+      String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse(mentorUrl("get_training_files.php?mentor_id=$mentorId")),
+        Uri.parse(
+            mentorUrl("get_training_files.php?mentor_id=$mentorId")),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
-      return data.map((j) => TrainingFile(
+      return data
+          .map((j) => TrainingFile(
         id: j["id"],
         title: j["title"],
         fileUrl: j["fileUrl"],
         mentorId: j["mentorId"],
-      )).toList();
+      ))
+          .toList();
     } catch (e) {
       return [];
     }
@@ -306,22 +313,61 @@ class ApiService {
     }
   }
 
+  // ─── Update mentor profile picture (URL-based) ────────────
+  static Future<String?> updateMentorProfileImage(
+      String mentorId,
+      String imagePath,
+      ) async {
+    try {
+      final request = http.MultipartRequest(
+        'POST',
+        Uri.parse(mentorUrl("update_mentor_profile.php")),
+      );
+
+      request.fields['mentor_id'] = mentorId;
+
+      request.files.add(
+        await http.MultipartFile.fromPath('image', imagePath),
+      );
+
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
+
+      if (response.statusCode != 200) {
+        return null;
+      }
+
+      final data = json.decode(response.body);
+
+      if (data is Map && data["error"] == false) {
+        return data["image_path"];
+      }
+
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // ─── Schedules ────────────────────────────────────────────
   static Future<List<Schedule>> getSchedules(String internId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/interns/get_schedules.php?intern_id=$internId"),
+        Uri.parse(
+            "$baseUrl/interns/get_schedules.php?intern_id=$internId"),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
-      return data.map((j) => Schedule(
+      return data
+          .map((j) => Schedule(
         id: j["id"],
         internId: j["internId"],
         internName: j["internName"],
         day: j["day"],
         time: j["time"],
         type: j["type"],
-      )).toList();
+      ))
+          .toList();
     } catch (e) {
       return [];
     }
@@ -349,14 +395,17 @@ class ApiService {
   // ─── Policies ─────────────────────────────────────────────
   static Future<List<Policy>> getPolicies() async {
     try {
-      final res = await http.get(Uri.parse("$baseUrl/interns/get_policies.php"));
+      final res = await http
+          .get(Uri.parse("$baseUrl/interns/get_policies.php"));
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
-      return data.map((j) => Policy(
+      return data
+          .map((j) => Policy(
         id: j["id"],
         title: j["title"],
         description: j["description"],
-      )).toList();
+      ))
+          .toList();
     } catch (e) {
       return [];
     }
@@ -399,19 +448,23 @@ class ApiService {
     );
   }
 
-  static Future<List<TrainingFile>> getMyTrainingFiles(String mentorId) async {
+  static Future<List<TrainingFile>> getMyTrainingFiles(
+      String mentorId) async {
     try {
       final res = await http.get(
-        Uri.parse("$baseUrl/interns/get_training_files.php?mentor_id=$mentorId"),
+        Uri.parse(
+            "$baseUrl/interns/get_training_files.php?mentor_id=$mentorId"),
       );
       if (res.statusCode != 200) return [];
       final List data = json.decode(res.body);
-      return data.map((j) => TrainingFile(
+      return data
+          .map((j) => TrainingFile(
         id: j["id"],
         title: j["title"],
         fileUrl: j["fileUrl"],
         mentorId: j["mentorId"],
-      )).toList();
+      ))
+          .toList();
     } catch (e) {
       return [];
     }
