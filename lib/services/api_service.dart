@@ -325,7 +325,6 @@ class ApiService {
       );
 
       request.fields['mentor_id'] = mentorId;
-
       request.files.add(
         await http.MultipartFile.fromPath('image', imagePath),
       );
@@ -333,18 +332,18 @@ class ApiService {
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
 
-      if (response.statusCode != 200) {
-        return null;
-      }
+      print('STATUS: ${response.statusCode}');
+      print('BODY: ${response.body}');
+
+      if (response.statusCode != 200) return null;
 
       final data = json.decode(response.body);
-
       if (data is Map && data["error"] == false) {
         return data["image_path"];
       }
-
       return null;
     } catch (e) {
+      print('UPLOAD EXCEPTION: $e');
       return null;
     }
   }
