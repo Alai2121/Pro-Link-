@@ -12,7 +12,7 @@ import 'manage_interns.dart';
 import 'upload_schedule.dart';
 
 import '../../auth/login_page.dart';
-
+import '../services/api_service.dart';
 class AssignIntern extends StatefulWidget {
 
   final Admin admin;
@@ -32,8 +32,7 @@ class _AssignInternState extends State<AssignIntern> {
   final Color mainColor = const Color(0xFF2D3A8C);
 
   // ================= BASE URL =================
-  final String baseUrl =
-      "http://192.168.100.4/prolink/admin";
+  final String baseUrl = ApiService.adminUrl;
 
   // ================= DATA =================
   List interns = [];

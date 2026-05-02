@@ -12,9 +12,9 @@ import '../models/schedule.dart';
 import '../models/policy.dart';
 
 class ApiService {
-  static const String _ip = "192.168.100.4"; // ⚠️ change this
+  static const String _ip = "192.168.1.3"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
-
+  static const String adminUrl = "http://$_ip/prolink/admin";
   // Helper for mentor routes
   static String mentorUrl(String path) => "$baseUrl/mentor/$path";
 

@@ -11,7 +11,7 @@ import 'manage_interns.dart';
 import 'assign_interns.dart';
 
 import '../../auth/login_page.dart';
-
+import '../services/api_service.dart';
 class UploadSchedule extends StatefulWidget {
   final Admin admin;
 
@@ -25,8 +25,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
 
   // ================= API =================
 
-  static const String baseUrl =
-      "http://192.168.100.4/prolink/admin";
+  final String baseUrl = ApiService.adminUrl;
 
   // ================= CONTROLLERS =================
 
