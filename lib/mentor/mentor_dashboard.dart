@@ -14,6 +14,15 @@ import 'mentor_attendance.dart';
 import 'mentor_marks.dart';
 import 'mentor_training.dart';
 
+// ─── Shared avatar state ──────────────────────────────────────────────────────
+class _AvatarState {
+  File? localFile;
+  String? networkUrl;
+  bool uploading = false;
+
+  _AvatarState({this.localFile, this.networkUrl});
+}
+
 class MentorDashboard extends StatefulWidget {
   final Mentor mentor;
   const MentorDashboard({super.key, required this.mentor});
@@ -27,17 +36,25 @@ class _MentorDashboardState extends State<MentorDashboard> {
   late Future<List<Attendance>> attendanceFuture;
   late Future<List<Evaluation>> marksFuture;
 
-  String? _networkImageUrl;
-  File? _localImageFile;
-  bool _uploadingImage = false;
+  // Single source of truth for avatar — drives both the dashboard card
+  // and the profile sheet simultaneously via ValueNotifier.
+  late final ValueNotifier<_AvatarState> _avatarNotifier;
 
   @override
   void initState() {
     super.initState();
-    _networkImageUrl = _normalizeImageUrl(widget.mentor.image);
+    _avatarNotifier = ValueNotifier(
+      _AvatarState(networkUrl: _normalizeImageUrl(widget.mentor.image)),
+    );
     internsFuture = ApiService.getMyInterns(widget.mentor.id);
     attendanceFuture = ApiService.getAttendance(widget.mentor.id);
     marksFuture = ApiService.getMarks(widget.mentor.id);
+  }
+
+  @override
+  void dispose() {
+    _avatarNotifier.dispose();
+    super.dispose();
   }
 
   String? _normalizeImageUrl(String? url) {
@@ -54,79 +71,13 @@ class _MentorDashboardState extends State<MentorDashboard> {
     );
   }
 
+  // ─── Pick & upload ─────────────────────────────────────────────────────────
   Future<void> _pickAndUpload() async {
     final source = await showModalBottomSheet<ImageSource>(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (_) => Container(
-        margin: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 8),
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Change Profile Photo',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ListTile(
-              leading: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF2D3A8C).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(
-                  Icons.photo_library_outlined,
-                  color: Color(0xFF2D3A8C),
-                ),
-              ),
-              title: Text(
-                'Choose from Gallery',
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
-              ),
-              onTap: () => Navigator.pop(context, ImageSource.gallery),
-            ),
-            ListTile(
-              leading: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF6C63FF).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(
-                  Icons.camera_alt_outlined,
-                  color: Color(0xFF6C63FF),
-                ),
-              ),
-              title: Text(
-                'Take a Photo',
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
-              ),
-              onTap: () => Navigator.pop(context, ImageSource.camera),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
+      builder: (_) => _SourcePickerSheet(),
     );
-
     if (source == null) return;
 
     final picker = ImagePicker();
@@ -139,10 +90,11 @@ class _MentorDashboardState extends State<MentorDashboard> {
 
     final file = File(picked.path);
 
-    setState(() {
-      _localImageFile = file;
-      _uploadingImage = true;
-    });
+    // Immediately show local preview + spinner — notifies every ValueListenableBuilder
+    _avatarNotifier.value = _AvatarState(
+      localFile: file,
+      networkUrl: _avatarNotifier.value.networkUrl,
+    )..uploading = true;
 
     final newUrl = await ApiService.updateMentorProfileImage(
       widget.mentor.id,
@@ -151,16 +103,18 @@ class _MentorDashboardState extends State<MentorDashboard> {
 
     if (!mounted) return;
 
-    setState(() {
-      _uploadingImage = false;
-      if (newUrl != null && newUrl.isNotEmpty) {
-        _networkImageUrl = _normalizeImageUrl(newUrl);
-        _localImageFile = null;
-      } else {
-        _localImageFile = null;
-      }
-    });
+    if (newUrl != null && newUrl.isNotEmpty) {
+      _avatarNotifier.value = _AvatarState(
+        networkUrl: _normalizeImageUrl(newUrl),
+      );
+    } else {
+      // Revert to whatever was showing before on failure
+      _avatarNotifier.value = _AvatarState(
+        networkUrl: _avatarNotifier.value.networkUrl,
+      );
+    }
 
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -169,179 +123,44 @@ class _MentorDashboardState extends State<MentorDashboard> {
         ),
         backgroundColor: newUrl != null ? const Color(0xFF2D3A8C) : Colors.red,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
 
+  // ─── Profile sheet ─────────────────────────────────────────────────────────
   void _showProfileSheet() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => StatefulBuilder(
-        builder: (ctx, setSheetState) => Container(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(ctx).viewInsets.bottom + 24,
-            top: 24,
-            left: 24,
-            right: 24,
-          ),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 4,
-                margin: const EdgeInsets.only(bottom: 24),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  _uploadingImage
-                      ? SizedBox(
-                    width: 96,
-                    height: 96,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        _buildAvatar(radius: 48),
-                        const CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 3,
-                        ),
-                      ],
-                    ),
-                  )
-                      : _buildAvatar(radius: 48),
-                  GestureDetector(
-                    onTap: () async {
-                      await _pickAndUpload();
-                      setSheetState(() {});
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2D3A8C),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              if (_uploadingImage)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    'Uploading…',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 20),
-              Text(
-                widget.mentor.name,
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: const Color(0xFF2D3A8C),
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                widget.mentor.email,
-                style: GoogleFonts.poppins(
-                  fontSize: 13,
-                  color: Colors.grey.shade600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF6C63FF).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: const Color(0xFF6C63FF).withOpacity(0.3),
-                  ),
-                ),
-                child: Text(
-                  widget.mentor.department.name,
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    color: const Color(0xFF6C63FF),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 28),
-              _ProfileInfoRow(
-                icon: Icons.badge_outlined,
-                label: 'Mentor ID',
-                value: widget.mentor.id,
-              ),
-              const Divider(height: 1),
-              _ProfileInfoRow(
-                icon: Icons.apartment_outlined,
-                label: 'Department',
-                value: widget.mentor.department.name,
-              ),
-              const Divider(height: 1),
-              _ProfileInfoRow(
-                icon: Icons.email_outlined,
-                label: 'Email',
-                value: widget.mentor.email,
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    _logout();
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.red),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  icon: const Icon(Icons.logout, color: Colors.red, size: 18),
-                  label: Text(
-                    'Logout',
-                    style: GoogleFonts.poppins(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+      builder: (_) => _ProfileSheet(
+        mentor: widget.mentor,
+        avatarNotifier: _avatarNotifier,
+        onPickAndUpload: _pickAndUpload,
+        onLogout: () {
+          Navigator.pop(context);
+          _logout();
+        },
       ),
     );
   }
 
+  // ─── Avatar widget (reads from notifier) ───────────────────────────────────
+  Widget _buildAvatar({required double radius}) {
+    return ValueListenableBuilder<_AvatarState>(
+      valueListenable: _avatarNotifier,
+      builder: (_, state, __) {
+        return _AvatarWidget(
+          state: state,
+          radius: radius,
+          fallbackName: widget.mentor.name,
+        );
+      },
+    );
+  }
+
+  // ─── Build ─────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -356,9 +175,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
               height: 32,
               width: 32,
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
+              decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(8)),
               child: Image.asset('assets/logoonly.png', fit: BoxFit.cover),
             ),
             const SizedBox(width: 10),
@@ -387,7 +205,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
           }
           if (snapshot.hasError || !snapshot.hasData) {
             return Center(
-              child: Text("Error loading data", style: GoogleFonts.poppins()),
+              child:
+              Text("Error loading data", style: GoogleFonts.poppins()),
             );
           }
 
@@ -396,19 +215,23 @@ class _MentorDashboardState extends State<MentorDashboard> {
           final List<Evaluation> evals = snapshot.data![2];
 
           final today = DateTime.now().toIso8601String().split('T')[0];
-          final todayAttendances = attendances.where((a) => a.date == today).toList();
-          final presentToday = todayAttendances.where((a) => a.isPresent).length;
+          final todayAttendances =
+          attendances.where((a) => a.date == today).toList();
+          final presentToday =
+              todayAttendances.where((a) => a.isPresent).length;
           final attendanceMarked = todayAttendances.isNotEmpty;
 
           final double globalAvg = evals.isEmpty
               ? 0
-              : evals.map((e) => e.mark).reduce((a, b) => a + b) / evals.length;
+              : evals.map((e) => e.mark).reduce((a, b) => a + b) /
+              evals.length;
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // ── Welcome card ──────────────────────────────────────────
                 GestureDetector(
                   onTap: _showProfileSheet,
                   child: Container(
@@ -422,6 +245,7 @@ class _MentorDashboardState extends State<MentorDashboard> {
                     ),
                     child: Row(
                       children: [
+                        // Avatar updates instantly because it reads the notifier
                         _buildAvatar(radius: 28),
                         const SizedBox(width: 16),
                         Expanded(
@@ -431,9 +255,7 @@ class _MentorDashboardState extends State<MentorDashboard> {
                               Text(
                                 'Welcome back,',
                                 style: GoogleFonts.poppins(
-                                  color: Colors.white70,
-                                  fontSize: 13,
-                                ),
+                                    color: Colors.white70, fontSize: 13),
                               ),
                               Text(
                                 widget.mentor.name,
@@ -446,9 +268,7 @@ class _MentorDashboardState extends State<MentorDashboard> {
                               Text(
                                 '${widget.mentor.department.name} Department',
                                 style: GoogleFonts.poppins(
-                                  color: Colors.white60,
-                                  fontSize: 12,
-                                ),
+                                    color: Colors.white60, fontSize: 12),
                               ),
                             ],
                           ),
@@ -460,6 +280,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                   ),
                 ),
                 const SizedBox(height: 20),
+
+                // ── Stat cards ────────────────────────────────────────────
                 Row(
                   children: [
                     _StatCard(
@@ -472,19 +294,24 @@ class _MentorDashboardState extends State<MentorDashboard> {
                     _StatCard(
                       icon: Icons.check_circle,
                       label: 'Approved',
-                      value: '${myInterns.where((i) => i.status == "Approved").length}',
+                      value:
+                      '${myInterns.where((i) => i.status == "Approved").length}',
                       color: Colors.green,
                     ),
                     const SizedBox(width: 12),
                     _StatCard(
                       icon: Icons.star_rounded,
                       label: 'Avg Mark',
-                      value: evals.isEmpty ? '—' : globalAvg.toStringAsFixed(1),
+                      value: evals.isEmpty
+                          ? '—'
+                          : globalAvg.toStringAsFixed(1),
                       color: Colors.orange,
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
+
+                // ── Attendance banner ─────────────────────────────────────
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -492,9 +319,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
-                        blurRadius: 8,
-                      ),
+                          color: Colors.black.withOpacity(0.04),
+                          blurRadius: 8),
                     ],
                   ),
                   child: Row(
@@ -503,7 +329,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                         attendanceMarked
                             ? Icons.check_circle_outline
                             : Icons.pending_outlined,
-                        color: attendanceMarked ? Colors.green : Colors.orange,
+                        color:
+                        attendanceMarked ? Colors.green : Colors.orange,
                         size: 24,
                       ),
                       const SizedBox(width: 14),
@@ -514,9 +341,7 @@ class _MentorDashboardState extends State<MentorDashboard> {
                             Text(
                               "Today's Attendance",
                               style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                              ),
+                                  fontWeight: FontWeight.w600, fontSize: 14),
                             ),
                             Text(
                               attendanceMarked
@@ -524,7 +349,9 @@ class _MentorDashboardState extends State<MentorDashboard> {
                                   : 'Not marked yet',
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
-                                color: attendanceMarked ? Colors.green : Colors.orange,
+                                color: attendanceMarked
+                                    ? Colors.green
+                                    : Colors.orange,
                               ),
                             ),
                           ],
@@ -534,7 +361,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => MentorAttendance(mentor: widget.mentor),
+                            builder: (_) =>
+                                MentorAttendance(mentor: widget.mentor),
                           ),
                         ),
                         child: Text(
@@ -549,6 +377,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                   ),
                 ),
                 const SizedBox(height: 24),
+
+                // ── Quick actions ─────────────────────────────────────────
                 Text(
                   'Quick Actions',
                   style: GoogleFonts.poppins(
@@ -574,7 +404,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => MentorInterns(mentor: widget.mentor),
+                          builder: (_) =>
+                              MentorInterns(mentor: widget.mentor),
                         ),
                       ),
                     ),
@@ -586,7 +417,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => MentorAttendance(mentor: widget.mentor),
+                          builder: (_) =>
+                              MentorAttendance(mentor: widget.mentor),
                         ),
                       ),
                     ),
@@ -608,7 +440,8 @@ class _MentorDashboardState extends State<MentorDashboard> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => MentorTraining(mentor: widget.mentor),
+                          builder: (_) =>
+                              MentorTraining(mentor: widget.mentor),
                         ),
                       ),
                     ),
@@ -621,34 +454,44 @@ class _MentorDashboardState extends State<MentorDashboard> {
       ),
     );
   }
+}
 
-  Widget _buildAvatar({required double radius}) {
+// ─── Pure avatar widget — no setState, just reads _AvatarState ────────────────
+class _AvatarWidget extends StatelessWidget {
+  final _AvatarState state;
+  final double radius;
+  final String fallbackName;
+
+  const _AvatarWidget({
+    required this.state,
+    required this.radius,
+    required this.fallbackName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     ImageProvider? imageProvider;
 
-    if (_localImageFile != null) {
-      imageProvider = FileImage(_localImageFile!);
-    } else if (_networkImageUrl != null && _networkImageUrl!.isNotEmpty) {
-      if (_networkImageUrl!.startsWith('assets/')) {
-        imageProvider = AssetImage(_networkImageUrl!);
-      } else {
-        imageProvider = NetworkImage(_networkImageUrl!);
-      }
+    if (state.localFile != null) {
+      imageProvider = FileImage(state.localFile!);
+    } else if (state.networkUrl != null && state.networkUrl!.isNotEmpty) {
+      imageProvider = state.networkUrl!.startsWith('assets/')
+          ? AssetImage(state.networkUrl!) as ImageProvider
+          : NetworkImage(state.networkUrl!);
     }
 
-    if (imageProvider != null) {
-      return CircleAvatar(
-        radius: radius,
-        backgroundImage: imageProvider,
-        backgroundColor: Colors.white24,
-        onBackgroundImageError: (_, __) {},
-      );
-    }
-
-    return CircleAvatar(
+    final avatar = imageProvider != null
+        ? CircleAvatar(
+      radius: radius,
+      backgroundImage: imageProvider,
+      backgroundColor: Colors.white24,
+      onBackgroundImageError: (_, __) {},
+    )
+        : CircleAvatar(
       radius: radius,
       backgroundColor: Colors.white24,
       child: Text(
-        widget.mentor.name[0].toUpperCase(),
+        fallbackName[0].toUpperCase(),
         style: GoogleFonts.poppins(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -656,17 +499,282 @@ class _MentorDashboardState extends State<MentorDashboard> {
         ),
       ),
     );
+
+    if (!state.uploading) return avatar;
+
+    // Overlay a spinner while uploading
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        avatar,
+        SizedBox(
+          width: radius * 2,
+          height: radius * 2,
+          child: CircularProgressIndicator(
+            color: Colors.white,
+            strokeWidth: radius * 0.07,
+          ),
+        ),
+      ],
+    );
   }
 }
 
+// ─── Source picker sheet (stateless) ─────────────────────────────────────────
+class _SourcePickerSheet extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 8),
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Change Profile Photo',
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          const SizedBox(height: 16),
+          ListTile(
+            leading: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color(0xFF2D3A8C).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.photo_library_outlined,
+                  color: Color(0xFF2D3A8C)),
+            ),
+            title: Text('Choose from Gallery',
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w500)),
+            onTap: () => Navigator.pop(context, ImageSource.gallery),
+          ),
+          ListTile(
+            leading: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color(0xFF6C63FF).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.camera_alt_outlined,
+                  color: Color(0xFF6C63FF)),
+            ),
+            title: Text('Take a Photo',
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w500)),
+            onTap: () => Navigator.pop(context, ImageSource.camera),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Profile sheet (reads notifier directly — no StatefulBuilder needed) ──────
+class _ProfileSheet extends StatelessWidget {
+  final Mentor mentor;
+  final ValueNotifier<_AvatarState> avatarNotifier;
+  final VoidCallback onPickAndUpload;
+  final VoidCallback onLogout;
+
+  const _ProfileSheet({
+    required this.mentor,
+    required this.avatarNotifier,
+    required this.onPickAndUpload,
+    required this.onLogout,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return ConstrainedBox(
+      // Never taller than 90 % of the screen so it can't overflow
+      constraints: BoxConstraints(maxHeight: screenHeight * 0.90),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // ── Drag handle (fixed, not scrollable) ──────────────────
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 4),
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+
+            // ── Scrollable body ───────────────────────────────────────
+            Flexible(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(
+                  top: 16,
+                  left: 24,
+                  right: 24,
+                  bottom: bottomInset + 24,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+
+                    // Avatar + camera button — rebuilds on every notifier change
+                    ValueListenableBuilder<_AvatarState>(
+                      valueListenable: avatarNotifier,
+                      builder: (_, state, __) {
+                        return Column(
+                          children: [
+                            Stack(
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                _AvatarWidget(
+                                  state: state,
+                                  radius: 48,
+                                  fallbackName: mentor.name,
+                                ),
+                                GestureDetector(
+                                  onTap: state.uploading ? null : onPickAndUpload,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: state.uploading
+                                          ? Colors.grey
+                                          : const Color(0xFF2D3A8C),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white, width: 2),
+                                    ),
+                                    child: Icon(
+                                      state.uploading
+                                          ? Icons.hourglass_top
+                                          : Icons.camera_alt,
+                                      color: Colors.white,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (state.uploading) ...[
+                              const SizedBox(height: 8),
+                              Text(
+                                'Uploading…',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ],
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 20),
+                    Text(
+                      mentor.name,
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: const Color(0xFF2D3A8C),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      mentor.email,
+                      style: GoogleFonts.poppins(
+                          fontSize: 13, color: Colors.grey.shade600),
+                    ),
+                    const SizedBox(height: 8),
+                    Container(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF6C63FF).withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                            color: const Color(0xFF6C63FF).withOpacity(0.3)),
+                      ),
+                      child: Text(
+                        mentor.department.name,
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: const Color(0xFF6C63FF),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 28),
+                    _ProfileInfoRow(
+                        icon: Icons.badge_outlined,
+                        label: 'Mentor ID',
+                        value: mentor.id),
+                    const Divider(height: 1),
+                    _ProfileInfoRow(
+                        icon: Icons.apartment_outlined,
+                        label: 'Department',
+                        value: mentor.department.name),
+                    const Divider(height: 1),
+                    _ProfileInfoRow(
+                        icon: Icons.email_outlined,
+                        label: 'Email',
+                        value: mentor.email),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: OutlinedButton.icon(
+                        onPressed: onLogout,
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.red),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14)),
+                        ),
+                        icon:
+                        const Icon(Icons.logout, color: Colors.red, size: 18),
+                        label: Text(
+                          'Logout',
+                          style: GoogleFonts.poppins(
+                              color: Colors.red, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Supporting widgets (unchanged) ──────────────────────────────────────────
 class _ProfileInfoRow extends StatelessWidget {
   final IconData icon;
   final String label, value;
-  const _ProfileInfoRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
+  const _ProfileInfoRow(
+      {required this.icon, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -687,21 +795,14 @@ class _ProfileInfoRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  label,
-                  style: GoogleFonts.poppins(
-                    fontSize: 11,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-                Text(
-                  value,
-                  style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF2D3A8C),
-                  ),
-                ),
+                Text(label,
+                    style: GoogleFonts.poppins(
+                        fontSize: 11, color: Colors.grey.shade500)),
+                Text(value,
+                    style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xFF2D3A8C))),
               ],
             ),
           ),
@@ -716,12 +817,11 @@ class _StatCard extends StatelessWidget {
   final String label, value;
   final Color color;
 
-  const _StatCard({
-    required this.icon,
-    required this.label,
-    required this.value,
-    required this.color,
-  });
+  const _StatCard(
+      {required this.icon,
+        required this.label,
+        required this.value,
+        required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -733,31 +833,22 @@ class _StatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 8,
-            ),
+                color: Colors.black.withOpacity(0.05), blurRadius: 8)
           ],
         ),
         child: Column(
           children: [
             Icon(icon, color: color, size: 26),
             const SizedBox(height: 6),
-            Text(
-              value,
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: color,
-              ),
-            ),
-            Text(
-              label,
-              style: GoogleFonts.poppins(
-                fontSize: 10,
-                color: Colors.grey,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            Text(value,
+                style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: color)),
+            Text(label,
+                style: GoogleFonts.poppins(
+                    fontSize: 10, color: Colors.grey),
+                textAlign: TextAlign.center),
           ],
         ),
       ),
@@ -790,9 +881,7 @@ class _MenuCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-            ),
+                color: Colors.black.withOpacity(0.05), blurRadius: 10)
           ],
         ),
         child: Stack(
@@ -810,14 +899,11 @@ class _MenuCard extends StatelessWidget {
                     child: Icon(icon, color: color, size: 30),
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    label,
-                    style: GoogleFonts.poppins(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF2D3A8C),
-                    ),
-                  ),
+                  Text(label,
+                      style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xFF2D3A8C))),
                 ],
               ),
             ),
@@ -826,19 +912,19 @@ class _MenuCard extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 7, vertical: 2),
                   decoration: BoxDecoration(
-                    color: badge == '!' ? Colors.orange : const Color(0xFF2D3A8C),
+                    color: badge == '!'
+                        ? Colors.orange
+                        : const Color(0xFF2D3A8C),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
-                    badge!,
-                    style: GoogleFonts.poppins(
-                      fontSize: 11,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: Text(badge!,
+                      style: GoogleFonts.poppins(
+                          fontSize: 11,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
                 ),
               ),
           ],
