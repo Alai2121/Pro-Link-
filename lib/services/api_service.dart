@@ -11,6 +11,8 @@ import '../models/department.dart';
 import '../models/schedule.dart';
 import '../models/policy.dart';
 
+import '../models/notification_model.dart';
+
 class ApiService {
   static const String _ip = "192.168.100.4"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
@@ -468,4 +470,45 @@ class ApiService {
       return [];
     }
   }
+
+
+  // ─── Get notifications for an intern (polls from MySQL) ───────────
+  static Future<List<NotificationModel>> getNotifications(
+      String internId) async {
+    try {
+      final url = "$baseUrl/interns/get_notifications.php?intern_id=$internId";
+      print('[v0] API: Fetching notifications from: $url');
+
+      final res = await http.get(Uri.parse(url));
+
+      if (res.statusCode != 200) {
+        print('[v0] API ERROR: Status ${res.statusCode}, body: ${res.body}');
+        return [];
+      }
+
+      final List data = json.decode(res.body);
+      final notifications = data.map((j) => NotificationModel.fromJson(j)).toList();
+      print('[v0] API: Got ${notifications.length} notifications for $internId');
+
+      return notifications;
+    } catch (e) {
+      print('[v0] API EXCEPTION: $e');
+      return [];
+    }
+  }
+
+  // ─── Mark all notifications as read ───────────────────────
+  static Future<bool> markNotificationsRead(String internId) async {
+    try {
+      final res = await http.post(
+        Uri.parse("$baseUrl/interns/mark_notifications_read.php"),
+        body: {"intern_id": internId},
+      );
+      final data = json.decode(res.body);
+      return data["error"] == false;
+    } catch (e) {
+      return false;
+    }
+  }
+
 }

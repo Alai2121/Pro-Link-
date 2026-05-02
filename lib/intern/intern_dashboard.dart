@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../models/intern.dart';
+import '../../services/notification_service.dart';
 import 'schedule_page.dart';
 import 'marks_page.dart';
 import 'documents_page.dart';
 import 'work_id_page.dart';
 import '../../auth/login_page.dart';
 import 'policies_page.dart';
+import 'notifications_page.dart';
 
 class InternDashboard extends StatefulWidget {
   final Intern intern;
@@ -19,7 +21,16 @@ class InternDashboard extends StatefulWidget {
 class _InternDashboardState extends State<InternDashboard> {
   int selectedIndex = 0;
   final Color primary = const Color(0xFF2D3A8C);
-  final List<String> titles = ["Home", "Work ID", "Schedule", "Marks", "Documents", "Policies"];
+  final List<String> titles = [
+    "Home", "Work ID", "Schedule", "Marks", "Documents", "Policies"
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialise FCM and upload device token — safe to call multiple times
+    NotificationService.init(widget.intern.id);
+  }
 
   void _onSelect(int index) {
     setState(() => selectedIndex = index);
@@ -27,9 +38,19 @@ class _InternDashboardState extends State<InternDashboard> {
   }
 
   void _logout() {
+    NotificationService.reset(); // allow re-init on next login
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const LoginPage()),
           (route) => false,
+    );
+  }
+
+  void _openNotifications() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => NotificationsPage(internId: widget.intern.id),
+      ),
     );
   }
 
@@ -51,10 +72,59 @@ class _InternDashboardState extends State<InternDashboard> {
         elevation: 0,
         title: Text(
           titles[selectedIndex],
-          style: GoogleFonts.poppins(color: primary, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+              color: primary, fontWeight: FontWeight.bold),
         ),
         iconTheme: IconThemeData(color: primary),
         actions: [
+          // ── Notification Bell ──────────────────────────────────────
+          ValueListenableBuilder<int>(
+            valueListenable: unreadCountNotifier,
+            builder: (context, unread, _) {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      unread > 0
+                          ? Icons.notifications_active
+                          : Icons.notifications_outlined,
+                      color: unread > 0 ? primary : Colors.grey.shade600,
+                    ),
+                    tooltip: 'Notifications',
+                    onPressed: _openNotifications,
+                  ),
+                  if (unread > 0)
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1.5),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 18,
+                          minHeight: 18,
+                        ),
+                        child: Text(
+                          unread > 99 ? '99+' : '$unread',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+          // ── Logout ────────────────────────────────────────────────
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.red),
             tooltip: "Logout",
@@ -68,7 +138,7 @@ class _InternDashboardState extends State<InternDashboard> {
         child: Column(
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -88,12 +158,12 @@ class _InternDashboardState extends State<InternDashboard> {
                   ),
                   Text(
                     widget.intern.department.name,
-                    style: GoogleFonts.poppins(color: Colors.grey, fontSize: 12),
+                    style: GoogleFonts.poppins(
+                        color: Colors.grey, fontSize: 12),
                   ),
                 ],
               ),
             ),
-
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,
@@ -106,7 +176,9 @@ class _InternDashboardState extends State<InternDashboard> {
                   title: Text(
                     titles[index],
                     style: GoogleFonts.poppins(
-                      color: selectedIndex == index ? primary : Colors.black87,
+                      color: selectedIndex == index
+                          ? primary
+                          : Colors.black87,
                     ),
                   ),
                   selected: selectedIndex == index,
@@ -114,18 +186,16 @@ class _InternDashboardState extends State<InternDashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                  contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 20),
                   onTap: () => _onSelect(index),
                 ),
               ),
             ),
-
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
-              title: Text(
-                "Logout",
-                style: GoogleFonts.poppins(color: Colors.red),
-              ),
+              title:
+              Text("Logout", style: GoogleFonts.poppins(color: Colors.red)),
               onTap: _logout,
             ),
           ],
@@ -133,6 +203,7 @@ class _InternDashboardState extends State<InternDashboard> {
       ),
 
       body: pages[selectedIndex],
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) => setState(() => selectedIndex = index),
@@ -142,10 +213,12 @@ class _InternDashboardState extends State<InternDashboard> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.badge), label: "Work"),
-          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: "Schedule"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.schedule), label: "Schedule"),
           BottomNavigationBarItem(icon: Icon(Icons.grade), label: "Marks"),
           BottomNavigationBarItem(icon: Icon(Icons.folder), label: "Docs"),
-          BottomNavigationBarItem(icon: Icon(Icons.policy), label: "Policies"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.policy), label: "Policies"),
         ],
       ),
     );
@@ -164,13 +237,14 @@ class _InternDashboardState extends State<InternDashboard> {
   }
 }
 
+// ─── HomePage (unchanged) ─────────────────────────────────────────────────────
 class HomePage extends StatelessWidget {
   final Intern intern;
   const HomePage({super.key, required this.intern});
 
   @override
   Widget build(BuildContext context) {
-    final primary = const Color(0xFF2D3A8C);
+    const primary = Color(0xFF2D3A8C);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Center(
@@ -191,10 +265,13 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Welcome back,",
-                          style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey)),
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, color: Colors.grey)),
                       Text(intern.name,
                           style: GoogleFonts.poppins(
-                              fontSize: 20, fontWeight: FontWeight.bold, color: primary)),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: primary)),
                     ],
                   ),
                 ],
@@ -230,7 +307,8 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: GoogleFonts.poppins(color: Colors.grey)),
-          Text(value, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+          Text(value,
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
         ],
       ),
     );

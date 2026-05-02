@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcce83da-ebc2-4f35-8460-0d8a80862f95" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/intern/notifications_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/models/notification_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/services/notification_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
