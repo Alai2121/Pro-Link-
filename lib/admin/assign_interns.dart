@@ -299,7 +299,7 @@ class _AssignInternState extends State<AssignIntern> {
       drawer: Drawer(
 
         backgroundColor: mainColor,
-
+        child: SingleChildScrollView(
         child: Column(
           children: [
 
@@ -470,7 +470,7 @@ class _AssignInternState extends State<AssignIntern> {
               },
             ),
 
-            const Spacer(),
+            const SizedBox(height: 300),
 
             Padding(
 
@@ -490,8 +490,10 @@ class _AssignInternState extends State<AssignIntern> {
                 ),
               ),
             ),
+
           ],
         ),
+      ),
       ),
 
       // ================= BODY =================

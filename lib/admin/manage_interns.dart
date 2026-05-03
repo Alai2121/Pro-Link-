@@ -651,7 +651,7 @@ class _ManageInternsState extends State<ManageInterns> {
       drawer: Drawer(
 
         backgroundColor: mainColor,
-
+        child: SingleChildScrollView(
         child: Column(
           children: [
 
@@ -824,7 +824,7 @@ class _ManageInternsState extends State<ManageInterns> {
               },
             ),
 
-            const Spacer(),
+            const SizedBox(height: 300),
 
             Padding(
 
@@ -847,7 +847,7 @@ class _ManageInternsState extends State<ManageInterns> {
           ],
         ),
       ),
-
+      ),
       // ================= BODY =================
       body: SingleChildScrollView(
 

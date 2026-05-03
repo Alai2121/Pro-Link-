@@ -14,7 +14,7 @@ import '../models/policy.dart';
 import '../models/notification_model.dart';
 
 class ApiService {
-  static const String _ip = "192.168.100.4"; // ⚠️ change this
+  static const String _ip = "192.168.1.15"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
   static const String adminUrl = "http://$_ip/prolink/admin";
   // Helper for mentor routes

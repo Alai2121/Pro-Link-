@@ -357,7 +357,7 @@ class _UploadScheduleState extends State<UploadSchedule> {
     return Drawer(
 
       backgroundColor: const Color(0xFF2D3A8C),
-
+      child: SingleChildScrollView(
       child: Column(
 
         children: [
@@ -513,8 +513,17 @@ class _UploadScheduleState extends State<UploadSchedule> {
               ),
             ),
           ),
+
+          const SizedBox(height: 300),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text("Pro Link",
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+          ),
         ],
       ),
+    ),
     );
   }
 

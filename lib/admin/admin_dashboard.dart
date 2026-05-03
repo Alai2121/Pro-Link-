@@ -537,6 +537,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   Widget buildDrawer(Admin admin) {
     return Drawer(
       backgroundColor: const Color(0xFF2D3A8C),
+        child: SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(height: 50),
@@ -576,7 +577,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => LoginPage())),
           ),
-          const Spacer(),
+          const SizedBox(height: 300),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Text("Pro Link",
@@ -585,6 +586,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
           ),
         ],
       ),
+        ),
     );
   }
 
@@ -603,10 +605,23 @@ class _AdminDashboardState extends State<AdminDashboard> {
         foregroundColor: Colors.white,
         title: Row(
           children: [
-            Text("Hi, ${admin.name}",
-                style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold)),
+
+            Flexible(
+              flex: 2,
+              child: Text(
+                "Hi, ${admin.name}",
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+
             const SizedBox(width: 10),
+
             Expanded(
+              flex: 3,
               child: SizedBox(
                 height: 40,
                 child: TextField(
