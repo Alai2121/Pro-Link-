@@ -14,7 +14,7 @@ import '../models/policy.dart';
 import '../models/notification_model.dart';
 
 class ApiService {
-  static const String _ip = "192.168.1.15"; // ⚠️ change this
+  static const String _ip = "192.168.1.40"; // ⚠️ change this
   static const String baseUrl = "http://$_ip/prolink";
   static const String adminUrl = "http://$_ip/prolink/admin";
   // Helper for mentor routes
@@ -477,22 +477,22 @@ class ApiService {
       String internId) async {
     try {
       final url = "$baseUrl/interns/get_notifications.php?intern_id=$internId";
-      print('[v0] API: Fetching notifications from: $url');
+      print('API: Fetching notifications from: $url');
 
       final res = await http.get(Uri.parse(url));
 
       if (res.statusCode != 200) {
-        print('[v0] API ERROR: Status ${res.statusCode}, body: ${res.body}');
+        print('API ERROR: Status ${res.statusCode}, body: ${res.body}');
         return [];
       }
 
       final List data = json.decode(res.body);
       final notifications = data.map((j) => NotificationModel.fromJson(j)).toList();
-      print('[v0] API: Got ${notifications.length} notifications for $internId');
+      print('API: Got ${notifications.length} notifications for $internId');
 
       return notifications;
     } catch (e) {
-      print('[v0] API EXCEPTION: $e');
+      print('API EXCEPTION: $e');
       return [];
     }
   }

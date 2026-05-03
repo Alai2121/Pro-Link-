@@ -26,7 +26,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     setState(() {
       _notificationsFuture = ApiService.getNotifications(widget.internId);
     });
-    // Wait for the notifications to load
+
     await _notificationsFuture;
   }
 

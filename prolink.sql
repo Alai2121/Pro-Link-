@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS persons (
     email    VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role     ENUM('admin','mentor','intern') NOT NULL,
-    image    VARCHAR(255) DEFAULT 'assets/admin.png'
+    image    VARCHAR(255) DEFAULT 'assets/student1.png'
 );
 
 -- ─── Mentors (extends persons) ───────────────────────────────
@@ -86,6 +86,28 @@ CREATE TABLE IF NOT EXISTS schedules (
     type        VARCHAR(50)  NOT NULL,
     FOREIGN KEY (intern_id) REFERENCES persons(id) ON DELETE CASCADE  -- ← ADDED
 );
+
+-- ─── Notifications ──────────────────────────────────────────────
+-- FCM device tokens (one per person, upserted on every login)
+CREATE TABLE IF NOT EXISTS fcm_tokens (
+    person_id  VARCHAR(50)  PRIMARY KEY,
+    token      TEXT         NOT NULL,
+    updated_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+    );
+
+-- Notifications (stored so the intern can see history)
+CREATE TABLE IF NOT EXISTS notifications (
+    id     INT AUTO_INCREMENT PRIMARY KEY,
+    intern_id  VARCHAR(50)  NOT NULL,
+    title      VARCHAR(255) NOT NULL,
+    body       TEXT         NOT NULL,
+    is_read    TINYINT(1)   DEFAULT 0,
+    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (intern_id) REFERENCES persons(id) ON DELETE CASCADE,
+    INDEX idx_intern_id_is_read (intern_id, is_read),
+    INDEX idx_created_at (created_at)
+    );
 
 -- ─── Seed Data ──────────────────────────────────────────────
 INSERT IGNORE INTO departments VALUES

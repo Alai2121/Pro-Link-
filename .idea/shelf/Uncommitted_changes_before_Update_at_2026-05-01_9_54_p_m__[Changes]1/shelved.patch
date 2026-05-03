@@ -1,0 +1,384 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"085e1974-d522-4789-877b-96b27334f719\" name=\"Changes\" comment=\"backend\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/admin_dashboard.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/admin_dashboard.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/assign_interns.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/assign_interns.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/manage_interns.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/manage_interns.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/upload_schedule.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/upload_schedule.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/intern/documents_page.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/intern/documents_page.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/intern/intern_dashboard.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/intern/intern_dashboard.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/services/api_service.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/services/api_service.dart\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Dart File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;d0uaaa&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Alai2121/Pro-Link-&quot;,\r\n    &quot;accountId&quot;: &quot;3f9570b0-fbbd-4dc8-bb95-bea06f2efa57&quot;\r\n  }\r\n}</component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3Ct5rFJwEuwoBzm2tT0cFD8anr7\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Flutter.main.dart.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"io.flutter.reload.alreadyRun\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"D:/Pro-Link-/assets\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"dart.settings\",\r\n    \"show.migrate.to.gradle.popup\": \"false\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Pro-Link-\\assets\" />\r\n      <recent name=\"C:\\Users\\dell\\IdeaProjects\\Pro-Link-\\lib\\sevices\" />\r\n      <recent name=\"C:\\Users\\dell\\IdeaProjects\\Pro-Link-\\assets\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main.dart\" type=\"FlutterRunConfigurationType\" factoryName=\"Flutter\">\r\n      <option name=\"filePath\" value=\"$PROJECT_DIR$/lib/main.dart\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"085e1974-d522-4789-877b-96b27334f719\" name=\"Changes\" comment=\"\" />\r\n      <created>1777192224436</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1777192224436</updated>\r\n      <workItem from=\"1777192229970\" duration=\"1000\" />\r\n      <workItem from=\"1777192233332\" duration=\"3534000\" />\r\n      <workItem from=\"1777197224703\" duration=\"619000\" />\r\n      <workItem from=\"1777291622036\" duration=\"5570000\" />\r\n      <workItem from=\"1777312220646\" duration=\"579000\" />\r\n      <workItem from=\"1777313030483\" duration=\"4774000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"backend\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1777197718922</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1777197718922</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"backend\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"backend\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"Dart\">\r\n          <url>file://$PROJECT_DIR$/lib/mentor/mentor_interns.dart</url>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"Dart\">\r\n          <url>file://$PROJECT_DIR$/lib/main.dart</url>\r\n          <line>15</line>\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/.idea/workspace.xml	(date 1777668886307)
+@@ -5,16 +5,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="085e1974-d522-4789-877b-96b27334f719" name="Changes" comment="backend">
+-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/admin/assign_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/assign_interns.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/admin/manage_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/manage_interns.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/intern/documents_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/documents_page.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,29 +54,30 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Flutter.main.dart.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.MCP Project settings loaded": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-    "git-widget-placeholder": "main",
+-    "io.flutter.reload.alreadyRun": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "D:/Pro-Link-/assets",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "dart.settings",
+-    "show.migrate.to.gradle.popup": "false",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/Pro-Link-/assets&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
++    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="D:\Pro-Link-\assets" />
+Index: pubspec.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Generated by pub\r\n# See https://dart.dev/tools/pub/glossary#lockfile\r\npackages:\r\n  archive:\r\n    dependency: transitive\r\n    description:\r\n      name: archive\r\n      sha256: a96e8b390886ee8abb49b7bd3ac8df6f451c621619f52a26e815fdcf568959ff\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"4.0.9\"\r\n  args:\r\n    dependency: transitive\r\n    description:\r\n      name: args\r\n      sha256: d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.7.0\"\r\n  async:\r\n    dependency: transitive\r\n    description:\r\n      name: async\r\n      sha256: e2eb0491ba5ddb6177742d2da23904574082139b07c1e33b8503b9f46f3e1a37\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.13.1\"\r\n  boolean_selector:\r\n    dependency: transitive\r\n    description:\r\n      name: boolean_selector\r\n      sha256: \"8aab1771e1243a5063b8b0ff68042d67334e3feab9e95b9490f9a6ebf73b42ea\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.2\"\r\n  characters:\r\n    dependency: transitive\r\n    description:\r\n      name: characters\r\n      sha256: faf38497bda5ead2a8c7615f4f7939df04333478bf32e4173fcb06d428b5716b\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.4.1\"\r\n  checked_yaml:\r\n    dependency: transitive\r\n    description:\r\n      name: checked_yaml\r\n      sha256: \"959525d3162f249993882720d52b7e0c833978df229be20702b33d48d91de70f\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.0.4\"\r\n  cli_util:\r\n    dependency: transitive\r\n    description:\r\n      name: cli_util\r\n      sha256: ff6785f7e9e3c38ac98b2fb035701789de90154024a75b6cb926445e83197d1c\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.4.2\"\r\n  clock:\r\n    dependency: transitive\r\n    description:\r\n      name: clock\r\n      sha256: fddb70d9b5277016c77a80201021d40a2247104d9f4aa7bab7157b7e3f05b84b\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.1.2\"\r\n  code_assets:\r\n    dependency: transitive\r\n    description:\r\n      name: code_assets\r\n      sha256: \"83ccdaa064c980b5596c35dd64a8d3ecc68620174ab9b90b6343b753aa721687\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.0.0\"\r\n  collection:\r\n    dependency: transitive\r\n    description:\r\n      name: collection\r\n      sha256: \"2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.19.1\"\r\n  cross_file:\r\n    dependency: transitive\r\n    description:\r\n      name: cross_file\r\n      sha256: \"28bb3ae56f117b5aec029d702a90f57d285cd975c3c5c281eaca38dbc47c5937\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.3.5+2\"\r\n  crypto:\r\n    dependency: transitive\r\n    description:\r\n      name: crypto\r\n      sha256: c8ea0233063ba03258fbcf2ca4d6dadfefe14f02fab57702265467a19f27fadf\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.0.7\"\r\n  cupertino_icons:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: cupertino_icons\r\n      sha256: \"41e005c33bd814be4d3096aff55b1908d419fde52ca656c8c47719ec745873cd\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.0.9\"\r\n  dio:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: dio\r\n      sha256: aff32c08f92787a557dd5c0145ac91536481831a01b4648136373cddb0e64f8c\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"5.9.2\"\r\n  dio_web_adapter:\r\n    dependency: transitive\r\n    description:\r\n      name: dio_web_adapter\r\n      sha256: \"2f9e64323a7c3c7ef69567d5c800424a11f8337b8b228bad02524c9fb3c1f340\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.2\"\r\n  equatable:\r\n    dependency: transitive\r\n    description:\r\n      name: equatable\r\n      sha256: \"3e0141505477fd8ad55d6eb4e7776d3fe8430be8e497ccb1521370c3f21a3e2b\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.0.8\"\r\n  fake_async:\r\n    dependency: transitive\r\n    description:\r\n      name: fake_async\r\n      sha256: \"5368f224a74523e8d2e7399ea1638b37aecfca824a3cc4dfdf77bf1fa905ac44\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.3.3\"\r\n  ffi:\r\n    dependency: transitive\r\n    description:\r\n      name: ffi\r\n      sha256: \"6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.2.0\"\r\n  file:\r\n    dependency: transitive\r\n    description:\r\n      name: file\r\n      sha256: a3b4f84adafef897088c160faf7dfffb7696046cb13ae90b508c2cbc95d3b8d4\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"7.0.1\"\r\n  file_picker:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: file_picker\r\n      sha256: ab13ae8ef5580a411c458d6207b6774a6c237d77ac37011b13994879f68a8810\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"8.3.7\"\r\n  fl_chart:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: fl_chart\r\n      sha256: d0f0d49112f2f4b192481c16d05b6418bd7820e021e265a3c22db98acf7ed7fb\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.68.0\"\r\n  flutter:\r\n    dependency: \"direct main\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  flutter_launcher_icons:\r\n    dependency: \"direct dev\"\r\n    description:\r\n      name: flutter_launcher_icons\r\n      sha256: \"10f13781741a2e3972126fae08393d3c4e01fa4cd7473326b94b72cf594195e7\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.14.4\"\r\n  flutter_lints:\r\n    dependency: \"direct dev\"\r\n    description:\r\n      name: flutter_lints\r\n      sha256: \"3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.0.0\"\r\n  flutter_pdfview:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: flutter_pdfview\r\n      sha256: \"5b80e89f3ba6e478d1e897543c9634508284ad73476807febc188378986b69ee\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.4.4\"\r\n  flutter_plugin_android_lifecycle:\r\n    dependency: transitive\r\n    description:\r\n      name: flutter_plugin_android_lifecycle\r\n      sha256: \"38d1c268de9097ff59cf0e844ac38759fc78f76836d37edad06fa21e182055a0\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.0.34\"\r\n  flutter_test:\r\n    dependency: \"direct dev\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  flutter_web_plugins:\r\n    dependency: transitive\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  glob:\r\n    dependency: transitive\r\n    description:\r\n      name: glob\r\n      sha256: c3f1ee72c96f8f78935e18aa8cecced9ab132419e8625dc187e1c2408efc20de\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.3\"\r\n  google_fonts:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: google_fonts\r\n      sha256: ba03d03bcaa2f6cb7bd920e3b5027181db75ab524f8891c8bc3aa603885b8055\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.3.3\"\r\n  hooks:\r\n    dependency: transitive\r\n    description:\r\n      name: hooks\r\n      sha256: \"025f060e86d2d4c3c47b56e33caf7f93bf9283340f26d23424ebcfccf34f621e\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.0.3\"\r\n  http:\r\n    dependency: transitive\r\n    description:\r\n      name: http\r\n      sha256: \"87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.6.0\"\r\n  http_parser:\r\n    dependency: transitive\r\n    description:\r\n      name: http_parser\r\n      sha256: \"178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"4.1.2\"\r\n  image:\r\n    dependency: transitive\r\n    description:\r\n      name: image\r\n      sha256: f9881ff4998044947ec38d098bc7c8316ae1186fa786eddffdb867b9bc94dfce\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"4.8.0\"\r\n  jni:\r\n    dependency: transitive\r\n    description:\r\n      name: jni\r\n      sha256: c2230682d5bc2362c1c9e8d3c7f406d9cbba23ab3f2e203a025dd47e0fb2e68f\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.0.0\"\r\n  jni_flutter:\r\n    dependency: transitive\r\n    description:\r\n      name: jni_flutter\r\n      sha256: \"8b59e590786050b1cd866677dddaf76b1ade5e7bc751abe04b86e84d379d3ba6\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.0.1\"\r\n  json_annotation:\r\n    dependency: transitive\r\n    description:\r\n      name: json_annotation\r\n      sha256: cb09e7dac6210041fad964ed7fbee004f14258b4eca4040f72d1234062ace4c8\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"4.11.0\"\r\n  leak_tracker:\r\n    dependency: transitive\r\n    description:\r\n      name: leak_tracker\r\n      sha256: \"33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"11.0.2\"\r\n  leak_tracker_flutter_testing:\r\n    dependency: transitive\r\n    description:\r\n      name: leak_tracker_flutter_testing\r\n      sha256: \"1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.0.10\"\r\n  leak_tracker_testing:\r\n    dependency: transitive\r\n    description:\r\n      name: leak_tracker_testing\r\n      sha256: \"8d5a2d49f4a66b49744b23b018848400d23e54caf9463f4eb20df3eb8acb2eb1\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.0.2\"\r\n  lints:\r\n    dependency: transitive\r\n    description:\r\n      name: lints\r\n      sha256: \"12f842a479589fea194fe5c5a3095abc7be0c1f2ddfa9a0e76aed1dbd26a87df\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.1.0\"\r\n  logging:\r\n    dependency: transitive\r\n    description:\r\n      name: logging\r\n      sha256: c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.3.0\"\r\n  matcher:\r\n    dependency: transitive\r\n    description:\r\n      name: matcher\r\n      sha256: \"12956d0ad8390bbcc63ca2e1469c0619946ccb52809807067a7020d57e647aa6\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.12.18\"\r\n  material_color_utilities:\r\n    dependency: transitive\r\n    description:\r\n      name: material_color_utilities\r\n      sha256: \"9c337007e82b1889149c82ed242ed1cb24a66044e30979c44912381e9be4c48b\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.13.0\"\r\n  meta:\r\n    dependency: transitive\r\n    description:\r\n      name: meta\r\n      sha256: \"23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.17.0\"\r\n  mime:\r\n    dependency: transitive\r\n    description:\r\n      name: mime\r\n      sha256: \"41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  native_toolchain_c:\r\n    dependency: transitive\r\n    description:\r\n      name: native_toolchain_c\r\n      sha256: \"6ba77bb18063eebe9de401f5e6437e95e1438af0a87a3a39084fbd37c90df572\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.17.6\"\r\n  objective_c:\r\n    dependency: transitive\r\n    description:\r\n      name: objective_c\r\n      sha256: \"100a1c87616ab6ed41ec263b083c0ef3261ee6cd1dc3b0f35f8ddfa4f996fe52\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"9.3.0\"\r\n  package_config:\r\n    dependency: transitive\r\n    description:\r\n      name: package_config\r\n      sha256: f096c55ebb7deb7e384101542bfba8c52696c1b56fca2eb62827989ef2353bbc\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.2.0\"\r\n  path:\r\n    dependency: transitive\r\n    description:\r\n      name: path\r\n      sha256: \"75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.9.1\"\r\n  path_provider:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: path_provider\r\n      sha256: \"50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.5\"\r\n  path_provider_android:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_android\r\n      sha256: \"69cbd515a62b94d32a7944f086b2f82b4ac40a1d45bebfc00813a430ab2dabcd\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.3.1\"\r\n  path_provider_foundation:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_foundation\r\n      sha256: \"2a376b7d6392d80cd3705782d2caa734ca4727776db0b6ec36ef3f1855197699\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.6.0\"\r\n  path_provider_linux:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_linux\r\n      sha256: f7a1fe3a634fe7734c8d3f2766ad746ae2a2884abe22e241a8b301bf5cac3279\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.2.1\"\r\n  path_provider_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_platform_interface\r\n      sha256: \"88f5779f72ba699763fa3a3b06aa4bf6de76c8e5de842cf6f29e2e06476c2334\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.2\"\r\n  path_provider_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_windows\r\n      sha256: bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.3.0\"\r\n  permission_handler:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: permission_handler\r\n      sha256: \"59adad729136f01ea9e35a48f5d1395e25cba6cea552249ddbe9cf950f5d7849\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"11.4.0\"\r\n  permission_handler_android:\r\n    dependency: transitive\r\n    description:\r\n      name: permission_handler_android\r\n      sha256: d3971dcdd76182a0c198c096b5db2f0884b0d4196723d21a866fc4cdea057ebc\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"12.1.0\"\r\n  permission_handler_apple:\r\n    dependency: transitive\r\n    description:\r\n      name: permission_handler_apple\r\n      sha256: f000131e755c54cf4d84a5d8bd6e4149e262cc31c5a8b1d698de1ac85fa41023\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"9.4.7\"\r\n  permission_handler_html:\r\n    dependency: transitive\r\n    description:\r\n      name: permission_handler_html\r\n      sha256: \"38f000e83355abb3392140f6bc3030660cfaef189e1f87824facb76300b4ff24\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.1.3+5\"\r\n  permission_handler_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: permission_handler_platform_interface\r\n      sha256: eb99b295153abce5d683cac8c02e22faab63e50679b937fa1bf67d58bb282878\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"4.3.0\"\r\n  permission_handler_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: permission_handler_windows\r\n      sha256: \"1a790728016f79a41216d88672dbc5df30e686e811ad4e698bfc51f76ad91f1e\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.2.1\"\r\n  petitparser:\r\n    dependency: transitive\r\n    description:\r\n      name: petitparser\r\n      sha256: \"91bd59303e9f769f108f8df05e371341b15d59e995e6806aefab827b58336675\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"7.0.2\"\r\n  platform:\r\n    dependency: transitive\r\n    description:\r\n      name: platform\r\n      sha256: \"5d6b1b0036a5f331ebc77c850ebc8506cbc1e9416c27e59b439f917a902a4984\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.1.6\"\r\n  plugin_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: plugin_platform_interface\r\n      sha256: \"4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.8\"\r\n  posix:\r\n    dependency: transitive\r\n    description:\r\n      name: posix\r\n      sha256: \"185ef7606574f789b40f289c233efa52e96dead518aed988e040a10737febb07\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.5.0\"\r\n  pub_semver:\r\n    dependency: transitive\r\n    description:\r\n      name: pub_semver\r\n      sha256: \"5bfcf68ca79ef689f8990d1160781b4bad40a3bd5e5218ad4076ddb7f4081585\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.2.0\"\r\n  record_use:\r\n    dependency: transitive\r\n    description:\r\n      name: record_use\r\n      sha256: \"2551bd8eecfe95d14ae75f6021ad0248be5c27f138c2ec12fcb52b500b3ba1ed\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.6.0\"\r\n  sky_engine:\r\n    dependency: transitive\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  source_span:\r\n    dependency: transitive\r\n    description:\r\n      name: source_span\r\n      sha256: \"56a02f1f4cd1a2d96303c0144c93bd6d909eea6bee6bf5a0e0b685edbd4c47ab\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.10.2\"\r\n  stack_trace:\r\n    dependency: transitive\r\n    description:\r\n      name: stack_trace\r\n      sha256: \"8b27215b45d22309b5cddda1aa2b19bdfec9df0e765f2de506401c071d38d1b1\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.12.1\"\r\n  stream_channel:\r\n    dependency: transitive\r\n    description:\r\n      name: stream_channel\r\n      sha256: \"969e04c80b8bcdf826f8f16579c7b14d780458bd97f56d107d3950fdbeef059d\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.1.4\"\r\n  string_scanner:\r\n    dependency: transitive\r\n    description:\r\n      name: string_scanner\r\n      sha256: \"921cd31725b72fe181906c6a94d987c78e3b98c2e205b397ea399d4054872b43\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.4.1\"\r\n  term_glyph:\r\n    dependency: transitive\r\n    description:\r\n      name: term_glyph\r\n      sha256: \"7f554798625ea768a7518313e58f83891c7f5024f88e46e7182a4558850a4b8e\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.2.2\"\r\n  test_api:\r\n    dependency: transitive\r\n    description:\r\n      name: test_api\r\n      sha256: \"93167629bfc610f71560ab9312acdda4959de4df6fac7492c89ff0d3886f6636\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"0.7.9\"\r\n  typed_data:\r\n    dependency: transitive\r\n    description:\r\n      name: typed_data\r\n      sha256: f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.4.0\"\r\n  url_launcher:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: url_launcher\r\n      sha256: f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.3.2\"\r\n  url_launcher_android:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_android\r\n      sha256: \"3bb000251e55d4a209aa0e2e563309dc9bb2befea2295fd0cec1f51760aac572\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.3.29\"\r\n  url_launcher_ios:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_ios\r\n      sha256: \"580fe5dfb51671ae38191d316e027f6b76272b026370708c2d898799750a02b0\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.4.1\"\r\n  url_launcher_linux:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_linux\r\n      sha256: d5e14138b3bc193a0f63c10a53c94b91d399df0512b1f29b94a043db7482384a\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.2.2\"\r\n  url_launcher_macos:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_macos\r\n      sha256: \"368adf46f71ad3c21b8f06614adb38346f193f3a59ba8fe9a2fd74133070ba18\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.2.5\"\r\n  url_launcher_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_platform_interface\r\n      sha256: \"552f8a1e663569be95a8190206a38187b531910283c3e982193e4f2733f01029\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.3.2\"\r\n  url_launcher_web:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_web\r\n      sha256: d0412fcf4c6b31ecfdb7762359b7206ffba3bbffd396c6d9f9c4616ece476c1f\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.4.2\"\r\n  url_launcher_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_windows\r\n      sha256: \"712c70ab1b99744ff066053cbe3e80c73332b38d46e5e945c98689b2e66fc15f\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.1.5\"\r\n  vector_math:\r\n    dependency: transitive\r\n    description:\r\n      name: vector_math\r\n      sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"2.2.0\"\r\n  vm_service:\r\n    dependency: transitive\r\n    description:\r\n      name: vm_service\r\n      sha256: \"0016aef94fc66495ac78af5859181e3f3bf2026bd8eecc72b9565601e19ab360\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"15.2.0\"\r\n  web:\r\n    dependency: transitive\r\n    description:\r\n      name: web\r\n      sha256: \"868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.1.1\"\r\n  win32:\r\n    dependency: transitive\r\n    description:\r\n      name: win32\r\n      sha256: d7cb55e04cd34096cd3a79b3330245f54cb96a370a1c27adb3c84b917de8b08e\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"5.15.0\"\r\n  xdg_directories:\r\n    dependency: transitive\r\n    description:\r\n      name: xdg_directories\r\n      sha256: \"7a3f37b05d989967cdddcbb571f1ea834867ae2faa29725fd085180e0883aa15\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  xml:\r\n    dependency: transitive\r\n    description:\r\n      name: xml\r\n      sha256: \"971043b3a0d3da28727e40ed3e0b5d18b742fa5a68665cca88e74b7876d5e025\"\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"6.6.1\"\r\n  yaml:\r\n    dependency: transitive\r\n    description:\r\n      name: yaml\r\n      sha256: b9da305ac7c39faa3f030eccd175340f968459dae4af175130b3fc47e40d76ce\r\n      url: \"https://pub.dev\"\r\n    source: hosted\r\n    version: \"3.1.3\"\r\nsdks:\r\n  dart: \">=3.11.0 <4.0.0\"\r\n  flutter: \">=3.38.4\"\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pubspec.lock b/pubspec.lock
+--- a/pubspec.lock	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/pubspec.lock	(date 1777662312386)
+@@ -161,6 +161,38 @@
+       url: "https://pub.dev"
+     source: hosted
+     version: "8.3.7"
++  file_selector_linux:
++    dependency: transitive
++    description:
++      name: file_selector_linux
++      sha256: "2567f398e06ac72dcf2e98a0c95df2a9edd03c2c2e0cacd4780f20cdf56263a0"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.9.4"
++  file_selector_macos:
++    dependency: transitive
++    description:
++      name: file_selector_macos
++      sha256: "5e0bbe9c312416f1787a68259ea1505b52f258c587f12920422671807c4d618a"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.9.5"
++  file_selector_platform_interface:
++    dependency: transitive
++    description:
++      name: file_selector_platform_interface
++      sha256: "35e0bd61ebcdb91a3505813b055b09b79dfdc7d0aee9c09a7ba59ae4bb13dc85"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.7.0"
++  file_selector_windows:
++    dependency: transitive
++    description:
++      name: file_selector_windows
++      sha256: "62197474ae75893a62df75939c777763d39c2bc5f73ce5b88497208bc269abfd"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.9.3+5"
+   fl_chart:
+     dependency: "direct main"
+     description:
+@@ -264,6 +296,70 @@
+       url: "https://pub.dev"
+     source: hosted
+     version: "4.8.0"
++  image_picker:
++    dependency: "direct main"
++    description:
++      name: image_picker
++      sha256: "91c025426c2881c551100bce834e201c835a170151545f58d17da5180ca7d9ac"
++      url: "https://pub.dev"
++    source: hosted
++    version: "1.2.2"
++  image_picker_android:
++    dependency: transitive
++    description:
++      name: image_picker_android
++      sha256: d5b3e1774af29c9ab00103afb0d4614070f924d2e0057ac867ec98800114793f
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.8.13+17"
++  image_picker_for_web:
++    dependency: transitive
++    description:
++      name: image_picker_for_web
++      sha256: "66257a3191ab360d23a55c8241c91a6e329d31e94efa7be9cf7a212e65850214"
++      url: "https://pub.dev"
++    source: hosted
++    version: "3.1.1"
++  image_picker_ios:
++    dependency: transitive
++    description:
++      name: image_picker_ios
++      sha256: b9c4a438a9ff4f60808c9cf0039b93a42bb6c2211ef6ebb647394b2b3fa84588
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.8.13+6"
++  image_picker_linux:
++    dependency: transitive
++    description:
++      name: image_picker_linux
++      sha256: "1f81c5f2046b9ab724f85523e4af65be1d47b038160a8c8deed909762c308ed4"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.2.2"
++  image_picker_macos:
++    dependency: transitive
++    description:
++      name: image_picker_macos
++      sha256: "86f0f15a309de7e1a552c12df9ce5b59fe927e71385329355aec4776c6a8ec91"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.2.2+1"
++  image_picker_platform_interface:
++    dependency: transitive
++    description:
++      name: image_picker_platform_interface
++      sha256: "567e056716333a1647c64bb6bd873cff7622233a5c3f694be28a583d4715690c"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.11.1"
++  image_picker_windows:
++    dependency: transitive
++    description:
++      name: image_picker_windows
++      sha256: d248c86554a72b5495a31c56f060cf73a41c7ff541689327b1a7dbccc33adfae
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.2.2"
+   jni:
+     dependency: transitive
+     description:
+@@ -332,10 +428,10 @@
+     dependency: transitive
+     description:
+       name: matcher
+-      sha256: "12956d0ad8390bbcc63ca2e1469c0619946ccb52809807067a7020d57e647aa6"
++      sha256: dc0b7dc7651697ea4ff3e69ef44b0407ea32c487a39fff6a4004fa585e901861
+       url: "https://pub.dev"
+     source: hosted
+-    version: "0.12.18"
++    version: "0.12.19"
+   material_color_utilities:
+     dependency: transitive
+     description:
+@@ -585,10 +681,10 @@
+     dependency: transitive
+     description:
+       name: test_api
+-      sha256: "93167629bfc610f71560ab9312acdda4959de4df6fac7492c89ff0d3886f6636"
++      sha256: "8161c84903fd860b26bfdefb7963b3f0b68fee7adea0f59ef805ecca346f0c7a"
+       url: "https://pub.dev"
+     source: hosted
+-    version: "0.7.9"
++    version: "0.7.10"
+   typed_data:
+     dependency: transitive
+     description:
+Index: macos/Flutter/GeneratedPluginRegistrant.swift
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n//  Generated file. Do not edit.\r\n//\r\n\r\nimport FlutterMacOS\r\nimport Foundation\r\n\r\nimport file_picker\r\nimport url_launcher_macos\r\n\r\nfunc RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {\r\n  FilePickerPlugin.register(with: registry.registrar(forPlugin: \"FilePickerPlugin\"))\r\n  UrlLauncherPlugin.register(with: registry.registrar(forPlugin: \"UrlLauncherPlugin\"))\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/macos/Flutter/GeneratedPluginRegistrant.swift b/macos/Flutter/GeneratedPluginRegistrant.swift
+--- a/macos/Flutter/GeneratedPluginRegistrant.swift	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/macos/Flutter/GeneratedPluginRegistrant.swift	(date 1777662313862)
+@@ -6,9 +6,11 @@
+ import Foundation
+ 
+ import file_picker
++import file_selector_macos
+ import url_launcher_macos
+ 
+ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+   FilePickerPlugin.register(with: registry.registrar(forPlugin: "FilePickerPlugin"))
++  FileSelectorPlugin.register(with: registry.registrar(forPlugin: "FileSelectorPlugin"))
+   UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
+ }
+Index: windows/flutter/generated_plugins.cmake
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#\r\n# Generated file, do not edit.\r\n#\r\n\r\nlist(APPEND FLUTTER_PLUGIN_LIST\r\n  permission_handler_windows\r\n  url_launcher_windows\r\n)\r\n\r\nlist(APPEND FLUTTER_FFI_PLUGIN_LIST\r\n  jni\r\n)\r\n\r\nset(PLUGIN_BUNDLED_LIBRARIES)\r\n\r\nforeach(plugin ${FLUTTER_PLUGIN_LIST})\r\n  add_subdirectory(flutter/ephemeral/.plugin_symlinks/${plugin}/windows plugins/${plugin})\r\n  target_link_libraries(${BINARY_NAME} PRIVATE ${plugin}_plugin)\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${plugin}_plugin>)\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES ${${plugin}_bundled_libraries})\r\nendforeach(plugin)\r\n\r\nforeach(ffi_plugin ${FLUTTER_FFI_PLUGIN_LIST})\r\n  add_subdirectory(flutter/ephemeral/.plugin_symlinks/${ffi_plugin}/windows plugins/${ffi_plugin})\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES ${${ffi_plugin}_bundled_libraries})\r\nendforeach(ffi_plugin)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/windows/flutter/generated_plugins.cmake b/windows/flutter/generated_plugins.cmake
+--- a/windows/flutter/generated_plugins.cmake	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/windows/flutter/generated_plugins.cmake	(date 1777662313815)
+@@ -3,6 +3,7 @@
+ #
+ 
+ list(APPEND FLUTTER_PLUGIN_LIST
++  file_selector_windows
+   permission_handler_windows
+   url_launcher_windows
+ )
+Index: linux/flutter/generated_plugin_registrant.cc
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n//  Generated file. Do not edit.\r\n//\r\n\r\n// clang-format off\r\n\r\n#include \"generated_plugin_registrant.h\"\r\n\r\n#include <url_launcher_linux/url_launcher_plugin.h>\r\n\r\nvoid fl_register_plugins(FlPluginRegistry* registry) {\r\n  g_autoptr(FlPluginRegistrar) url_launcher_linux_registrar =\r\n      fl_plugin_registry_get_registrar_for_plugin(registry, \"UrlLauncherPlugin\");\r\n  url_launcher_plugin_register_with_registrar(url_launcher_linux_registrar);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/linux/flutter/generated_plugin_registrant.cc b/linux/flutter/generated_plugin_registrant.cc
+--- a/linux/flutter/generated_plugin_registrant.cc	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/linux/flutter/generated_plugin_registrant.cc	(date 1777662313768)
+@@ -6,9 +6,13 @@
+ 
+ #include "generated_plugin_registrant.h"
+ 
++#include <file_selector_linux/file_selector_plugin.h>
+ #include <url_launcher_linux/url_launcher_plugin.h>
+ 
+ void fl_register_plugins(FlPluginRegistry* registry) {
++  g_autoptr(FlPluginRegistrar) file_selector_linux_registrar =
++      fl_plugin_registry_get_registrar_for_plugin(registry, "FileSelectorPlugin");
++  file_selector_plugin_register_with_registrar(file_selector_linux_registrar);
+   g_autoptr(FlPluginRegistrar) url_launcher_linux_registrar =
+       fl_plugin_registry_get_registrar_for_plugin(registry, "UrlLauncherPlugin");
+   url_launcher_plugin_register_with_registrar(url_launcher_linux_registrar);
+Index: .idea/libraries/Flutter_Plugins.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"Flutter Plugins\" type=\"FlutterPluginsLibraryType\">\r\n    <CLASSES>\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.6.0\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.2.1\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni_flutter-1.0.1\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.29\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.5\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.5\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.3.7\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.4.1\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.2.2\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.3.1\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.4.0\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.3+5\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.4.2\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.5\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.3.0\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni-1.0.0\" />\r\n      <root url=\"file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.4.4\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Flutter_Plugins.xml b/.idea/libraries/Flutter_Plugins.xml
+--- a/.idea/libraries/Flutter_Plugins.xml	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/.idea/libraries/Flutter_Plugins.xml	(date 1777668886294)
+@@ -19,6 +19,16 @@
+       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.3.0" />
+       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni-1.0.0" />
+       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.4.4" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13+6" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+5" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.5" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.1.1" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_windows-0.2.2" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_linux-0.2.2" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+17" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_linux-0.9.4" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2+1" />
++      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.2.2" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES />
+Index: pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: pro_link\r\ndescription: \"A new Flutter project.\"\r\npublish_to: 'none'\r\n\r\nversion: 1.0.0+1\r\n\r\nenvironment:\r\n  sdk: ^3.11.0\r\n\r\ndependencies:\r\n  flutter:\r\n    sdk: flutter\r\n  cupertino_icons: ^1.0.8\r\n  fl_chart: ^0.68.0\r\n  google_fonts: ^6.0.0\r\n  url_launcher: ^6.3.0\r\n  dio: ^5.7.0\r\n  path_provider: ^2.1.4\r\n  permission_handler: ^11.3.1\r\n  file_picker: ^8.0.0\r\n  flutter_pdfview: ^1.3.2\r\n\r\ndev_dependencies:\r\n  flutter_launcher_icons: ^0.14.3\r\n  flutter_test:\r\n    sdk: flutter\r\n  flutter_lints: ^6.0.0\r\n\r\nflutter:\r\n  uses-material-design: true\r\n  assets:\r\n    - assets/admin.png\r\n    - assets/playstore.png\r\n    - assets/logo.png\r\n    - assets/student1.png\r\n    - assets/logoonly.png\r\n\r\nflutter_launcher_icons:\r\n  android: true\r\n  ios: true\r\n  image_path: \"assets/playstore.png\"
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pubspec.yaml b/pubspec.yaml
+--- a/pubspec.yaml	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/pubspec.yaml	(date 1777662308101)
+@@ -19,6 +19,7 @@
+   permission_handler: ^11.3.1
+   file_picker: ^8.0.0
+   flutter_pdfview: ^1.3.2
++  image_picker: ^1.2.2
+ 
+ dev_dependencies:
+   flutter_launcher_icons: ^0.14.3
+Index: linux/flutter/generated_plugins.cmake
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#\r\n# Generated file, do not edit.\r\n#\r\n\r\nlist(APPEND FLUTTER_PLUGIN_LIST\r\n  url_launcher_linux\r\n)\r\n\r\nlist(APPEND FLUTTER_FFI_PLUGIN_LIST\r\n  jni\r\n)\r\n\r\nset(PLUGIN_BUNDLED_LIBRARIES)\r\n\r\nforeach(plugin ${FLUTTER_PLUGIN_LIST})\r\n  add_subdirectory(flutter/ephemeral/.plugin_symlinks/${plugin}/linux plugins/${plugin})\r\n  target_link_libraries(${BINARY_NAME} PRIVATE ${plugin}_plugin)\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${plugin}_plugin>)\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES ${${plugin}_bundled_libraries})\r\nendforeach(plugin)\r\n\r\nforeach(ffi_plugin ${FLUTTER_FFI_PLUGIN_LIST})\r\n  add_subdirectory(flutter/ephemeral/.plugin_symlinks/${ffi_plugin}/linux plugins/${ffi_plugin})\r\n  list(APPEND PLUGIN_BUNDLED_LIBRARIES ${${ffi_plugin}_bundled_libraries})\r\nendforeach(ffi_plugin)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/linux/flutter/generated_plugins.cmake b/linux/flutter/generated_plugins.cmake
+--- a/linux/flutter/generated_plugins.cmake	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/linux/flutter/generated_plugins.cmake	(date 1777662313785)
+@@ -3,6 +3,7 @@
+ #
+ 
+ list(APPEND FLUTTER_PLUGIN_LIST
++  file_selector_linux
+   url_launcher_linux
+ )
+ 
+Index: windows/flutter/generated_plugin_registrant.cc
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n//  Generated file. Do not edit.\r\n//\r\n\r\n// clang-format off\r\n\r\n#include \"generated_plugin_registrant.h\"\r\n\r\n#include <permission_handler_windows/permission_handler_windows_plugin.h>\r\n#include <url_launcher_windows/url_launcher_windows.h>\r\n\r\nvoid RegisterPlugins(flutter::PluginRegistry* registry) {\r\n  PermissionHandlerWindowsPluginRegisterWithRegistrar(\r\n      registry->GetRegistrarForPlugin(\"PermissionHandlerWindowsPlugin\"));\r\n  UrlLauncherWindowsRegisterWithRegistrar(\r\n      registry->GetRegistrarForPlugin(\"UrlLauncherWindows\"));\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/windows/flutter/generated_plugin_registrant.cc b/windows/flutter/generated_plugin_registrant.cc
+--- a/windows/flutter/generated_plugin_registrant.cc	(revision 632c083820ce82d3e04bf916904eaee7f9e719bd)
++++ b/windows/flutter/generated_plugin_registrant.cc	(date 1777662313803)
+@@ -6,10 +6,13 @@
+ 
+ #include "generated_plugin_registrant.h"
+ 
++#include <file_selector_windows/file_selector_windows.h>
+ #include <permission_handler_windows/permission_handler_windows_plugin.h>
+ #include <url_launcher_windows/url_launcher_windows.h>
+ 
+ void RegisterPlugins(flutter::PluginRegistry* registry) {
++  FileSelectorWindowsRegisterWithRegistrar(
++      registry->GetRegistrarForPlugin("FileSelectorWindows"));
+   PermissionHandlerWindowsPluginRegisterWithRegistrar(
+       registry->GetRegistrarForPlugin("PermissionHandlerWindowsPlugin"));
+   UrlLauncherWindowsRegisterWithRegistrar(

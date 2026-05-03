@@ -6,8 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/admin.dart';
-import '../models/department.dart';
-import '../models/mentor.dart';
 
 import '../../auth/login_page.dart';
 import 'admin_dashboard.dart';

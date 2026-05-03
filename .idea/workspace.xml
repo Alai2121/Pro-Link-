@@ -8,13 +8,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/Pro-Link-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pro-Link-.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/admin/assign_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/assign_interns.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/admin/manage_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/manage_interns.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/intern/notifications_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/notifications_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/notification_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prolink.sql" beforeDir="false" afterPath="$PROJECT_DIR$/prolink.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +61,7 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/dell/IdeaProjects/Pro-Link-",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "flutter.settings",
+    "settings.editor.selected.configurable": "dart.settings",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }

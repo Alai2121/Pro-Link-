@@ -28,7 +28,7 @@ class _InternDashboardState extends State<InternDashboard> {
   @override
   void initState() {
     super.initState();
-    // Initialise FCM and upload device token — safe to call multiple times
+
     NotificationService.init(widget.intern.id);
   }
 
@@ -38,7 +38,7 @@ class _InternDashboardState extends State<InternDashboard> {
   }
 
   void _logout() {
-    NotificationService.reset(); // allow re-init on next login
+    NotificationService.reset();
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const LoginPage()),
           (route) => false,
@@ -237,7 +237,7 @@ class _InternDashboardState extends State<InternDashboard> {
   }
 }
 
-// ─── HomePage (unchanged) ─────────────────────────────────────────────────────
+// ─── HomePage  ─────────────────────────────────────────────────────
 class HomePage extends StatelessWidget {
   final Intern intern;
   const HomePage({super.key, required this.intern});

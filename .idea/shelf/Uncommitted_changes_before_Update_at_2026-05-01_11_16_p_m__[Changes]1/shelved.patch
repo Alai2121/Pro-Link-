@@ -1,0 +1,1009 @@
+Index: .idea/libraries/Dart_Packages.xml
+===================================================================
+diff --git a/.idea/libraries/Dart_Packages.xml b/.idea/libraries/Dart_Packages.xml
+deleted file mode 100644
+--- a/.idea/libraries/Dart_Packages.xml	(revision 64489cce6b917717cbc74b3944544170c5e839c3)
++++ /dev/null	(revision 64489cce6b917717cbc74b3944544170c5e839c3)
+@@ -1,859 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Dart Packages" type="DartPackagesLibraryType">
+-    <properties>
+-      <option name="packageNameToDirsMap">
+-        <entry key="archive">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/archive-4.0.9/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="args">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.7.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="async">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="boolean_selector">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="characters">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.4.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="checked_yaml">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/checked_yaml-2.0.4/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="cli_util">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cli_util-0.4.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="clock">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="code_assets">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/code_assets-1.0.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="collection">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.19.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="cross_file">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.5+2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="crypto">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.7/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="cupertino_icons">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.9/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="dio">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.9.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="dio_web_adapter">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/dio_web_adapter-2.1.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="equatable">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.8/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="fake_async">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.3/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="ffi">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.2.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file_picker">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.3.7/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file_selector_linux">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_linux-0.9.4/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file_selector_macos">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file_selector_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.7.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="file_selector_windows">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="fl_chart">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.68.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter">
+-          <value>
+-            <list>
+-<<<<<<< HEAD
+-              <option value="$PROJECT_DIR$/../flutter/packages/flutter/lib" />
+-=======
+-              <option value="$USER_HOME$/flutter/packages/flutter/lib" />
+->>>>>>> 52486ad (upload picture for mentor)
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_launcher_icons">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.14.4/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_lints">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-6.0.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_pdfview">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.4.4/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_plugin_android_lifecycle">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.34/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_test">
+-          <value>
+-            <list>
+-<<<<<<< HEAD
+-              <option value="$PROJECT_DIR$/../flutter/packages/flutter_test/lib" />
+-=======
+-              <option value="$USER_HOME$/flutter/packages/flutter_test/lib" />
+->>>>>>> 52486ad (upload picture for mentor)
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="flutter_web_plugins">
+-          <value>
+-            <list>
+-<<<<<<< HEAD
+-              <option value="$PROJECT_DIR$/../flutter/packages/flutter_web_plugins/lib" />
+-=======
+-              <option value="$USER_HOME$/flutter/packages/flutter_web_plugins/lib" />
+->>>>>>> 52486ad (upload picture for mentor)
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="glob">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.3/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="google_fonts">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-6.3.3/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="hooks">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/hooks-1.0.3/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="http">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.6.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="http_parser">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image-4.8.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.2.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_android">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+17/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_for_web">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.1.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_ios">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13+6/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_linux">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_linux-0.2.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_macos">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2+1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.11.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="image_picker_windows">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_windows-0.2.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="jni">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni-1.0.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="jni_flutter">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni_flutter-1.0.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="json_annotation">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.11.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="leak_tracker">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-11.0.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="leak_tracker_flutter_testing">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="leak_tracker_testing">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_testing-3.0.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="lints">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/lints-6.1.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="logging">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.3.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="matcher">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.19/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="material_color_utilities">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.13.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="meta">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.17.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="mime">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="native_toolchain_c">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/native_toolchain_c-0.17.6/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="objective_c">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/objective_c-9.3.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="package_config">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/package_config-2.2.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider_android">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.3.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider_foundation">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.6.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider_linux">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.2.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="path_provider_windows">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.3.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.4.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler_android">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-12.1.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler_apple">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.4.7/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler_html">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.3+5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_platform_interface-4.3.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="permission_handler_windows">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_windows-0.2.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="petitparser">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-7.0.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="platform">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.6/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="plugin_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="posix">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/posix-6.5.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="pub_semver">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.2.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="record_use">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/record_use-0.6.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="sky_engine">
+-          <value>
+-            <list>
+-<<<<<<< HEAD
+-              <option value="$PROJECT_DIR$/../flutter/bin/cache/pkg/sky_engine/lib" />
+-=======
+-              <option value="$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib" />
+->>>>>>> 52486ad (upload picture for mentor)
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="source_span">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="stack_trace">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="stream_channel">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.4/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="string_scanner">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.4.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="term_glyph">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="test_api">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.7.10/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="typed_data">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_android">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.29/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_ios">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.4.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_linux">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.2.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_macos">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_platform_interface">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_web">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.4.2/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="url_launcher_windows">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.5/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="vector_math">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="vm_service">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.2.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="web">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/web-1.1.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="win32">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.15.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="xdg_directories">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="xml">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.6.1/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-        <entry key="yaml">
+-          <value>
+-            <list>
+-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.3/lib" />
+-            </list>
+-          </value>
+-        </entry>
+-      </option>
+-    </properties>
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/archive-4.0.9/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.7.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.4.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/checked_yaml-2.0.4/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cli_util-0.4.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/code_assets-1.0.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.19.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.5+2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.7/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.9/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.9.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/dio_web_adapter-2.1.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.8/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.3/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.2.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.3.7/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_linux-0.9.4/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.7.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.68.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.14.4/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-6.0.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.4.4/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.34/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.3/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-6.3.3/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/hooks-1.0.3/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.6.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image-4.8.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.2.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+17/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.1.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13+6/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_linux-0.2.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2+1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.11.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_windows-0.2.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni-1.0.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/jni_flutter-1.0.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.11.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-11.0.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_testing-3.0.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/lints-6.1.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.3.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.19/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.13.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.17.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/native_toolchain_c-0.17.6/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/objective_c-9.3.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/package_config-2.2.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.3.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.6.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.2.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.1.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.3.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.4.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-12.1.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.4.7/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.3+5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_platform_interface-4.3.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_windows-0.2.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-7.0.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.6/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/posix-6.5.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.2.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/record_use-0.6.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.4/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.4.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.7.10/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.29/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.4.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.2.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.4.2/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.5/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.2.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/web-1.1.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.15.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.6.1/lib" />
+-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.3/lib" />
+-<<<<<<< HEAD
+-      <root url="file://$PROJECT_DIR$/../flutter/bin/cache/pkg/sky_engine/lib" />
+-      <root url="file://$PROJECT_DIR$/../flutter/packages/flutter/lib" />
+-      <root url="file://$PROJECT_DIR$/../flutter/packages/flutter_test/lib" />
+-      <root url="file://$PROJECT_DIR$/../flutter/packages/flutter_web_plugins/lib" />
+-=======
+-      <root url="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib" />
+-      <root url="file://$USER_HOME$/flutter/packages/flutter/lib" />
+-      <root url="file://$USER_HOME$/flutter/packages/flutter_test/lib" />
+-      <root url="file://$USER_HOME$/flutter/packages/flutter_web_plugins/lib" />
+->>>>>>> 52486ad (upload picture for mentor)
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"085e1974-d522-4789-877b-96b27334f719\" name=\"Changes\" comment=\"backend\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml\" afterDir=\"false\" />\r\n<<<<<<< HEAD\r\n=======\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml\" afterDir=\"false\" />\r\n>>>>>>> 52486ad (upload picture for mentor)\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/admin_dashboard.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/admin_dashboard.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/assign_interns.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/assign_interns.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/manage_interns.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/manage_interns.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/admin/upload_schedule.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/admin/upload_schedule.dart\" afterDir=\"false\" />\r\n<<<<<<< HEAD\r\n      <change beforePath=\"$PROJECT_DIR$/lib/intern/documents_page.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/intern/documents_page.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/intern/intern_dashboard.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/intern/intern_dashboard.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/services/api_service.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/services/api_service.dart\" afterDir=\"false\" />\r\n=======\r\n      <change beforePath=\"$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/lib/services/api_service.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/lib/services/api_service.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/linux/flutter/generated_plugins.cmake\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/linux/flutter/generated_plugins.cmake\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pubspec.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pubspec.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pubspec.yaml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pubspec.yaml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/windows/flutter/generated_plugins.cmake\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/windows/flutter/generated_plugins.cmake\" afterDir=\"false\" />\r\n>>>>>>> 52486ad (upload picture for mentor)\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Dart File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;d0uaaa&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Alai2121/Pro-Link-&quot;,\r\n    &quot;accountId&quot;: &quot;3f9570b0-fbbd-4dc8-bb95-bea06f2efa57&quot;\r\n  }\r\n}</component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3Ct5rFJwEuwoBzm2tT0cFD8anr7\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Flutter.main.dart.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\r\n<<<<<<< HEAD\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"io.flutter.reload.alreadyRun\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"D:/Pro-Link-/assets\",\r\n=======\r\n    \"dart.analysis.tool.window.visible\": \"false\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"io.flutter.reload.alreadyRun\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/dell/IdeaProjects/Pro-Link-/lib/models\",\r\n>>>>>>> 52486ad (upload picture for mentor)\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"dart.settings\",\r\n    \"show.migrate.to.gradle.popup\": \"false\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\dell\\IdeaProjects\\Pro-Link-\\lib\\models\" />\r\n      <recent name=\"D:\\Pro-Link-\\assets\" />\r\n      <recent name=\"C:\\Users\\dell\\IdeaProjects\\Pro-Link-\\lib\\sevices\" />\r\n      <recent name=\"C:\\Users\\dell\\IdeaProjects\\Pro-Link-\\assets\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main.dart\" type=\"FlutterRunConfigurationType\" factoryName=\"Flutter\">\r\n      <option name=\"filePath\" value=\"$PROJECT_DIR$/lib/main.dart\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"085e1974-d522-4789-877b-96b27334f719\" name=\"Changes\" comment=\"\" />\r\n      <created>1777192224436</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1777192224436</updated>\r\n      <workItem from=\"1777192229970\" duration=\"1000\" />\r\n      <workItem from=\"1777192233332\" duration=\"3534000\" />\r\n      <workItem from=\"1777197224703\" duration=\"619000\" />\r\n      <workItem from=\"1777291622036\" duration=\"5570000\" />\r\n      <workItem from=\"1777312220646\" duration=\"579000\" />\r\n      <workItem from=\"1777313030483\" duration=\"4774000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"backend\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1777197718922</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1777197718922</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"backend\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"backend\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"Dart\">\r\n          <url>file://$PROJECT_DIR$/lib/mentor/mentor_interns.dart</url>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"Dart\">\r\n          <url>file://$PROJECT_DIR$/lib/main.dart</url>\r\n          <line>15</line>\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 64489cce6b917717cbc74b3944544170c5e839c3)
++++ b/.idea/workspace.xml	(date 1777673788203)
+@@ -7,30 +7,18 @@
+     <list default="true" id="085e1974-d522-4789-877b-96b27334f719" name="Changes" comment="backend">
+       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+-<<<<<<< HEAD
+-=======
+       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+->>>>>>> 52486ad (upload picture for mentor)
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/admin_dashboard.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/lib/admin/assign_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/assign_interns.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/lib/admin/manage_interns.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/manage_interns.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/admin/upload_schedule.dart" afterDir="false" />
+-<<<<<<< HEAD
+-      <change beforePath="$PROJECT_DIR$/lib/intern/documents_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/documents_page.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/intern/intern_dashboard.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
+-=======
+-      <change beforePath="$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/mentor/mentor_dashboard.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/lib/services/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api_service.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+->>>>>>> 52486ad (upload picture for mentor)
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -72,40 +60,31 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Flutter.main.dart.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.MCP Project settings loaded": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-<<<<<<< HEAD
+-    "git-widget-placeholder": "main",
+-    "io.flutter.reload.alreadyRun": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "D:/Pro-Link-/assets",
+-=======
+-    "dart.analysis.tool.window.visible": "false",
+-    "git-widget-placeholder": "main",
+-    "io.flutter.reload.alreadyRun": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/dell/IdeaProjects/Pro-Link-/lib/models",
+->>>>>>> 52486ad (upload picture for mentor)
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "dart.settings",
+-    "show.migrate.to.gradle.popup": "false",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/Pro-Link-/assets&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
++    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+-      <recent name="C:\Users\dell\IdeaProjects\Pro-Link-\lib\models" />
+       <recent name="D:\Pro-Link-\assets" />
+       <recent name="C:\Users\dell\IdeaProjects\Pro-Link-\lib\sevices" />
+       <recent name="C:\Users\dell\IdeaProjects\Pro-Link-\assets" />
+Index: lib/admin/upload_schedule.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:convert';\r\n\r\nimport 'package:flutter/material.dart';\r\nimport 'package:google_fonts/google_fonts.dart';\r\nimport 'package:http/http.dart' as http;\r\n\r\nimport '../models/admin.dart';\r\n\r\nimport 'admin_dashboard.dart';\r\nimport 'manage_interns.dart';\r\nimport 'assign_interns.dart';\r\n\r\nimport '../../auth/login_page.dart';\r\n\r\nclass UploadSchedule extends StatefulWidget {\r\n  final Admin admin;\r\n\r\n  const UploadSchedule({super.key, required this.admin});\r\n\r\n  @override\r\n  State<UploadSchedule> createState() => _UploadScheduleState();\r\n}\r\n\r\nclass _UploadScheduleState extends State<UploadSchedule> {\r\n\r\n  // ================= API =================\r\n\r\n  static const String baseUrl =\r\n      \"http://192.168.100.4/prolink/admin\";\r\n\r\n  // ================= CONTROLLERS =================\r\n\r\n  String? selectedInternId;\r\n  String? selectedDay;\r\n  String selectedType = \"Work\";\r\n\r\n  final TextEditingController timeController =\r\n  TextEditingController();\r\n\r\n  final TextEditingController policyController =\r\n  TextEditingController();\r\n\r\n  // ================= DATA =================\r\n\r\n  final List<String> days = [\r\n    \"Monday\",\r\n    \"Tuesday\",\r\n    \"Wednesday\",\r\n    \"Thursday\",\r\n    \"Friday\"\r\n  ];\r\n\r\n  final List<String> types = [\r\n    \"Work\",\r\n    \"Training\",\r\n    \"Meeting\",\r\n    \"Review\"\r\n  ];\r\n\r\n  List interns = [];\r\n  List schedules = [];\r\n  List policies = [];\r\n\r\n  bool loading = true;\r\n\r\n  // ================= INIT =================\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    loadData();\r\n  }\r\n\r\n  // ================= LOAD DATA =================\r\n\r\n  Future<void> loadData() async {\r\n\r\n    try {\r\n\r\n      final internsRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_all_interns.php\"),\r\n      );\r\n\r\n      final schedulesRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_schedules.php\"),\r\n      );\r\n\r\n      final policiesRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_policies.php\"),\r\n      );\r\n\r\n      setState(() {\r\n\r\n        interns = jsonDecode(internsRes.body);\r\n\r\n        schedules = jsonDecode(schedulesRes.body);\r\n\r\n        policies = jsonDecode(policiesRes.body);\r\n\r\n        loading = false;\r\n      });\r\n\r\n    } catch (e) {\r\n\r\n      setState(() {\r\n        loading = false;\r\n      });\r\n\r\n      ScaffoldMessenger.of(context).showSnackBar(\r\n        SnackBar(content: Text(\"Error : $e\")),\r\n      );\r\n    }\r\n  }\r\n\r\n  // ================= APPROVED INTERNS =================\r\n\r\n  List get approvedInterns {\r\n\r\n    return interns.where((i) {\r\n\r\n      return i[\"status\"]\r\n          .toString()\r\n          .toLowerCase()\r\n          .trim() == \"approved\";\r\n\r\n    }).toList();\r\n  }\r\n\r\n  // ================= ADD SCHEDULE =================\r\n\r\n  Future<void> addSchedule() async {\r\n\r\n    if (selectedInternId == null ||\r\n        selectedDay == null ||\r\n        timeController.text.trim().isEmpty) {\r\n\r\n      ScaffoldMessenger.of(context).showSnackBar(\r\n        const SnackBar(\r\n          content: Text(\"Fill all fields ❌\"),\r\n        ),\r\n      );\r\n\r\n      return;\r\n    }\r\n\r\n    try {\r\n\r\n      final response = await http.post(\r\n\r\n        Uri.parse(\"$baseUrl/add_schedule.php\"),\r\n\r\n        headers: {\r\n          \"Content-Type\": \"application/json\"\r\n        },\r\n\r\n        body: jsonEncode({\r\n\r\n          \"intern_id\": selectedInternId.toString(),\r\n          \"day\": selectedDay.toString(),\r\n          \"time\": timeController.text.trim(),\r\n          \"type\": selectedType\r\n\r\n        }),\r\n      );\r\n\r\n      final data = jsonDecode(response.body);\r\n\r\n      if (data[\"success\"] == true) {\r\n\r\n        ScaffoldMessenger.of(context).showSnackBar(\r\n          const SnackBar(\r\n            content: Text(\"Schedule Added ✅\"),\r\n          ),\r\n        );\r\n\r\n        timeController.clear();\r\n\r\n        selectedInternId = null;\r\n        selectedDay = null;\r\n\r\n        await loadData();\r\n\r\n        setState(() {});\r\n\r\n      } else {\r\n\r\n        ScaffoldMessenger.of(context).showSnackBar(\r\n          SnackBar(\r\n            content: Text(\r\n              \"Insert Failed ❌ ${response.body}\",\r\n            ),\r\n          ),\r\n        );\r\n      }\r\n\r\n    } catch (e) {\r\n\r\n      ScaffoldMessenger.of(context).showSnackBar(\r\n        SnackBar(\r\n          content: Text(\"Error : $e\"),\r\n        ),\r\n      );\r\n    }\r\n  }\r\n\r\n  // ================= ADD / UPDATE POLICY =================\r\n\r\n  Future<void> savePolicy() async {\r\n\r\n    if (policyController.text.trim().isEmpty) {\r\n\r\n      ScaffoldMessenger.of(context).showSnackBar(\r\n        const SnackBar(\r\n          content: Text(\"Enter policy ❌\"),\r\n        ),\r\n      );\r\n\r\n      return;\r\n    }\r\n\r\n    try {\r\n\r\n      String title = \"Company Policy\";\r\n\r\n      // اذا يوجد policy مسبقاً نستعمل نفس id\r\n      String? id;\r\n\r\n      if (policies.isNotEmpty) {\r\n\r\n        id = policies[0][\"id\"];\r\n      }\r\n\r\n      final response = await http.post(\r\n\r\n        Uri.parse(\"$baseUrl/upload_policy.php\"),\r\n\r\n        headers: {\r\n          \"Content-Type\": \"application/json\"\r\n        },\r\n\r\n        body: jsonEncode({\r\n\r\n          \"id\": id,\r\n          \"title\": title,\r\n          \"description\": policyController.text.trim()\r\n\r\n        }),\r\n      );\r\n\r\n      final data = jsonDecode(response.body);\r\n\r\n      if (data[\"success\"] == true) {\r\n\r\n        Navigator.pop(context);\r\n\r\n        await loadData();\r\n\r\n        ScaffoldMessenger.of(context).showSnackBar(\r\n          const SnackBar(\r\n            content: Text(\"Policy Saved ✅\"),\r\n          ),\r\n        );\r\n\r\n      } else {\r\n\r\n        ScaffoldMessenger.of(context).showSnackBar(\r\n          const SnackBar(\r\n            content: Text(\"Failed ❌\"),\r\n          ),\r\n        );\r\n      }\r\n\r\n    } catch (e) {\r\n\r\n      ScaffoldMessenger.of(context).showSnackBar(\r\n        SnackBar(\r\n          content: Text(\"Error : $e\"),\r\n        ),\r\n      );\r\n    }\r\n  }\r\n\r\n  // ================= POLICY DIALOG =================\r\n\r\n  void showPolicyDialog() {\r\n\r\n    if (policies.isNotEmpty) {\r\n\r\n      policyController.text =\r\n          policies[0][\"description\"] ?? \"\";\r\n    }\r\n\r\n    showDialog(\r\n\r\n      context: context,\r\n\r\n      builder: (_) {\r\n\r\n        return AlertDialog(\r\n\r\n          title: Text(\r\n\r\n            \"Company Policy\",\r\n\r\n            style: GoogleFonts.poppins(\r\n              fontWeight: FontWeight.bold,\r\n            ),\r\n          ),\r\n\r\n          content: TextField(\r\n\r\n            controller: policyController,\r\n\r\n            maxLines: 8,\r\n\r\n            decoration: const InputDecoration(\r\n\r\n              hintText: \"Enter policy...\",\r\n\r\n              border: OutlineInputBorder(),\r\n            ),\r\n          ),\r\n\r\n          actions: [\r\n\r\n            TextButton(\r\n\r\n              onPressed: () {\r\n                Navigator.pop(context);\r\n              },\r\n\r\n              child: const Text(\"Cancel\"),\r\n            ),\r\n\r\n            ElevatedButton(\r\n\r\n              style: ElevatedButton.styleFrom(\r\n                backgroundColor: const Color(0xFF2D3A8C),\r\n              ),\r\n\r\n              onPressed: savePolicy,\r\n\r\n              child: const Text(\r\n                \"Save\",\r\n                style: TextStyle(color: Colors.white),\r\n              ),\r\n            ),\r\n          ],\r\n        );\r\n      },\r\n    );\r\n  }\r\n\r\n  // ================= DRAWER =================\r\n\r\n  Widget buildDrawer() {\r\n\r\n    return Drawer(\r\n\r\n      backgroundColor: const Color(0xFF2D3A8C),\r\n\r\n      child: Column(\r\n\r\n        children: [\r\n\r\n          const SizedBox(height: 50),\r\n\r\n          const CircleAvatar(\r\n            radius: 40,\r\n            backgroundImage:\r\n            AssetImage(\"assets/admin.png\"),\r\n          ),\r\n\r\n          const SizedBox(height: 10),\r\n\r\n          Text(\r\n\r\n            widget.admin.name,\r\n\r\n            style: GoogleFonts.poppins(\r\n              color: Colors.white,\r\n            ),\r\n          ),\r\n\r\n          const Divider(),\r\n\r\n          ListTile(\r\n\r\n            leading: const Icon(\r\n              Icons.dashboard,\r\n              color: Colors.white,\r\n            ),\r\n\r\n            title: Text(\r\n\r\n              \"Dashboard\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            onTap: () => Navigator.pushReplacement(\r\n\r\n              context,\r\n\r\n              MaterialPageRoute(\r\n\r\n                builder: (_) =>\r\n                    AdminDashboard(admin: widget.admin),\r\n              ),\r\n            ),\r\n          ),\r\n\r\n          ListTile(\r\n\r\n            leading: const Icon(\r\n              Icons.people,\r\n              color: Colors.white,\r\n            ),\r\n\r\n            title: Text(\r\n\r\n              \"Manage interns/mentor/departemment\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            onTap: () => Navigator.push(\r\n\r\n              context,\r\n\r\n              MaterialPageRoute(\r\n\r\n                builder: (_) =>\r\n                    ManageInterns(admin: widget.admin),\r\n              ),\r\n            ),\r\n          ),\r\n\r\n          ListTile(\r\n\r\n            leading: const Icon(\r\n              Icons.assignment_ind,\r\n              color: Colors.white,\r\n            ),\r\n\r\n            title: Text(\r\n\r\n              \"Assign Interns\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            onTap: () => Navigator.push(\r\n\r\n              context,\r\n\r\n              MaterialPageRoute(\r\n\r\n                builder: (_) =>\r\n                    AssignIntern(admin: widget.admin),\r\n              ),\r\n            ),\r\n          ),\r\n\r\n          ListTile(\r\n\r\n            leading: const Icon(\r\n              Icons.schedule,\r\n              color: Colors.white,\r\n            ),\r\n\r\n            title: Text(\r\n\r\n              \"Upload Schedule\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            onTap: () {\r\n              Navigator.pop(context);\r\n            },\r\n          ),\r\n\r\n          ListTile(\r\n\r\n            leading: const Icon(\r\n              Icons.logout,\r\n              color: Colors.white,\r\n            ),\r\n\r\n            title: Text(\r\n\r\n              \"Logout\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            onTap: () => Navigator.pushReplacement(\r\n\r\n              context,\r\n\r\n              MaterialPageRoute(\r\n                builder: (_) => LoginPage(),\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n\r\n  // ================= TABLE =================\r\n\r\n  Widget buildTable() {\r\n\r\n    return Container(\r\n\r\n      decoration: BoxDecoration(\r\n\r\n        border: Border.all(\r\n          color: const Color(0xFF2D3A8C)\r\n              .withOpacity(0.3),\r\n        ),\r\n\r\n        borderRadius: BorderRadius.circular(12),\r\n      ),\r\n\r\n      child: ClipRRect(\r\n\r\n        borderRadius: BorderRadius.circular(12),\r\n\r\n        child: SingleChildScrollView(\r\n\r\n          scrollDirection: Axis.horizontal,\r\n\r\n          child: DataTable(\r\n\r\n            headingRowColor:\r\n            MaterialStateProperty.all(\r\n              const Color(0xFF2D3A8C),\r\n            ),\r\n\r\n            columns: [\r\n\r\n              DataColumn(\r\n                label: Text(\r\n                  \"Intern\",\r\n                  style: GoogleFonts.poppins(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n\r\n              DataColumn(\r\n                label: Text(\r\n                  \"Day\",\r\n                  style: GoogleFonts.poppins(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n\r\n              DataColumn(\r\n                label: Text(\r\n                  \"Time\",\r\n                  style: GoogleFonts.poppins(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n\r\n              DataColumn(\r\n                label: Text(\r\n                  \"Type\",\r\n                  style: GoogleFonts.poppins(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n            ],\r\n\r\n            rows: schedules.map<DataRow>((s) {\r\n\r\n              return DataRow(\r\n\r\n                cells: [\r\n\r\n                  DataCell(\r\n                    Text(\r\n                      s[\"internName\"].toString(),\r\n                    ),\r\n                  ),\r\n\r\n                  DataCell(\r\n                    Text(\r\n                      s[\"day\"].toString(),\r\n                    ),\r\n                  ),\r\n\r\n                  DataCell(\r\n                    Text(\r\n                      s[\"time\"].toString(),\r\n                    ),\r\n                  ),\r\n\r\n                  DataCell(\r\n                    Text(\r\n                      s[\"type\"].toString(),\r\n                    ),\r\n                  ),\r\n                ],\r\n              );\r\n\r\n            }).toList(),\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  // ================= POLICY VIEW =================\r\n\r\n  Widget buildPolicies() {\r\n\r\n    if (policies.isEmpty) {\r\n\r\n      return const Text(\r\n        \"No policy added\",\r\n      );\r\n    }\r\n\r\n    final p = policies[0];\r\n\r\n    return Card(\r\n\r\n      child: ListTile(\r\n\r\n        leading: const Icon(\r\n          Icons.policy,\r\n          color: Color(0xFF2D3A8C),\r\n        ),\r\n\r\n        title: Text(\r\n          p[\"title\"].toString(),\r\n        ),\r\n\r\n        subtitle: Padding(\r\n\r\n          padding: const EdgeInsets.only(top: 8),\r\n\r\n          child: Text(\r\n            p[\"description\"].toString(),\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  // ================= UI =================\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n\r\n    return Scaffold(\r\n\r\n      appBar: AppBar(\r\n\r\n        backgroundColor: const Color(0xFF2D3A8C),\r\n\r\n        foregroundColor: Colors.white,\r\n\r\n        title: Text(\r\n\r\n          \"Upload Schedule\",\r\n\r\n          style: GoogleFonts.poppins(\r\n\r\n            fontSize: 18,\r\n\r\n            fontWeight: FontWeight.bold,\r\n          ),\r\n        ),\r\n      ),\r\n\r\n      drawer: buildDrawer(),\r\n\r\n      body: loading\r\n\r\n          ? const Center(\r\n        child: CircularProgressIndicator(),\r\n      )\r\n\r\n          : SingleChildScrollView(\r\n\r\n        padding: const EdgeInsets.all(12),\r\n\r\n        child: Column(\r\n\r\n          children: [\r\n\r\n            DropdownButtonFormField<String>(\r\n\r\n              value: selectedInternId,\r\n\r\n              hint: const Text(\"Select Intern\"),\r\n\r\n              decoration: const InputDecoration(\r\n                border: OutlineInputBorder(),\r\n              ),\r\n\r\n              items: approvedInterns\r\n                  .map<DropdownMenuItem<String>>((i) {\r\n\r\n                return DropdownMenuItem(\r\n\r\n                  value: i[\"id\"].toString(),\r\n\r\n                  child: Text(\r\n                    i[\"name\"].toString(),\r\n                  ),\r\n                );\r\n\r\n              }).toList(),\r\n\r\n              onChanged: (v) {\r\n\r\n                setState(() {\r\n                  selectedInternId = v;\r\n                });\r\n              },\r\n            ),\r\n\r\n            const SizedBox(height: 10),\r\n\r\n            DropdownButtonFormField<String>(\r\n\r\n              value: selectedDay,\r\n\r\n              decoration: const InputDecoration(\r\n                border: OutlineInputBorder(),\r\n              ),\r\n\r\n              hint: const Text(\"Select Day\"),\r\n\r\n              items: days.map((d) {\r\n\r\n                return DropdownMenuItem(\r\n                  value: d,\r\n                  child: Text(d),\r\n                );\r\n\r\n              }).toList(),\r\n\r\n              onChanged: (v) {\r\n\r\n                setState(() {\r\n                  selectedDay = v;\r\n                });\r\n              },\r\n            ),\r\n\r\n            const SizedBox(height: 10),\r\n\r\n            DropdownButtonFormField<String>(\r\n\r\n              value: selectedType,\r\n\r\n              decoration: const InputDecoration(\r\n                border: OutlineInputBorder(),\r\n              ),\r\n\r\n              items: types.map((t) {\r\n\r\n                return DropdownMenuItem(\r\n                  value: t,\r\n                  child: Text(t),\r\n                );\r\n\r\n              }).toList(),\r\n\r\n              onChanged: (v) {\r\n\r\n                setState(() {\r\n                  selectedType = v!;\r\n                });\r\n              },\r\n            ),\r\n\r\n            const SizedBox(height: 10),\r\n\r\n            TextField(\r\n\r\n              controller: timeController,\r\n\r\n              decoration: const InputDecoration(\r\n\r\n                labelText: \"Time\",\r\n\r\n                border: OutlineInputBorder(),\r\n              ),\r\n            ),\r\n\r\n            const SizedBox(height: 15),\r\n\r\n            SizedBox(\r\n\r\n              width: double.infinity,\r\n\r\n              child: ElevatedButton(\r\n\r\n                style: ElevatedButton.styleFrom(\r\n\r\n                  backgroundColor:\r\n                  const Color(0xFF2D3A8C),\r\n\r\n                  padding:\r\n                  const EdgeInsets.symmetric(\r\n                    vertical: 14,\r\n                  ),\r\n                ),\r\n\r\n                onPressed: addSchedule,\r\n\r\n                child: const Text(\r\n\r\n                  \"Add Schedule\",\r\n\r\n                  style: TextStyle(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n            ),\r\n\r\n            const SizedBox(height: 20),\r\n\r\n            buildTable(),\r\n\r\n            const SizedBox(height: 30),\r\n\r\n            SizedBox(\r\n\r\n              width: double.infinity,\r\n\r\n              child: ElevatedButton(\r\n\r\n                style: ElevatedButton.styleFrom(\r\n\r\n                  backgroundColor:\r\n                  const Color(0xFF2D3A8C),\r\n\r\n                  padding:\r\n                  const EdgeInsets.symmetric(\r\n                    vertical: 14,\r\n                  ),\r\n                ),\r\n\r\n                onPressed: showPolicyDialog,\r\n\r\n                child: const Text(\r\n\r\n                  \"Add / Edit Policy\",\r\n\r\n                  style: TextStyle(\r\n                    color: Colors.white,\r\n                  ),\r\n                ),\r\n              ),\r\n            ),\r\n\r\n            const SizedBox(height: 20),\r\n\r\n            Text(\r\n\r\n              \"Policy\",\r\n\r\n              style: GoogleFonts.poppins(\r\n                fontWeight: FontWeight.bold,\r\n              ),\r\n            ),\r\n\r\n            const SizedBox(height: 10),\r\n\r\n            buildPolicies(),\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/admin/upload_schedule.dart b/lib/admin/upload_schedule.dart
+--- a/lib/admin/upload_schedule.dart	(revision 64489cce6b917717cbc74b3944544170c5e839c3)
++++ b/lib/admin/upload_schedule.dart	(date 1777669788395)
+@@ -26,7 +26,7 @@
+   // ================= API =================
+ 
+   static const String baseUrl =
+-      "http://192.168.100.4/prolink/admin";
++      "http://192.168.1.19/prolink/admin";
+ 
+   // ================= CONTROLLERS =================
+ 
+Index: lib/admin/assign_interns.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nimport 'dart:convert';\r\n\r\nimport 'package:flutter/material.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'package:google_fonts/google_fonts.dart';\r\n\r\nimport '../models/admin.dart';\r\n\r\nimport 'admin_dashboard.dart';\r\nimport 'manage_interns.dart';\r\nimport 'upload_schedule.dart';\r\n\r\nimport '../../auth/login_page.dart';\r\n\r\nclass AssignIntern extends StatefulWidget {\r\n\r\n  final Admin admin;\r\n\r\n  const AssignIntern({\r\n    super.key,\r\n    required this.admin,\r\n  });\r\n\r\n  @override\r\n  State<AssignIntern> createState() => _AssignInternState();\r\n}\r\n\r\nclass _AssignInternState extends State<AssignIntern> {\r\n\r\n  // ================= COLORS =================\r\n  final Color mainColor = const Color(0xFF2D3A8C);\r\n\r\n  // ================= BASE URL =================\r\n  final String baseUrl =\r\n      \"http://192.168.100.4/prolink/admin\";\r\n\r\n  // ================= DATA =================\r\n  List interns = [];\r\n\r\n  List mentors = [];\r\n\r\n  List departments = [];\r\n\r\n  List assignments = [];\r\n\r\n  bool isLoading = true;\r\n\r\n  // ================= SELECTED =================\r\n  Map<String, dynamic>? selectedIntern;\r\n\r\n  Map<String, dynamic>? selectedMentor;\r\n\r\n  Map<String, dynamic>? selectedDept;\r\n\r\n  // ================= INIT =================\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n\r\n    loadData();\r\n  }\r\n\r\n  // ================= LOAD DATA =================\r\n  Future<void> loadData() async {\r\n\r\n    try {\r\n\r\n      final internsRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_all_interns.php\"),\r\n      );\r\n\r\n      final mentorsRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_all_mentors.php\"),\r\n      );\r\n\r\n      final departmentsRes = await http.get(\r\n        Uri.parse(\"$baseUrl/get_all_departments.php\"),\r\n      );\r\n\r\n      if (internsRes.statusCode == 200 &&\r\n          mentorsRes.statusCode == 200 &&\r\n          departmentsRes.statusCode == 200) {\r\n\r\n        setState(() {\r\n\r\n          interns = jsonDecode(internsRes.body);\r\n\r\n          mentors = jsonDecode(mentorsRes.body);\r\n\r\n          departments = jsonDecode(departmentsRes.body);\r\n\r\n          isLoading = false;\r\n        });\r\n      }\r\n\r\n    } catch (e) {\r\n\r\n      print(e);\r\n\r\n      setState(() {\r\n        isLoading = false;\r\n      });\r\n    }\r\n  }\r\n\r\n  // ================= ASSIGN INTERN =================\r\n  Future<void> assignIntern() async {\r\n\r\n    if (selectedIntern == null ||\r\n        selectedMentor == null ||\r\n        selectedDept == null) {\r\n\r\n      return;\r\n    }\r\n\r\n    try {\r\n\r\n      final res = await http.post(\r\n\r\n        Uri.parse(\"$baseUrl/assign_intern.php\"),\r\n\r\n        headers: {\r\n          \"Content-Type\": \"application/json\",\r\n        },\r\n\r\n        body: jsonEncode({\r\n\r\n          \"intern_id\": selectedIntern![\"id\"],\r\n\r\n          \"mentor_id\": selectedMentor![\"id\"],\r\n\r\n          \"department_id\": selectedDept![\"id\"],\r\n        }),\r\n      );\r\n\r\n      final data = jsonDecode(res.body);\r\n\r\n      if (data[\"success\"] == true) {\r\n\r\n        setState(() {\r\n\r\n          assignments.add({\r\n\r\n            \"internName\": selectedIntern![\"name\"],\r\n\r\n            \"mentorName\": selectedMentor![\"name\"],\r\n\r\n            \"deptName\": selectedDept![\"name\"],\r\n          });\r\n\r\n          selectedIntern = null;\r\n\r\n          selectedMentor = null;\r\n\r\n          selectedDept = null;\r\n        });\r\n\r\n        await loadData();\r\n\r\n        ScaffoldMessenger.of(context).showSnackBar(\r\n\r\n          SnackBar(\r\n\r\n            backgroundColor: Colors.green,\r\n\r\n            content: Text(\r\n\r\n              \"Intern Assigned Successfully\",\r\n\r\n              style: GoogleFonts.poppins(),\r\n            ),\r\n          ),\r\n        );\r\n      }\r\n\r\n    } catch (e) {\r\n\r\n      print(e);\r\n    }\r\n  }\r\n\r\n  // ================= TABLE =================\r\n  Widget buildTable(\r\n\r\n      String title,\r\n      List<String> columns,\r\n      List<List<String>> rows,\r\n      ) {\r\n\r\n    return Column(\r\n\r\n      crossAxisAlignment: CrossAxisAlignment.start,\r\n\r\n      children: [\r\n\r\n        const SizedBox(height: 15),\r\n\r\n        Text(\r\n\r\n          title,\r\n\r\n          style: GoogleFonts.poppins(\r\n            fontSize: 18,\r\n            fontWeight: FontWeight.bold,\r\n          ),\r\n        ),\r\n\r\n        const SizedBox(height: 10),\r\n\r\n        Container(\r\n\r\n          decoration: BoxDecoration(\r\n\r\n            border: Border.all(\r\n              color: Colors.grey.shade300,\r\n            ),\r\n\r\n            borderRadius: BorderRadius.circular(12),\r\n          ),\r\n\r\n          child: ClipRRect(\r\n\r\n            borderRadius: BorderRadius.circular(12),\r\n\r\n            child: SingleChildScrollView(\r\n\r\n              scrollDirection: Axis.horizontal,\r\n\r\n              child: DataTable(\r\n\r\n                columns: columns.map((c) {\r\n\r\n                  return DataColumn(\r\n                    label: Text(c),\r\n                  );\r\n\r\n                }).toList(),\r\n\r\n                rows: rows.map((row) {\r\n\r\n                  return DataRow(\r\n\r\n                    cells: row.map((cell) {\r\n\r\n                      return DataCell(\r\n                        Text(cell),\r\n                      );\r\n\r\n                    }).toList(),\r\n                  );\r\n\r\n                }).toList(),\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n      ],\r\n    );\r\n  }\r\n\r\n  // ================= UI =================\r\n  @override\r\n  Widget build(BuildContext context) {\r\n\r\n    if (isLoading) {\r\n\r\n      return const Scaffold(\r\n\r\n        body: Center(\r\n          child: CircularProgressIndicator(),\r\n        ),\r\n      );\r\n    }\r\n\r\n    final approvedInterns = interns\r\n        .where((i) => i[\"status\"] == \"Approved\")\r\n        .toList();\r\n\r\n    return Scaffold(\r\n\r\n      appBar: AppBar(\r\n\r\n        backgroundColor: mainColor,\r\n\r\n        foregroundColor: Colors.white,\r\n\r\n        title: Text(\r\n\r\n          \"Assign Interns\",\r\n\r\n          style: GoogleFonts.poppins(\r\n            fontSize: 18,\r\n            fontWeight: FontWeight.bold,\r\n          ),\r\n        ),\r\n      ),\r\n\r\n      // ================= DRAWER =================\r\n      drawer: Drawer(\r\n\r\n        backgroundColor: mainColor,\r\n\r\n        child: Column(\r\n          children: [\r\n\r\n            const SizedBox(height: 50),\r\n\r\n            CircleAvatar(\r\n              radius: 40,\r\n              backgroundImage:\r\n              AssetImage(widget.admin.image),\r\n            ),\r\n\r\n            const SizedBox(height: 10),\r\n\r\n            Text(\r\n\r\n              widget.admin.name,\r\n\r\n              style: GoogleFonts.poppins(\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n\r\n            const Divider(color: Colors.white),\r\n\r\n            ListTile(\r\n\r\n              leading: const Icon(\r\n                Icons.dashboard,\r\n                color: Colors.white,\r\n              ),\r\n\r\n              title: Text(\r\n\r\n                \"Dashboard\",\r\n\r\n                style: GoogleFonts.poppins(\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n\r\n              onTap: () {\r\n\r\n                Navigator.push(\r\n\r\n                  context,\r\n\r\n                  MaterialPageRoute(\r\n\r\n                    builder: (_) => AdminDashboard(\r\n                      admin: widget.admin,\r\n                    ),\r\n                  ),\r\n                );\r\n              },\r\n            ),\r\n\r\n            ListTile(\r\n\r\n              leading: const Icon(\r\n                Icons.people,\r\n                color: Colors.white,\r\n              ),\r\n\r\n              title: Text(\r\n\r\n                \"Manage interns/mentor/departemment\",\r\n\r\n                style: GoogleFonts.poppins(\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n\r\n              onTap: () {\r\n\r\n                Navigator.push(\r\n\r\n                  context,\r\n\r\n                  MaterialPageRoute(\r\n\r\n                    builder: (_) => ManageInterns(\r\n                      admin: widget.admin,\r\n                    ),\r\n                  ),\r\n                );\r\n              },\r\n            ),\r\n\r\n            ListTile(\r\n\r\n              leading: const Icon(\r\n                Icons.assignment_ind,\r\n                color: Colors.white,\r\n              ),\r\n\r\n              title: Text(\r\n\r\n                \"Assign Interns\",\r\n\r\n                style: GoogleFonts.poppins(\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n\r\n              onTap: () {\r\n                Navigator.pop(context);\r\n              },\r\n            ),\r\n\r\n            ListTile(\r\n\r\n              leading: const Icon(\r\n                Icons.schedule,\r\n                color: Colors.white,\r\n              ),\r\n\r\n              title: Text(\r\n\r\n                \"Upload Schedule\",\r\n\r\n                style: GoogleFonts.poppins(\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n\r\n              onTap: () {\r\n\r\n                Navigator.push(\r\n\r\n                  context,\r\n\r\n                  MaterialPageRoute(\r\n\r\n                    builder: (_) => UploadSchedule(\r\n                      admin: widget.admin,\r\n                    ),\r\n                  ),\r\n                );\r\n              },\r\n            ),\r\n\r\n            ListTile(\r\n\r\n              leading: const Icon(\r\n                Icons.logout,\r\n                color: Colors.white,\r\n              ),\r\n\r\n              title: Text(\r\n\r\n                \"Logout\",\r\n\r\n                style: GoogleFonts.poppins(\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n\r\n              onTap: () {\r\n\r\n                Navigator.push(\r\n\r\n                  context,\r\n\r\n                  MaterialPageRoute(\r\n                    builder: (_) => LoginPage(),\r\n                  ),\r\n                );\r\n              },\r\n            ),\r\n\r\n            const Spacer(),\r\n\r\n            Padding(\r\n\r\n              padding: const EdgeInsets.all(12),\r\n\r\n              child: Text(\r\n\r\n                \"Pro Link\",\r\n\r\n                style: GoogleFonts.poppins(\r\n\r\n                  fontSize: 16,\r\n\r\n                  fontWeight: FontWeight.bold,\r\n\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n            ),\r\n          ],\r\n        ),\r\n      ),\r\n\r\n      // ================= BODY =================\r\n      body: SingleChildScrollView(\r\n\r\n        padding: const EdgeInsets.all(12),\r\n\r\n        child: Column(\r\n          children: [\r\n\r\n            // ================= ASSIGN CARD =================\r\n            Card(\r\n\r\n              child: Padding(\r\n\r\n                padding: const EdgeInsets.all(12),\r\n\r\n                child: Column(\r\n                  children: [\r\n\r\n                    // ================= INTERN =================\r\n                    DropdownButton<Map<String, dynamic>>(\r\n\r\n                      value: selectedIntern,\r\n\r\n                      hint: const Text(\"Select Intern\"),\r\n\r\n                      isExpanded: true,\r\n\r\n                      items: approvedInterns\r\n                          .map<DropdownMenuItem<Map<String, dynamic>>>((i) {\r\n\r\n                        return DropdownMenuItem(\r\n\r\n                          value: i,\r\n\r\n                          child: Text(i[\"name\"]),\r\n                        );\r\n\r\n                      }).toList(),\r\n\r\n                      onChanged: (val) {\r\n\r\n                        setState(() {\r\n                          selectedIntern = val;\r\n                        });\r\n                      },\r\n                    ),\r\n\r\n                    // ================= MENTOR =================\r\n                    DropdownButton<Map<String, dynamic>>(\r\n\r\n                      value: selectedMentor,\r\n\r\n                      hint: const Text(\"Select Mentor\"),\r\n\r\n                      isExpanded: true,\r\n\r\n                      items: mentors\r\n                          .map<DropdownMenuItem<Map<String, dynamic>>>((m) {\r\n\r\n                        return DropdownMenuItem(\r\n\r\n                          value: m,\r\n\r\n                          child: Text(m[\"name\"]),\r\n                        );\r\n\r\n                      }).toList(),\r\n\r\n                      onChanged: (val) {\r\n\r\n                        setState(() {\r\n                          selectedMentor = val;\r\n                        });\r\n                      },\r\n                    ),\r\n\r\n                    // ================= DEPARTMENT =================\r\n                    DropdownButton<Map<String, dynamic>>(\r\n\r\n                      value: selectedDept,\r\n\r\n                      hint: const Text(\"Select Department\"),\r\n\r\n                      isExpanded: true,\r\n\r\n                      items: departments\r\n                          .map<DropdownMenuItem<Map<String, dynamic>>>((d) {\r\n\r\n                        return DropdownMenuItem(\r\n\r\n                          value: d,\r\n\r\n                          child: Text(d[\"name\"]),\r\n                        );\r\n\r\n                      }).toList(),\r\n\r\n                      onChanged: (val) {\r\n\r\n                        setState(() {\r\n                          selectedDept = val;\r\n                        });\r\n                      },\r\n                    ),\r\n\r\n                    const SizedBox(height: 10),\r\n\r\n                    ElevatedButton(\r\n\r\n                      onPressed: assignIntern,\r\n\r\n                      style: ElevatedButton.styleFrom(\r\n                        backgroundColor: mainColor,\r\n                      ),\r\n\r\n                      child: Text(\r\n\r\n                        \"Assign Intern\",\r\n\r\n                        style: GoogleFonts.poppins(\r\n                          color: Colors.white,\r\n                        ),\r\n                      ),\r\n                    ),\r\n                  ],\r\n                ),\r\n              ),\r\n            ),\r\n\r\n            // ================= APPROVED INTERNS =================\r\n            buildTable(\r\n\r\n              \"Approved Interns\",\r\n\r\n              [\"ID\", \"Name\", \"Email\", \"Department\"],\r\n\r\n              approvedInterns.map<List<String>>((i) {\r\n\r\n                return [\r\n\r\n                  i[\"id\"].toString(),\r\n\r\n                  i[\"name\"],\r\n\r\n                  i[\"email\"],\r\n\r\n                  i[\"department\"][\"name\"],\r\n                ];\r\n\r\n              }).toList(),\r\n            ),\r\n\r\n            // ================= MENTORS + DEPARTMENTS =================\r\n            Row(\r\n              children: [\r\n\r\n                Expanded(\r\n\r\n                  child: buildTable(\r\n\r\n                    \"Mentors\",\r\n\r\n                    [\"ID\", \"Name\"],\r\n\r\n                    mentors.map<List<String>>((m) {\r\n\r\n                      return [\r\n\r\n                        m[\"id\"].toString(),\r\n\r\n                        m[\"name\"],\r\n                      ];\r\n\r\n                    }).toList(),\r\n                  ),\r\n                ),\r\n\r\n                const SizedBox(width: 10),\r\n\r\n                Expanded(\r\n\r\n                  child: buildTable(\r\n\r\n                    \"Departments\",\r\n\r\n                    [\"ID\", \"Name\"],\r\n\r\n                    departments.map<List<String>>((d) {\r\n\r\n                      return [\r\n\r\n                        d[\"id\"].toString(),\r\n\r\n                        d[\"name\"],\r\n                      ];\r\n\r\n                    }).toList(),\r\n                  ),\r\n                ),\r\n              ],\r\n            ),\r\n\r\n            // ================= ASSIGNMENTS =================\r\n            buildTable(\r\n\r\n              \"Assignments\",\r\n\r\n              [\"Intern\", \"Mentor\", \"Department\"],\r\n\r\n              assignments.map<List<String>>((a) {\r\n\r\n                return [\r\n\r\n                  a[\"internName\"],\r\n\r\n                  a[\"mentorName\"],\r\n\r\n                  a[\"deptName\"],\r\n                ];\r\n\r\n              }).toList(),\r\n            ),\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/admin/assign_interns.dart b/lib/admin/assign_interns.dart
+--- a/lib/admin/assign_interns.dart	(revision 64489cce6b917717cbc74b3944544170c5e839c3)
++++ b/lib/admin/assign_interns.dart	(date 1777669788515)
+@@ -33,7 +33,7 @@
+ 
+   // ================= BASE URL =================
+   final String baseUrl =
+-      "http://192.168.100.4/prolink/admin";
++      "http://192.168.1.19/prolink/admin";
+ 
+   // ================= DATA =================
+   List interns = [];
